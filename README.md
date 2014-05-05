@@ -238,7 +238,8 @@ next step is to inject your custom control factory into BasePresenter.
 
 ## Dynamic links
 
-We already have got links to adding books, but now we want links in breadcrumb with editing books just like this:
+We already have got links to adding books, but now we want links in breadcrumb with editing books just like in example
+below:
 
 Books / Harry Potter / Edit
 
@@ -253,7 +254,7 @@ menu:
 				target: Book:default
 ```
 
-There you can see the third way of writing links. Title is now in own option because we will need to access this `books`
+There you can see the third way of writing links. Title is now in own option because we will need to access `books`
 link for adding another links into it.
 
 First, we will add just one small helper method to our BasePresenter.
@@ -277,7 +278,7 @@ class BasePresenter extends Nette\Application\UI\Presenter
 
 
 	/**
-	 * Basically just helper for IDE because of @return phpdoc
+	 * Basically just helper for IDE because of @return annotation
 	 *
 	 * @return \DK\Menu\Menu
 	 */
