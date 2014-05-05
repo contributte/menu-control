@@ -1,0 +1,49 @@
+menu:
+
+	default:
+
+		items:
+			Home: Homepage:default
+
+			books:
+				title: Books
+				target: Book:default
+				items:
+					By author:
+						target: Book:authors
+						items:
+							Popular authors: Book:authorsPopular
+					anon:
+						title: Anonymous
+						target: Book:anonymous
+						items:
+							Create:
+								target: Book:anonymousAdd
+								visual: false
+
+			Users:
+				target: User:default
+				include: '^User\:[a-z]*$'
+
+			Settings:
+				target: Settings:default
+				allow:
+					loggedIn: true
+				items:
+					Users:
+						target: Settings:users
+						allow:
+							roles: [admin]
+					Books:
+						target: Settings:books
+						allow:
+							module: books
+					Images:
+						target: Settings:images
+						allow:
+							parameters:
+								go: you-can
+
+			about:
+				title: About us
+				target: About:default

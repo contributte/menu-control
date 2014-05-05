@@ -1,0 +1,29 @@
+{
+	"name": "sakren/nette-menu",
+	"type": "library",
+	"description": "Menu controls for Nette framework",
+	"keywords": ["nette", "menu", "control", "breadcrumbs"],
+	"homepage": "http://github.com/sakren/nette-menu",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "David Kudera",
+			"homepage": "http://davidkudera.com",
+			"email": "kudera.d@gmail.com"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/sakren/nette-menu/issues"
+	},
+	"require": {
+		"nette/nette": ">= 2.1.0"
+	},
+	"require-dev": {
+		"nette/tester": "@dev"
+	},
+	"autoload": {
+		"psr-0": {
+			"DK\\Menu\\": "src/"
+		}
+	}
+}

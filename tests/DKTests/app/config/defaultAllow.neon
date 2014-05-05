@@ -1,0 +1,10 @@
+menu:
+
+	default:
+
+		allow:
+			loggedIn: true
+
+		items:
+			Home:
+				target: Homepage:default

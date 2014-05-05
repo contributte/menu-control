@@ -1,0 +1,7 @@
+menu:
+
+	default:
+
+	other:
+		controlClass: DKTests\Menu\CustomControl
+		controlInterface: DKTests\Menu\ICustomControlFactory
