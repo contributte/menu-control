@@ -117,7 +117,7 @@ class Extension extends CompilerExtension
 			}
 
 			if (count($item['items']) > 0) {
-				$item['items'] = $this->parseItems($item['items']);
+				$item['items'] = $_this->parseItems($item['items']);
 			}
 		});
 
