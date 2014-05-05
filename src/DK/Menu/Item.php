@@ -33,6 +33,9 @@ class Item extends Container
 	/** @var array  */
 	private $parameters = array();
 
+	/** @var array  */
+	private $data = array();
+
 	/** @var bool  */
 	private $visual = true;
 
@@ -138,6 +141,26 @@ class Item extends Container
 	public function setParameters(array $parameters)
 	{
 		$this->parameters = $parameters;
+		return $this;
+	}
+
+
+	/**
+	 * @return array
+	 */
+	public function getData()
+	{
+		return $this->data;
+	}
+
+
+	/**
+	 * @param array $data
+	 * @return \DK\Menu\Item
+	 */
+	public function setData(array $data)
+	{
+		$this->data = $data;
 		return $this;
 	}
 

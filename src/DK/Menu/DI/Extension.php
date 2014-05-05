@@ -47,6 +47,7 @@ class Extension extends CompilerExtension
 		'title' => null,
 		'target' => null,
 		'parameters' => array(),
+		'data' => array(),
 		'include' => null,
 		'visual' => true,
 		'allow' => null,		// loaded from defaults in neon config
@@ -151,6 +152,10 @@ class Extension extends CompilerExtension
 	{
 		foreach ($items as $data) {
 			$item = $parent->addItem($data['title'], $data['target'], $data['parameters'], $data['name']);
+
+			if (count($data['data']) > 0) {
+				$item->setData($data['data']);
+			}
 
 			if ($data['include'] !== null) {
 				$item->setInclude($data['include']);
