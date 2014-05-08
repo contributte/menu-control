@@ -198,6 +198,16 @@ menu:
 		items: []
 ```
 
+## Translated titles
+
+```
+menu:
+
+	default:
+
+		translator: true
+```
+
 ## More menus
 
 Lets say that we want base menu and menu just for users in `admin` role.

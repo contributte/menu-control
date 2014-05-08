@@ -86,7 +86,7 @@ class Item extends Container
 
 
 	/**
-	 * @return \DK\Menu\Item
+	 * @return string
 	 */
 	public function getTitle()
 	{
@@ -102,6 +102,20 @@ class Item extends Container
 	{
 		$this->title = $title;
 		return $this;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getTranslatedTitle()
+	{
+		$title = $this->getTitle();
+		if (($translator = $this->getMenu()->getTranslator()) !== null) {
+			$title = $translator->translate($title);
+		}
+
+		return $title;
 	}
 
 
