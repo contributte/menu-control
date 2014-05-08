@@ -462,7 +462,13 @@ class Item extends Container
 				}
 
 				if ($this->active === null && $this->hasInclude()) {
-					if (preg_match('~'. $this->getInclude(). '~', $presenter->getName(). ':'. $presenter->getAction())) {
+					$include = $this->getInclude();
+					$name = $presenter->getName(). ':'. $presenter->getAction();
+
+					if (is_string($include) && preg_match('~'. $this->getInclude(). '~', $name)) {
+						$this->active = true;
+
+					} elseif (is_array($include) && in_array($name, $include)) {
 						$this->active = true;
 					}
 				}

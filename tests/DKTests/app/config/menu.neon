@@ -47,3 +47,6 @@ menu:
 			about:
 				title: About us
 				target: About:default
+				include:
+					- About:terms
+					- About:priceList

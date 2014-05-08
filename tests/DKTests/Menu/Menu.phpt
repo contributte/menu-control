@@ -161,7 +161,7 @@ class MenuTest extends TestCase
 	}
 
 
-	public function testCurrentIncluded()
+	public function testCurrentIncludedRegexp()
 	{
 		$container = $this->createContainer('menu');
 		$presenter = $this->createPresenter($container, 'User');
@@ -174,6 +174,22 @@ class MenuTest extends TestCase
 
 		Assert::same('Users', $current->getTitle());
 		Assert::same('User:default', $current->getTarget());
+	}
+
+
+	public function testCurrentIncludedArray()
+	{
+		$container = $this->createContainer('menu');
+		$presenter = $this->createPresenter($container, 'About');
+		$request = $this->createRequest('About', 'terms');
+
+		$presenter->run($request);
+
+		$menu = $presenter->getMenu();
+		$current = $menu->getLastCurrentItem();
+
+		Assert::same('About us', $current->getTitle());
+		Assert::same('About:default', $current->getTarget());
 	}
 
 
