@@ -29,6 +29,7 @@ use Nette\Application\Responses\TextResponse;
 use Nette\Application\UI\Presenter;
 use Nette\Security\IAuthenticator;
 use Nette\Security\Identity;
+use Nette\Localization\ITranslator;
 use DK\Menu\DI\Extension;
 use DK\Menu\Item;
 
@@ -161,7 +162,7 @@ class MenuTest extends TestCase
 	}
 
 
-	public function testCurrentIncluded()
+	public function testCurrentIncludedRegexp()
 	{
 		$container = $this->createContainer('menu');
 		$presenter = $this->createPresenter($container, 'User');
@@ -174,6 +175,34 @@ class MenuTest extends TestCase
 
 		Assert::same('Users', $current->getTitle());
 		Assert::same('User:default', $current->getTarget());
+	}
+
+
+	public function testCurrentIncludedArray()
+	{
+		$container = $this->createContainer('menu');
+		$presenter = $this->createPresenter($container, 'About');
+		$request = $this->createRequest('About', 'terms');
+
+		$presenter->run($request);
+
+		$menu = $presenter->getMenu();
+		$current = $menu->getLastCurrentItem();
+
+		Assert::same('About us', $current->getTitle());
+		Assert::same('About:default', $current->getTarget());
+	}
+
+
+	public function testTranslator()
+	{
+		$container = $this->createContainer('translated');
+		$menu = $container->getByType('DK\Menu\Menu');		/** @var $menu \DK\Menu\Menu */
+
+		$item = $menu->getItem('home');
+
+		Assert::same('menu.homepage', $item->getTitle());
+		Assert::same('Homepage', $item->getTranslatedTitle());
 	}
 
 
@@ -313,6 +342,27 @@ class Authenticator implements IAuthenticator
 		}
 
 		return new Identity($user, $roles);
+	}
+
+}
+
+
+class Translator implements ITranslator
+{
+
+
+	/**
+	 * @param string $message
+	 * @param int|null $count
+	 * @return string
+	 */
+	public function translate($message, $count = null)
+	{
+		if ($message === 'menu.homepage') {
+			return 'Homepage';
+		}
+
+		return null;
 	}
 
 }

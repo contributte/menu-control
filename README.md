@@ -170,6 +170,20 @@ menu:
 			include: '^Book\:[a-zA-Z]+$'
 ```
 
+or with array of included targets.
+
+```
+menu:
+
+	default:
+
+		Books settings:
+			target: Book:default
+			include:
+				- Book:add
+				- Book:edit
+```
+
 ## Custom templates
 
 ```
@@ -182,6 +196,16 @@ menu:
 			breadcrumb: %appDir%/templates/components/menu/breadcrumb.latte
 
 		items: []
+```
+
+## Translated titles
+
+```
+menu:
+
+	default:
+
+		translator: true
 ```
 
 ## More menus
@@ -309,6 +333,10 @@ class BookPresenter extends BasePresenter
 ```
 
 ## Changelog
+
+* 1.0.1
+	+ Include option can be array of targets [https://github.com/sakren/nette-menu/issues/1](#1)
+	+ Added support for translatable titles [https://github.com/sakren/nette-menu/issues/2](#2)
 
 * 1.0.0
 	+ First version

@@ -86,7 +86,7 @@ class Item extends Container
 
 
 	/**
-	 * @return \DK\Menu\Item
+	 * @return string
 	 */
 	public function getTitle()
 	{
@@ -102,6 +102,20 @@ class Item extends Container
 	{
 		$this->title = $title;
 		return $this;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getTranslatedTitle()
+	{
+		$title = $this->getTitle();
+		if (($translator = $this->getMenu()->getTranslator()) !== null) {
+			$title = $translator->translate($title);
+		}
+
+		return $title;
 	}
 
 
@@ -462,7 +476,13 @@ class Item extends Container
 				}
 
 				if ($this->active === null && $this->hasInclude()) {
-					if (preg_match('~'. $this->getInclude(). '~', $presenter->getName(). ':'. $presenter->getAction())) {
+					$include = $this->getInclude();
+					$name = $presenter->getName(). ':'. $presenter->getAction();
+
+					if (is_string($include) && preg_match('~'. $this->getInclude(). '~', $name)) {
+						$this->active = true;
+
+					} elseif (is_array($include) && in_array($name, $include)) {
 						$this->active = true;
 					}
 				}

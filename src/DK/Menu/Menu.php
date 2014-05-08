@@ -5,6 +5,7 @@ namespace DK\Menu;
 use Nette\Application\Application;
 use Nette\Application\UI\Presenter;
 use Nette\Security\User;
+use Nette\Localization\ITranslator;
 
 /**
  *
@@ -19,6 +20,9 @@ class Menu extends Container
 
 	/** @var \Nette\Security\User */
 	private $user;
+
+	/** @var \Nette\Localization\ITranslator */
+	private $translator;
 
 
 	/**
@@ -49,6 +53,26 @@ class Menu extends Container
 			};
 		}
 
+		return $this;
+	}
+
+
+	/**
+	 * @return \Nette\Localization\ITranslator
+	 */
+	public function getTranslator()
+	{
+		return $this->translator;
+	}
+
+
+	/**
+	 * @param \Nette\Localization\ITranslator $translator
+	 * @return \DK\Menu\Menu
+	 */
+	public function setTranslator(ITranslator $translator)
+	{
+		$this->translator = $translator;
 		return $this;
 	}
 
