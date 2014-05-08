@@ -1,0 +1,14 @@
+services:
+
+	- DKTests\Menu\Translator
+
+menu:
+
+	default:
+
+		translator: true
+
+		items:
+			home:
+				title: menu.homepage
+				target: Homepage:default

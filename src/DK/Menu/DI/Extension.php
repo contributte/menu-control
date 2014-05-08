@@ -28,6 +28,7 @@ class Extension extends CompilerExtension
 	private $menuDefaults = array(
 		'controlClass' => 'DK\Menu\UI\Control',
 		'controlInterface' => 'DK\Menu\UI\IControlFactory',
+		'translator' => false,
 		'template' => array(
 			'menu' => null,				// see constructor
 			'breadcrumb' => null,
@@ -64,7 +65,7 @@ class Extension extends CompilerExtension
 
 	public function loadConfiguration()
 	{
-		$config = $this->getConfig($this->defaults);
+		$config = $this->getConfig($this->defaults)	;
 		$builder = $this->getContainerBuilder();
 
 		$autowired = count($config) === 1;
@@ -76,10 +77,18 @@ class Extension extends CompilerExtension
 
 			$data['items'] = $this->parseItems($data['items']);
 
-			$builder->addDefinition($this->prefix($name))
+			$menu = $builder->addDefinition($this->prefix($name))
 				->setClass('DK\Menu\Menu')
 				->setFactory('DK\Menu\DI\Extension::createMenu', array($name, $data['items']))
 				->setAutowired($autowired);
+
+			if (($translator = $data['translator']) !== false) {
+				if ($translator === true) {
+					$translator = '@Nette\Localization\ITranslator';
+				}
+
+				$menu->addSetup('setTranslator', array($translator));
+			}
 
 			$builder->addDefinition($this->prefix($name. 'Control'))
 				->setClass($data['controlClass'], array('@'. $this->prefix($name)))

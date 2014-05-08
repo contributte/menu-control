@@ -29,6 +29,7 @@ use Nette\Application\Responses\TextResponse;
 use Nette\Application\UI\Presenter;
 use Nette\Security\IAuthenticator;
 use Nette\Security\Identity;
+use Nette\Localization\ITranslator;
 use DK\Menu\DI\Extension;
 use DK\Menu\Item;
 
@@ -193,6 +194,18 @@ class MenuTest extends TestCase
 	}
 
 
+	public function testTranslator()
+	{
+		$container = $this->createContainer('translated');
+		$menu = $container->getByType('DK\Menu\Menu');		/** @var $menu \DK\Menu\Menu */
+
+		$item = $menu->getItem('home');
+
+		Assert::same('menu.homepage', $item->getTitle());
+		Assert::same('Homepage', $item->getTranslatedTitle());
+	}
+
+
 	public function testPath()
 	{
 		$container = $this->createContainer('menu');
@@ -329,6 +342,27 @@ class Authenticator implements IAuthenticator
 		}
 
 		return new Identity($user, $roles);
+	}
+
+}
+
+
+class Translator implements ITranslator
+{
+
+
+	/**
+	 * @param string $message
+	 * @param int|null $count
+	 * @return string
+	 */
+	public function translate($message, $count = null)
+	{
+		if ($message === 'menu.homepage') {
+			return 'Homepage';
+		}
+
+		return null;
 	}
 
 }
