@@ -170,6 +170,20 @@ menu:
 			include: '^Book\:[a-zA-Z]+$'
 ```
 
+or with array of included targets.
+
+```
+menu:
+
+	default:
+
+		Books settings:
+			target: Book:default
+			include:
+				- Book:add
+				- Book:edit
+```
+
 ## Custom templates
 
 ```
