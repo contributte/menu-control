@@ -334,5 +334,9 @@ class BookPresenter extends BasePresenter
 
 ## Changelog
 
+* 1.0.1
+	+ Include option can be array of targets [https://github.com/sakren/nette-menu/issues/1](#1)
+	+ Added support for translatable titles [https://github.com/sakren/nette-menu/issues/2](#2)
+
 * 1.0.0
 	+ First version
