@@ -229,6 +229,36 @@ class Item extends Container
 
 
 	/**
+	 * @return array|string
+	 * @throws \DK\Menu\InvalidArgumentException
+	 */
+	public function getParsedInclude()
+	{
+		$include = $this->getInclude();
+		$name = $this->getMenu()->getPresenter()->getName();
+
+		if (($pos = mb_strpos($name, ':')) !== false) {
+			$module = mb_substr($name, 0, $pos);
+			$parse = function($include) use ($module) {
+				return strtr($include, array(
+					'<module>' => $module,
+				));
+			};
+
+			if (is_string($include)) {
+				return $parse($include);
+			} elseif (is_array($include)) {
+				return array_map($parse, $include);
+			} else {
+				throw new InvalidArgumentException;
+			}
+		}
+
+		return $include;
+	}
+
+
+	/**
 	 * @return \DK\Menu\Item
 	 */
 	public function invalidate()
@@ -407,8 +437,12 @@ class Item extends Container
 			return true;
 		}
 
-		list($current) = explode(':', $this->getMenu()->getPresenter()->getName());
-		return ucfirst($module) === $current;
+		$name = $this->getMenu()->getPresenter()->getName();
+		if (($pos = mb_strpos($name, ':')) === false) {
+			return false;
+		}
+
+		return mb_substr($name, 0, $pos) === ucfirst($module);
 	}
 
 
@@ -448,8 +482,8 @@ class Item extends Container
 				$this->isAllowedForRoles($this->getAllowedForRoles()) &&
 				(
 					$this->isAllowedForModule($this->getAllowedForModule()) ||
-					$this->isAllowedForParameters($this->getAllowedForParameters()
-				));
+					$this->isAllowedForParameters($this->getAllowedForParameters())
+				);
 		}
 
 		return $this->allowed;
@@ -476,7 +510,7 @@ class Item extends Container
 				}
 
 				if ($this->active === null && $this->hasInclude()) {
-					$include = $this->getInclude();
+					$include = $this->getParsedInclude();
 					$name = $presenter->getName(). ':'. $presenter->getAction();
 
 					if (is_string($include) && preg_match('~'. $this->getInclude(). '~', $name)) {
