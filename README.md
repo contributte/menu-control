@@ -182,6 +182,8 @@ menu:
 			include:
 				- Book:add
 				- Book:edit
+				- Front:Book:detail			# in module
+				- <module>:Book:delete		# "dynamic" module
 ```
 
 ## Custom templates
