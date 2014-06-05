@@ -249,6 +249,36 @@ class MenuTest extends TestCase
 	}
 
 
+	public function testData()
+	{
+		$container = $this->createContainer('menu');
+		$presenter = $this->createPresenter($container, 'Homepage');
+		$request = $this->createRequest('Homepage', 'default');
+
+		$presenter->run($request);
+
+		$menu = $presenter->getMenu();
+		$item = $menu->getItem('books-anon');
+
+		$item->setData(array('icon' => 'home'));
+
+		Assert::same(array('icon' => 'home'), $item->getData());
+
+		$item->addData('counter', 10);
+
+		Assert::same(array(
+			'icon' => 'home',
+			'counter' => 10,
+		), $item->getData());
+
+		$item->setIcon('book');
+		Assert::same('book', $item->getIcon());
+
+		$item->setCounter(5);
+		Assert::same(5, $item->getCounter());
+	}
+
+
 	public function testAuthLoggedIn()
 	{
 		$container = $this->createContainer('menu');
