@@ -160,11 +160,27 @@ class Item extends Container
 
 
 	/**
-	 * @return array
+	 * @param string $name
+	 * @return bool
 	 */
-	public function getData()
+	public function hasData($name)
 	{
-		return $this->data;
+		return isset($this->data[$name]);
+	}
+
+
+	/**
+	 * @param string $name
+	 * @return mixed
+	 * @throws \DK\Menu\InvalidArgumentException
+	 */
+	public function getData($name = null)
+	{
+		if ($name !== null && !$this->hasData($name)) {
+			throw new InvalidArgumentException("Undefined data '$name' in '$this->name' menu item.");
+		}
+
+		return $name === null ? $this->data : $this->data[$name];
 	}
 
 
@@ -176,6 +192,56 @@ class Item extends Container
 	{
 		$this->data = $data;
 		return $this;
+	}
+
+
+	/**
+	 * @param string $name
+	 * @param mixed $value
+	 * @return \DK\Menu\Item
+	 */
+	public function addData($name, $value)
+	{
+		$this->data[$name] = $value;
+		return $this;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getIcon()
+	{
+		return $this->getData('icon');
+	}
+
+
+	/**
+	 * @param string $icon
+	 * @return \DK\Menu\Item
+	 */
+	public function setIcon($icon)
+	{
+		return $this->addData('icon', $icon);
+	}
+
+
+	/**
+	 * @return int
+	 */
+	public function getCounter()
+	{
+		return $this->getData('counter');
+	}
+
+
+	/**
+	 * @param int $count
+	 * @return \DK\Menu\Item
+	 */
+	public function setCounter($count)
+	{
+		return $this->addData('counter', $count);
 	}
 
 
