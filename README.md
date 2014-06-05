@@ -336,6 +336,9 @@ class BookPresenter extends BasePresenter
 
 ## Changelog
 
+* 1.0.3
+	+ Added shortcut methods for working with item's data [#5](https://github.com/sakren/nette-menu/issues/5)
+
 * 1.0.2
 	+ Support for "dynamic" modules in includes option [#4](https://github.com/sakren/nette-menu/issues/4)
 
