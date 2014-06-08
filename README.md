@@ -338,6 +338,7 @@ class BookPresenter extends BasePresenter
 
 * 1.0.4
 	+ Added `hasIcon` and `hasCounter` methods
+	+ Support for "absolute" targets [#6](https://github.com/sakren/nette-menu/issues/6)
 
 * 1.0.3
 	+ Added shortcut methods for working with item's data [#5](https://github.com/sakren/nette-menu/issues/5)

@@ -49,7 +49,7 @@ menu:
 				target: About:default
 				include:
 					- About:terms
-					- About:priceListgi
+					- About:priceList
 
 			blog:
 				title: Blog
