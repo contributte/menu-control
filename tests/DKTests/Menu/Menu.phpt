@@ -127,7 +127,7 @@ class MenuTest extends TestCase
 		Assert::same(1, count($dom->find('#breadcrumb a')));
 
 		Assert::true($dom->has('#menu ul'));
-		Assert::same(7, count($dom->find('#menu ul li')));
+		Assert::same(8, count($dom->find('#menu ul li')));
 	}
 
 
@@ -143,6 +143,23 @@ class MenuTest extends TestCase
 		$current = $menu->getLastCurrentItem();
 
 		Assert::same('Home', $current->getTitle());
+	}
+
+
+	public function testAbsoluteTarget()
+	{
+		$container = $this->createContainer('menu');
+		$presenter = $this->createPresenter($container, 'Homepage');
+		$request = $this->createRequest('Homepage', 'default');
+
+		$presenter->run($request);
+
+		$menu = $presenter->getMenu();
+		$item = $menu->getItem('blog');
+
+		Assert::true($item->hasAbsoluteTarget());
+		Assert::false($item->isActive());
+		Assert::same('https://blog.nette-menu.com', $item->getLink());
 	}
 
 
