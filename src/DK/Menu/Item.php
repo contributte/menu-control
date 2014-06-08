@@ -208,6 +208,15 @@ class Item extends Container
 
 
 	/**
+	 * @return bool
+	 */
+	public function hasIcon()
+	{
+		return $this->hasData('icon');
+	}
+
+
+	/**
 	 * @return string
 	 */
 	public function getIcon()
@@ -223,6 +232,15 @@ class Item extends Container
 	public function setIcon($icon)
 	{
 		return $this->addData('icon', $icon);
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	public function hasCounter()
+	{
+		return $this->hasData('counter');
 	}
 
 
