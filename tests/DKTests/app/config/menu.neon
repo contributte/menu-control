@@ -49,4 +49,8 @@ menu:
 				target: About:default
 				include:
 					- About:terms
-					- About:priceList
+					- About:priceListgi
+
+			blog:
+				title: Blog
+				target: https://blog.nette-menu.com
