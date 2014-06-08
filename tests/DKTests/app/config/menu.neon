@@ -50,3 +50,7 @@ menu:
 				include:
 					- About:terms
 					- About:priceList
+
+			blog:
+				title: Blog
+				target: https://blog.nette-menu.com

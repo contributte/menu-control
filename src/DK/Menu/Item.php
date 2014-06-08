@@ -208,6 +208,15 @@ class Item extends Container
 
 
 	/**
+	 * @return bool
+	 */
+	public function hasIcon()
+	{
+		return $this->hasData('icon');
+	}
+
+
+	/**
 	 * @return string
 	 */
 	public function getIcon()
@@ -223,6 +232,15 @@ class Item extends Container
 	public function setIcon($icon)
 	{
 		return $this->addData('icon', $icon);
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	public function hasCounter()
+	{
+		return $this->hasData('counter');
 	}
 
 
@@ -335,11 +353,24 @@ class Item extends Container
 
 
 	/**
+	 * @return bool
+	 */
+	public function hasAbsoluteTarget()
+	{
+		return preg_match('/^(http|https)\:\/\//', $this->getTarget()) === 1;
+	}
+
+
+	/**
 	 * @return string
 	 */
 	public function getLink()
 	{
-		return $this->getMenu()->getPresenter()->link($this->getTarget(), $this->getParameters());
+		if ($this->hasAbsoluteTarget()) {
+			return $this->getTarget();
+		} else {
+			return $this->getMenu()->getPresenter()->link($this->getTarget(), $this->getParameters());
+		}
 	}
 
 
@@ -562,7 +593,7 @@ class Item extends Container
 	public function isActive()
 	{
 		if ($this->active === null) {
-			if (!$this->isAllowed()) {
+			if (!$this->isAllowed() || $this->hasAbsoluteTarget()) {
 				$this->active = false;
 			} else {
 				$presenter = $this->getMenu()->getPresenter();
