@@ -122,6 +122,12 @@ menu:
 						allow:
 							parameters:
 								[allowed: maybe]
+					Authors:
+						target: Authors:default
+						allow:
+							acl:
+								resource: authors
+								permission: view #optional - 'view' is default permission
 ```
 
 or whole menu can be allowed for example just logged users:
