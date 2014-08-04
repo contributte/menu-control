@@ -192,8 +192,13 @@ class Extension extends CompilerExtension
 			}
 			
 			if (count($data['allow']['acl']) >0) {
-				if ( isset($data['allow']['acl']['resource']) ) 
-					$item->setAllowedForAcl($data['allow']['acl']['resource'], @$data['allow']['acl']['permission']);
+				if ( isset($data['allow']['acl']['resource']) ) {
+					$permission = null;
+					if ( isset($data['allow']['acl']['permission'])) {
+						$permission = $data['allow']['acl']['permission'];
+					}
+					$item->setAllowedForAcl($data['allow']['acl']['resource'], $permission);
+				}
 			}
 
 			if (count($data['items']) > 0) {
