@@ -497,7 +497,7 @@ class Item extends Container
 	 */
 	public function hasAllowedForAcl()
 	{
-		return $this->allowedFor[self::ALLOWED_FOR_ACL] !== null;
+		return count($this->allowedFor[self::ALLOWED_FOR_ACL]) > 0;
 	}
 
 
