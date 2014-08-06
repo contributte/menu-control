@@ -20,7 +20,8 @@ class Item extends Container
 
 	const ALLOWED_FOR_PARAMETERS = 'parameters';
 
-
+	const ALLOWED_FOR_ACL = 'acl';
+	
 	/** @var \DK\Menu\Menu */
 	private $menu;
 
@@ -45,11 +46,13 @@ class Item extends Container
 	/** @var array  */
 	private $allowedFor = array(
 		self::ALLOWED_FOR_LOGGED_IN => null,
+		self::ALLOWED_FOR_ACL => array(),
 		self::ALLOWED_FOR_ROLES => array(),
 		self::ALLOWED_FOR_MODULE => null,
 		self::ALLOWED_FOR_PARAMETERS => array(),
 	);
-
+	
+	private $defaultAclPermission = 'view';
 
 	/** @var bool */
 	private $allowed;
@@ -380,7 +383,7 @@ class Item extends Container
 	public function hasAllowedForLoggedIn()
 	{
 		return $this->allowedFor[self::ALLOWED_FOR_LOGGED_IN] !== null;
-	}
+	}	
 
 
 	/**
@@ -430,7 +433,7 @@ class Item extends Container
 		$this->allowedFor[self::ALLOWED_FOR_ROLES] = $roles;
 		return $this;
 	}
-
+	
 
 	/**
 	 * @return bool
@@ -488,6 +491,52 @@ class Item extends Container
 		$this->allowedFor[self::ALLOWED_FOR_PARAMETERS] = $parameters;
 		return $this;
 	}
+	
+	/**
+	 * @return bool
+	 */
+	public function hasAllowedForAcl()
+	{
+		return count($this->allowedFor[self::ALLOWED_FOR_ACL]) > 0;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getAllowedForAcl()
+	{
+		return $this->allowedFor[self::ALLOWED_FOR_ACL];
+	}
+
+
+	/**
+	 * @param string $module
+	 * @return \DK\Menu\Item
+	 */
+	public function setAllowedForAcl($resource, $permission = null)
+	{
+		$this->allowedFor[self::ALLOWED_FOR_ACL]['resource'] = $resource;
+		if ( $permission) {
+			$this->allowedFor[self::ALLOWED_FOR_ACL]['permission'] = $permission;
+		}
+		return $this;
+	}
+
+	/**
+	 * @param array $acl
+	 * @return bool
+	 */
+	public function isAllowedForAcl($acl)
+	{
+		if (count($acl) === 0) {
+			return true;
+		}
+		$resource = $acl['resource'];
+		$permission = isset($acl['permission']) ? $acl['permission'] : $this->defaultAclPermission;
+		return $this->getMenu()->getUser()->isAllowed($resource, $permission);
+		
+	}
 
 
 	/**
@@ -541,7 +590,7 @@ class Item extends Container
 
 		return mb_substr($name, 0, $pos) === ucfirst($module);
 	}
-
+	
 
 	/**
 	 * @param array $parameters
@@ -570,11 +619,12 @@ class Item extends Container
 	public function isAllowed()
 	{
 		if ($this->allowed === null) {
-			if (!$this->hasAllowedForLoggedIn() && !$this->hasAllowedForRoles() && !$this->hasAllowedForModule() && !$this->hasAllowedForParameters()) {
+			if (!$this->hasAllowedForAcl() && !$this->hasAllowedForLoggedIn() && !$this->hasAllowedForRoles() && !$this->hasAllowedForModule() && !$this->hasAllowedForParameters()) {
 				return $this->allowed = true;
 			}
 
 			$this->allowed =
+				$this->isAllowedForAcl($this->getAllowedForAcl()) &&
 				$this->isAllowedForLoggedIn($this->getAllowedForLoggedIn()) &&
 				$this->isAllowedForRoles($this->getAllowedForRoles()) &&
 				(
