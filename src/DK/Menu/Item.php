@@ -517,14 +517,13 @@ class Item extends Container
 	public function setAllowedForAcl($resource, $permission = null)
 	{
 		$this->allowedFor[self::ALLOWED_FOR_ACL]['resource'] = $resource;
-		if ( $permission) {
+		if ( $permission)
 			$this->allowedFor[self::ALLOWED_FOR_ACL]['permission'] = $permission;
-		}
 		return $this;
 	}
 
 	/**
-	 * @param array $acl
+	 * @param string $acl
 	 * @return bool
 	 */
 	public function isAllowedForAcl($acl)
@@ -534,6 +533,7 @@ class Item extends Container
 		}
 		$resource = $acl['resource'];
 		$permission = isset($acl['permission']) ? $acl['permission'] : $this->defaultAclPermission;
+//		dump(array('resource'=>$resource, 'permission'=>$permission));
 		return $this->getMenu()->getUser()->isAllowed($resource, $permission);
 		
 	}
