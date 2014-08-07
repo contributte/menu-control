@@ -1,0 +1,25 @@
+{contentType text/xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+	{if !isset($menuParent)}
+		{var $menuParent = $menu}
+	{/if}
+	{var $priority = 1}
+
+	{block branch}
+
+	{if $menuParent->hasVisualItems()}
+		{foreach $menuParent->getItems() as $item}
+			<url n:if="$item->isVisual() && $item->isAllowed()">
+				<loc>{$baseUri}{$item->getLink()}</loc>
+				<priority>{$priority}</priority>
+			</url>
+			{include branch, menuParent => $item, priority => $priority - 0.1}	  
+		{/foreach}
+	{/if}
+
+	{/block}
+
+</urlset> 

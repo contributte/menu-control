@@ -101,4 +101,10 @@ class Control extends BaseControl
 		$this->template->render();
 	}
 
+	public function renderSitemapXml()
+	{
+		$this->template->setFile(__DIR__. '/sitemapXml.latte');
+		$this->template->menu = $this->menu;
+		$this->template->render();
+	}
 } 
