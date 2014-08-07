@@ -93,6 +93,21 @@ class BasePresenter extends Nette\Application\UI\Presenter
 {control menu}
 ```
 
+Generating sitemap.xml 
+
+Router
+```
+$router[] = new Route('sitemap.xml', 'Homepage:sitemap');
+```
+
+Homepage/sitemap.latte
+```
+{extends none}
+{control menu:sitemapXml}
+```
+
+
+
 ## Authorization
 
 You can hide some links for example for users without specific role, guest users, actions in other module or when
