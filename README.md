@@ -93,7 +93,7 @@ class BasePresenter extends Nette\Application\UI\Presenter
 {control menu}
 ```
 
-Generating sitemap.xml 
+## Render sitemap.xml 
 
 Router
 ```
@@ -105,8 +105,6 @@ Homepage/sitemap.latte
 {extends none}
 {control menu:sitemapXml}
 ```
-
-
 
 ## Authorization
 
