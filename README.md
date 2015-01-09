@@ -355,6 +355,10 @@ class BookPresenter extends BasePresenter
 
 ## Changelog
 
+* 1.1.0
+	+ Support for ACL permissions (thanks [whipsterCZ](https://github.com/whipsterCZ))
+	+ Support for generating sitemap (thanks [whipsterCZ](https://github.com/whipsterCZ))
+
 * 1.0.4
 	+ Added `hasIcon` and `hasCounter` methods
 	+ Support for "absolute" targets [#6](https://github.com/sakren/nette-menu/issues/6)
