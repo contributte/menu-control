@@ -9,4 +9,4 @@ namespace DK\Menu;
 class InvalidArgumentException extends \InvalidArgumentException
 {
 
-} 
+}

@@ -38,6 +38,7 @@ class Extension extends CompilerExtension
 			'roles' => array(),
 			'module' => null,
 			'parameters' => array(),
+			'acl' => array(),
 		),
 		'items' => array(),
 	);
@@ -189,6 +190,16 @@ class Extension extends CompilerExtension
 			if (count($data['allow']['parameters']) > 0) {
 				$item->setAllowedForParameters($data['allow']['parameters']);
 			}
+			
+			if (count($data['allow']['acl']) >0) {
+				if ( isset($data['allow']['acl']['resource']) ) {
+					$permission = null;
+					if ( isset($data['allow']['acl']['permission'])) {
+						$permission = $data['allow']['acl']['permission'];
+					}
+					$item->setAllowedForAcl($data['allow']['acl']['resource'], $permission);
+				}
+			}
 
 			if (count($data['items']) > 0) {
 				self::addItemsToParent($item, $data['items']);
@@ -207,4 +218,4 @@ class Extension extends CompilerExtension
 		};
 	}
 
-} 
+}

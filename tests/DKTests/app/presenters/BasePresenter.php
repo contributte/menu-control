@@ -36,4 +36,4 @@ class BasePresenter extends Presenter
 		return $this['menu']->getMenu();
 	}
 
-} 
+}

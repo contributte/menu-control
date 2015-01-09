@@ -15,4 +15,4 @@ interface IControlFactory
 	 */
 	public function create();
 
-} 
+}

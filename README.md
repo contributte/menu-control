@@ -93,6 +93,19 @@ class BasePresenter extends Nette\Application\UI\Presenter
 {control menu}
 ```
 
+## Render sitemap.xml 
+
+Router
+```
+$router[] = new Route('sitemap.xml', 'Homepage:sitemap');
+```
+
+Homepage/sitemap.latte
+```
+{extends none}
+{control menu:sitemapXml}
+```
+
 ## Authorization
 
 You can hide some links for example for users without specific role, guest users, actions in other module or when
@@ -122,6 +135,12 @@ menu:
 						allow:
 							parameters:
 								[allowed: maybe]
+					Authors:
+						target: Authors:default
+						allow:
+							acl:
+								resource: authors
+								permission: view #optional - 'view' is default permission
 ```
 
 or whole menu can be allowed for example just logged users:
@@ -335,6 +354,10 @@ class BookPresenter extends BasePresenter
 ```
 
 ## Changelog
+
+* 1.1.0
+	+ Support for ACL permissions (thanks [whipsterCZ](https://github.com/whipsterCZ))
+	+ Support for generating sitemap (thanks [whipsterCZ](https://github.com/whipsterCZ))
 
 * 1.0.4
 	+ Added `hasIcon` and `hasCounter` methods
