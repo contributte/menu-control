@@ -218,4 +218,4 @@ class Extension extends CompilerExtension
 		};
 	}
 
-} 
+}

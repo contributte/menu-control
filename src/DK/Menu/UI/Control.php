@@ -13,13 +13,13 @@ class Control extends BaseControl
 {
 
 
-	/** @var \DK\Menu\Menu  */
+	/** @var \DK\Menu\Menu */
 	private $menu;
 
-	/** @var string  */
+	/** @var string */
 	private $menuTemplate;
 
-	/** @var string  */
+	/** @var string */
 	private $breadcrumbTemplate;
 
 
@@ -32,8 +32,8 @@ class Control extends BaseControl
 
 		$this->menu = $menu;
 
-		$this->menuTemplate = __DIR__. '/menu.latte';
-		$this->breadcrumbTemplate = __DIR__. '/breadcrumb.latte';
+		$this->menuTemplate = __DIR__ . '/menu.latte';
+		$this->breadcrumbTemplate = __DIR__ . '/breadcrumb.latte';
 	}
 
 
@@ -107,4 +107,4 @@ class Control extends BaseControl
 		$this->template->menu = $this->menu;
 		$this->template->render();
 	}
-} 
+}

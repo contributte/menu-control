@@ -21,7 +21,8 @@ class Item extends Container
 	const ALLOWED_FOR_PARAMETERS = 'parameters';
 
 	const ALLOWED_FOR_ACL = 'acl';
-	
+
+
 	/** @var \DK\Menu\Menu */
 	private $menu;
 
@@ -511,7 +512,8 @@ class Item extends Container
 
 
 	/**
-	 * @param string $module
+	 * @param string $resource
+	 * @param string $permission
 	 * @return \DK\Menu\Item
 	 */
 	public function setAllowedForAcl($resource, $permission = null)
@@ -520,6 +522,7 @@ class Item extends Container
 		if ( $permission) {
 			$this->allowedFor[self::ALLOWED_FOR_ACL]['permission'] = $permission;
 		}
+
 		return $this;
 	}
 
@@ -686,4 +689,4 @@ class Item extends Container
 		return $this->active;
 	}
 
-} 
+}

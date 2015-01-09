@@ -11,4 +11,4 @@ require_once __DIR__ . '/BasePresenter.php';
 class SettingsPresenter extends BasePresenter
 {
 
-} 
+}
