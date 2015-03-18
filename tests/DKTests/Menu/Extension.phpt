@@ -117,7 +117,7 @@ class ExtensionTest extends TestCase
 
 class CustomControl extends Control {}
 
-interface ICustomControlFactory extends IControlFactory
+interface ICustomControlFactory
 {
 
 
@@ -131,7 +131,7 @@ interface ICustomControlFactory extends IControlFactory
 
 class OtherCustomControl extends Control {}
 
-interface IOtherCustomControlFactory extends IControlFactory
+interface IOtherCustomControlFactory
 {
 
 

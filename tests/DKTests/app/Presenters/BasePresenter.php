@@ -24,7 +24,7 @@ class BasePresenter extends Presenter
 	{
 		parent::__construct();
 
-		$this->menuFactory = $context->getByType('DK\Menu\UI\IControlFactory');		// just for disabling warning about more than one services of same type
+		$this->menuFactory = $context->getByType('DK\Menu\UI\IControlFactory');		// just for disabling warning about non existing services
 	}
 
 
