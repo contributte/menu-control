@@ -1,9 +1,11 @@
 <?php
 
-if (@!include __DIR__ . '/../../vendor/autoload.php') {
+if (!$loader = @include __DIR__ . '/../../vendor/autoload.php') {
 	echo 'Install Nette Tester using `composer update --dev`';
 	exit(1);
 }
+
+$loader->addPsr4('DKTests\\', __DIR__. '/app');
 
 // configure environment
 Tester\Environment::setup();

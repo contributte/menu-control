@@ -107,9 +107,9 @@ class ExtensionTest extends TestCase
 	{
 		$di = $this->createContainer('more');
 
-		$controlFactory = $di->getByType('DKTests\Menu\ICustomControlFactory');		/** @var $controlFactory \DKTests\Menu\ICustomControlFactory */
-		Assert::true($controlFactory instanceof ICustomControlFactory);
-		Assert::true($controlFactory->create() instanceof CustomControl);
+		$controlFactory = $di->getByType('DKTests\Menu\IOtherCustomControlFactory');		/** @var $controlFactory \DKTests\Menu\ICustomControlFactory */
+		Assert::true($controlFactory instanceof IOtherCustomControlFactory);
+		Assert::true($controlFactory->create() instanceof OtherCustomControl);
 	}
 
 }
@@ -117,12 +117,26 @@ class ExtensionTest extends TestCase
 
 class CustomControl extends Control {}
 
-interface ICustomControlFactory
+interface ICustomControlFactory extends IControlFactory
 {
 
 
 	/**
 	 * @return \DKTests\Menu\CustomControl
+	 */
+	public function create();
+
+}
+
+
+class OtherCustomControl extends Control {}
+
+interface IOtherCustomControlFactory extends IControlFactory
+{
+
+
+	/**
+	 * @return \DKTests\Menu\OtherCustomControl
 	 */
 	public function create();
 
