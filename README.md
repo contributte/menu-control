@@ -9,12 +9,11 @@ Nette component for creating menus and breadcrumbs.
 
 ```
 $ composer require sakren/nette-menu
-$ composer update
 ```
 
 Now you need to register this as Nette extension in your config.neon file.
 
-```
+```yaml
 extensions:
 	menu: DK\Menu\DI\Extension
 
@@ -24,7 +23,7 @@ includes:
 
 Than you can create new `menu` section for example in menu.neon.
 
-```
+```yaml
 menu:
 
 	default:
@@ -49,13 +48,13 @@ Of course you can create more nested menu.
 Also you can see that there are more ways how to write link. If you have got single link without children, you can use
 this.
 
-```
+```yaml
 Title of link: Presenter:action
 ```
 
 or links with children
 
-```
+```yaml
 Title of link:
 	target: Presenter:action
 	items: []
@@ -65,7 +64,7 @@ there is actually also third way, but it is useful just for specific cases and i
 
 ## Render menu and breadcrumb
 
-```
+```php
 class BasePresenter extends Nette\Application\UI\Presenter
 {
 
@@ -87,7 +86,7 @@ class BasePresenter extends Nette\Application\UI\Presenter
 
 @layout.latte:
 
-```
+```smarty
 {control menu:breadcrumb}
 
 {control menu}
@@ -96,12 +95,12 @@ class BasePresenter extends Nette\Application\UI\Presenter
 ## Render sitemap.xml 
 
 Router
-```
+```php
 $router[] = new Route('sitemap.xml', 'Homepage:sitemap');
 ```
 
 Homepage/sitemap.latte
-```
+```smarty
 {extends none}
 {control menu:sitemapXml}
 ```
@@ -111,7 +110,7 @@ Homepage/sitemap.latte
 You can hide some links for example for users without specific role, guest users, actions in other module or when
 needed presenter parameter is missing.
 
-```
+```yaml
 menu:
 
 	default:
@@ -145,7 +144,7 @@ menu:
 
 or whole menu can be allowed for example just logged users:
 
-```
+```yaml
 menu:
 
 	default:
@@ -161,7 +160,7 @@ menu:
 Imagine that you have for example link to books settings and page for adding book which you do not wish to add to your
 menu but at the same time you want base books settings link to be highlighted.
 
-```
+```yaml
 menu:
 
 	default:
@@ -179,7 +178,7 @@ menu:
 if you want to highlight "Books settings" link for all actions in BookPresenter, you can include all targets with
 regexp.
 
-```
+```yaml
 menu:
 
 	default:
@@ -191,7 +190,7 @@ menu:
 
 or with array of included targets.
 
-```
+```yaml
 menu:
 
 	default:
@@ -207,7 +206,7 @@ menu:
 
 ## Custom templates
 
-```
+```yaml
 menu:
 
 	default:
@@ -221,7 +220,7 @@ menu:
 
 ## Translated titles
 
-```
+```yaml
 menu:
 
 	default:
@@ -233,7 +232,7 @@ menu:
 
 Lets say that we want base menu and menu just for users in `admin` role.
 
-```
+```yaml
 menu:
 
 	default:
@@ -250,7 +249,7 @@ menu services.
 
 Solution is to create custom control and factory classes.
 
-```
+```php
 namespace App\Components\AdminMenu;
 
 use DK;
@@ -271,7 +270,7 @@ interface IMenuControlFactory
 
 now we have to update our menu configuration
 
-```
+```yaml
 menu:
 
 	admin:
@@ -288,7 +287,7 @@ below:
 
 Books / Harry Potter / Edit
 
-```
+```yaml
 menu:
 
 	default:
@@ -304,7 +303,7 @@ link for adding another links into it.
 
 First, we will add just one small helper method to our BasePresenter.
 
-```
+```php
 class BasePresenter extends Nette\Application\UI\Presenter
 {
 
@@ -337,7 +336,7 @@ class BasePresenter extends Nette\Application\UI\Presenter
 
 BookPresenter:
 
-```
+```php
 class BookPresenter extends BasePresenter
 {
 
