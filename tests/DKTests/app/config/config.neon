@@ -7,9 +7,6 @@ nette:
 		mapping:
 			*: DKTests\*Module\Presenters\*Presenter
 
-	security:
-		frames: null
-
 	session:
 		autoStart: false
 
@@ -21,7 +18,7 @@ services:
 	cacheStorage:
 		class: Nette\Caching\Storages\MemoryStorage
 
-	# to lazy to create new factory service
+	# too lazy to create new factory service
 	router:
 		class: Nette\Application\Routers\RouteList
 		setup:

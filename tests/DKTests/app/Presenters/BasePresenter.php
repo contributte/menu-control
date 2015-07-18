@@ -3,6 +3,7 @@
 namespace DKTests\Presenters;
 
 use Nette\Application\UI\Presenter;
+use Nette\DI\Container;
 
 /**
  *
@@ -12,8 +13,19 @@ class BasePresenter extends Presenter
 {
 
 
-	/** @var \DK\Menu\UI\IControlFactory @inject */
-	public $menuFactory;
+	/** @var \DK\Menu\UI\IControlFactory */
+	private $menuFactory;
+
+
+	/**
+	 * @param \Nette\DI\Container $context
+	 */
+	public function __construct(Container $context)
+	{
+		parent::__construct();
+
+		$this->menuFactory = $context->getByType('DK\Menu\UI\IControlFactory');		// just for disabling warning about non existing services
+	}
 
 
 	/**

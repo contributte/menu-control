@@ -1,9 +1,9 @@
 {
-	"name": "sakren/nette-menu",
+	"name": "carrooi/nette-menu",
 	"type": "library",
 	"description": "Menu controls for Nette framework",
 	"keywords": ["nette", "menu", "control", "breadcrumbs"],
-	"homepage": "http://github.com/sakren/nette-menu",
+	"homepage": "https://github.com/Carrooi/Nette-Menu",
 	"license": "MIT",
 	"authors": [
 		{
@@ -13,10 +13,10 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/sakren/nette-menu/issues"
+		"issues": "https://github.com/Carrooi/Nette-Menu/issues"
 	},
 	"require": {
-		"nette/nette": ">= 2.1.0"
+		"nette/nette": ">= 2.2.0"
 	},
 	"require-dev": {
 		"nette/tester": "@dev"
