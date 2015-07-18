@@ -8,7 +8,7 @@ Nette component for creating menus and breadcrumbs.
 ## Installation
 
 ```
-$ composer require sakren/nette-menu
+$ composer require carrooi/nette-menu
 ```
 
 Now you need to register this as Nette extension in your config.neon file.
