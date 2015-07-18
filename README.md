@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/sakren/nette-menu.png?branch=master)](https://travis-ci.org/sakren/nette-menu)
-[![Donate](http://b.repl.ca/v1/donate-PayPal-brightgreen.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HPH6AC9D5LGHY)
+[![Build Status](https://img.shields.io/travis/Carrooi/Nette-Menu.svg?style=flat-square)](https://travis-ci.org/Carrooi/Nette-Menu)
+[![Donate](https://img.shields.io/badge/donate-PayPal-brightgreen.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HPH6AC9D5LGHY)
 
 # Nette menu
 
@@ -353,6 +353,9 @@ class BookPresenter extends BasePresenter
 ```
 
 ## Changelog
+
+* 1.1.1
+	+ Move under Carrooi organization
 
 * 1.1.0
 	+ Support for ACL permissions (thanks [whipsterCZ](https://github.com/whipsterCZ))
