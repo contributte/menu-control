@@ -54,6 +54,7 @@ class Extension extends CompilerExtension
 		'visual' => true,
 		'allow' => null,		// loaded from defaults in neon config
 		'items' => array(),
+		'absolute' => false,
 	);
 
 
@@ -204,6 +205,12 @@ class Extension extends CompilerExtension
 			if (count($data['items']) > 0) {
 				self::addItemsToParent($item, $data['items']);
 			}
+
+			if ($data['absolute'] !== null) {
+				$item->setAbsolute($data['absolute']);
+			}
+			
+
 		}
 	}
 

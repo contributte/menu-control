@@ -32,6 +32,9 @@ class Item extends Container
 	/** @var string */
 	private $target;
 
+	/** @var bool For absolute (string) targets */
+	private $absolute = false;
+
 	/** @var array  */
 	private $parameters = array();
 
@@ -355,6 +358,23 @@ class Item extends Container
 		return $this;
 	}
 
+	/**
+	 * @param bool $absolute
+	 * @return \DK\Menu\Item
+	 */
+	public function setAbsolute($absolute = true)
+	{
+		$this->absolute = $absolute;
+		return $this;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isAbsolute()
+	{
+		return $this->absolute === true;
+	}
 
 	/**
 	 * @return bool
@@ -370,7 +390,7 @@ class Item extends Container
 	 */
 	public function getLink()
 	{
-		if ($this->hasAbsoluteTarget()) {
+		if ($this->hasAbsoluteTarget() || $this->isAbsolute()) {
 			return $this->getTarget();
 		} else {
 			return $this->getMenu()->getPresenter()->link($this->getTarget(), $this->getParameters());
