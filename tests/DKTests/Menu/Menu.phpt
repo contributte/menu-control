@@ -127,7 +127,7 @@ class MenuTest extends TestCase
 		Assert::same(1, count($dom->find('#breadcrumb a')));
 
 		Assert::true($dom->has('#menu ul'));
-		Assert::same(8, count($dom->find('#menu ul li')));
+		Assert::same(9, count($dom->find('#menu ul li')));
 	}
 
 
