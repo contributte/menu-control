@@ -2,13 +2,12 @@ php:
 	date.timezone: Europe/Prague
 
 
-nette:
-	application:
-		mapping:
-			*: DKTests\*Module\Presenters\*Presenter
+application:
+	mapping:
+		*: DKTests\*Module\Presenters\*Presenter
 
-	session:
-		autoStart: false
+session:
+	autoStart: false
 
 
 services:
