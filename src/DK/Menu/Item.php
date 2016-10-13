@@ -22,6 +22,8 @@ class Item extends Container
 
 	const ALLOWED_FOR_ACL = 'acl';
 
+	const ALLOWED_BY_CALLBACK = 'callback';
+
 
 	/** @var \DK\Menu\Menu */
 	private $menu;
@@ -54,6 +56,7 @@ class Item extends Container
 		self::ALLOWED_FOR_ROLES => array(),
 		self::ALLOWED_FOR_MODULE => null,
 		self::ALLOWED_FOR_PARAMETERS => array(),
+		self::ALLOWED_BY_CALLBACK => null,
 	);
 	
 	private $defaultAclPermission = 'view';
@@ -639,16 +642,50 @@ class Item extends Container
 	/**
 	 * @return bool
 	 */
+	public function hasAllowedByCallback()
+	{
+		return $this->allowedFor[self::ALLOWED_BY_CALLBACK] !== null;
+	}
+
+
+	/**
+	 * @param callable $callback
+	 * @return $this
+	 */
+	public function setAllowedByCallback(callable $callback)
+	{
+		$this->allowedFor[self::ALLOWED_BY_CALLBACK] = $callback;
+		return $this;
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	public function isAllowedByCallback()
+	{
+		if (!$this->hasAllowedByCallback()) {
+			return true;
+		}
+
+		return (bool) call_user_func($this->allowedFor[self::ALLOWED_BY_CALLBACK], $this);
+	}
+
+
+	/**
+	 * @return bool
+	 */
 	public function isAllowed()
 	{
 		if ($this->allowed === null) {
-			if (!$this->hasAllowedForAcl() && !$this->hasAllowedForLoggedIn() && !$this->hasAllowedForRoles() && !$this->hasAllowedForModule() && !$this->hasAllowedForParameters()) {
+			if (!$this->hasAllowedForAcl() && !$this->hasAllowedForLoggedIn() && !$this->hasAllowedForRoles() && !$this->hasAllowedForModule() && !$this->hasAllowedForParameters() && !$this->hasAllowedByCallback()) {
 				return $this->allowed = true;
 			}
 
 			$this->allowed =
 				$this->isAllowedForAcl($this->getAllowedForAcl()) &&
 				$this->isAllowedForLoggedIn($this->getAllowedForLoggedIn()) &&
+				$this->isAllowedByCallback() &&
 				$this->isAllowedForRoles($this->getAllowedForRoles()) &&
 				(
 					$this->isAllowedForModule($this->getAllowedForModule()) ||

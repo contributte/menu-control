@@ -29,6 +29,7 @@ if (extension_loaded('xdebug')) {
 }
 
 require_once __DIR__. '/Menu/MockUserStorage.php';
+require_once __DIR__. '/Menu/CallbackAuthorizator.php';
 
 function id($val) {
 	return $val;

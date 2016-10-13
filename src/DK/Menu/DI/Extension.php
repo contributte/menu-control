@@ -39,6 +39,7 @@ class Extension extends CompilerExtension
 			'module' => null,
 			'parameters' => array(),
 			'acl' => array(),
+			'callback' => null,
 		),
 		'items' => array(),
 	);
@@ -193,13 +194,17 @@ class Extension extends CompilerExtension
 			}
 			
 			if (count($data['allow']['acl']) >0) {
-				if ( isset($data['allow']['acl']['resource']) ) {
+				if (isset($data['allow']['acl']['resource'])) {
 					$permission = null;
-					if ( isset($data['allow']['acl']['permission'])) {
+					if (isset($data['allow']['acl']['permission'])) {
 						$permission = $data['allow']['acl']['permission'];
 					}
 					$item->setAllowedForAcl($data['allow']['acl']['resource'], $permission);
 				}
+			}
+
+			if ($data['allow']['callback'] !== null) {
+				$item->setAllowedByCallback($data['allow']['callback']);
 			}
 
 			if (count($data['items']) > 0) {

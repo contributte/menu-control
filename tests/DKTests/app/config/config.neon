@@ -22,3 +22,5 @@ services:
 		class: Nette\Application\Routers\RouteList
 		setup:
 			- '$service[] = ?'(Nette\Application\Routers\Route('<presenter>/<action>[/<id>]', 'Homepage:default'))
+
+	- DKTests\Menu\CallbackAuthorizator

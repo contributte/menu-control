@@ -21,7 +21,7 @@ includes:
 	- ./menu.neon
 ```
 
-Than you can create new `menu` section for example in menu.neon.
+Then you can create new `menu` section for example in menu.neon.
 
 ```yaml
 menu:
@@ -140,6 +140,11 @@ menu:
 							acl:
 								resource: authors
 								permission: view #optional - 'view' is default permission
+								
+					Pages:
+						target: Pages:default
+						allow:
+							callback: [@App\CustomAuthorizator, check]		# CustomAuthorizator must be registered service with public method check
 ```
 
 or whole menu can be allowed for example just logged users:

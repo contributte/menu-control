@@ -48,6 +48,10 @@ class MenuTest extends TestCase
 
 	public function tearDown()
 	{
+		if (!$this->container) {
+			return;
+		}
+
 		$user = $this->container->getByType('Nette\Security\User');		/** @var $user \Nette\Security\User */
 		if ($user->isLoggedIn()) {
 			$user->logout();
@@ -365,6 +369,29 @@ class MenuTest extends TestCase
 		$books = $menu->getItem('3-2');
 
 		Assert::true($books->isAllowed());
+	}
+
+
+	public function testAuthCallback()
+	{
+		$container = $this->createContainer('menu');
+		$presenter = $this->createPresenter($container, 'Settings');
+		$request = $this->createRequest('Settings', 'pages');
+
+		/** @var \DKTests\Menu\CallbackAuthorizator $authorizator */
+		$authorizator = $container->getByType(CallbackAuthorizator::class);
+
+		$presenter->run($request);
+
+		$menu = $presenter->getMenu();
+		$books = $menu->getItem('3-3');
+
+		Assert::true($books->isAllowed());
+
+		$books->invalidate();
+		$authorizator->result = false;
+
+		Assert::false($books->isAllowed());
 	}
 
 }

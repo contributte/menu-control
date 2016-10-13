@@ -46,6 +46,11 @@ menu:
 						allow:
 							parameters:
 								go: you-can
+					Pages:
+						target: Settings:pages
+						allow:
+							callback: [@DKTests\Menu\CallbackAuthorizator, check]
+
 
 			about:
 				title: About us
