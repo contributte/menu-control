@@ -17,15 +17,15 @@
 	},
 	"require": {
 		"php": ">=5.6.0",
-		"nette/application": "^2.3",
-		"nette/bootstrap": "^2.3",
-		"nette/component-model": "^2.3",
-		"nette/di": "^2.3",
-		"nette/robot-loader": "^2.3",
-		"nette/security": "^2.3",
-		"nette/utils": "^2.3",
-		"tracy/tracy": "^2.3",
-		"latte/latte": "^2.3"
+		"nette/application": "^2.2",
+		"nette/bootstrap": "^2.2",
+		"nette/component-model": "^2.2",
+		"nette/di": "^2.2",
+		"nette/robot-loader": "^2.2",
+		"nette/security": "^2.2",
+		"nette/utils": "^2.2",
+		"tracy/tracy": "^2.2",
+		"latte/latte": "^2.2"
 	},
 	"require-dev": {
 		"nette/tester": "~1.7"
