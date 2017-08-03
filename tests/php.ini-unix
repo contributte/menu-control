@@ -1,7 +1,0 @@
-; My computer does not see JSON extension
-
-extension=json.so
-extension=tokenizer.so
-extension=mbstring.so
-extension=simplexml.so
-extension=dom.so

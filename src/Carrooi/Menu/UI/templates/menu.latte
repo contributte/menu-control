@@ -1,0 +1,10 @@
+{define menu-branch, $itemsParent}
+	<ul n:if="$itemsParent->hasVisibleItemsOnMenu()">
+		<li n:foreach="$itemsParent->getVisibleItemsOnMenu() as $item">
+			<a href="{$item->getRealLink()}" n:class="$item->isActive() ? active">{$item->getRealTitle()}</a>
+			{include menu-branch, $item}
+		</li>
+	</ul>
+{/define}
+
+{include menu-branch, $menu}
