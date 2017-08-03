@@ -1,0 +1,15 @@
+{contentType text/xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	{define menu-branch, $itemsParent, $priority}
+		{foreach $itemsParent->getItems() as $item}
+			<url n:if="$item->isAllowed() && $item->isVisibleOnSitemap()">
+				<loc>{$item->getRealAbsoluteLink()}</loc>
+				<priority>{$priority}</priority>
+			</url>
+			{include menu-branch, $item, $priority - 0.1}
+		{/foreach}
+	{/define}
+
+	{include menu-branch, $menu, 1}
+</urlset>
