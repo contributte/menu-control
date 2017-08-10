@@ -66,6 +66,10 @@ final class MenuExtension extends CompilerExtension
 		$container = $builder->addDefinition($this->prefix('container'))
 			->setClass(MenuContainer::class);
 
+		$builder->addDefinition($this->prefix('component.menu'))
+			->setClass(MenuComponent::class)
+			->setImplement(IMenuComponentFactory::class);
+
 		foreach ($config as $menuName => $menu) {
 			$container->addSetup('addMenu', [
 				$this->loadMenuConfiguration($builder, $menuName, $menu),
@@ -113,10 +117,6 @@ final class MenuExtension extends CompilerExtension
 		if ($loader->getClass() === ArrayMenuLoader::class) {
 			$loader->setArguments([$this->normalizeMenuItems($config['items'])]);
 		}
-
-		$builder->addDefinition($this->prefix('component.menu'))
-			->setClass(MenuComponent::class)
-			->setImplement(IMenuComponentFactory::class);
 
 		$itemFactory = $builder->addDefinition($this->prefix('menu.'. $menuName. '.factory'))
 			->setClass(MenuItemFactory::class);
