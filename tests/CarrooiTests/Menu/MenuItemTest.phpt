@@ -271,6 +271,23 @@ final class MenuItemTest extends TestCase
 	}
 
 
+	public function testAddData(): void
+	{
+		$linkGenerator = $this->createMockLinkGenerator();
+		$translator = $this->createMockTranslator();
+		$authorizator = $this->createMockAuthorizator();
+		$application = $this->createMockApplication();
+		$request = $this->createMockHttpRequest();
+		$itemFactory = $this->createMockMenuItemFactory();
+
+		$item = new MenuItem($linkGenerator, $translator, $authorizator, $application, $request, $itemFactory, 'item');
+		$item->addData('test', 'data');
+
+		Assert::true($item->hasData('test'));
+		Assert::equal('data', $item->getData('test'));
+	}
+
+
 	public function testVisibility(): void
 	{
 		$linkGenerator = $this->createMockLinkGenerator();

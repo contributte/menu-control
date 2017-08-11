@@ -41,10 +41,16 @@ interface IMenuItem extends IMenuItemsContainer
 	public function getRealAbsoluteLink(): string;
 
 
+	public function hasData(string $name): bool;
+
+
 	public function getData(string $type = null, $default = null);
 
 
 	public function setData(array $data): void;
+
+
+	public function addData(string $name, $value): void;
 
 
 	public function isVisibleOnMenu(): bool;
