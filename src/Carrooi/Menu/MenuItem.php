@@ -148,13 +148,19 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	}
 
 
+	public function hasData(string $name): bool
+	{
+		return array_key_exists($name, $this->data);
+	}
+
+
 	public function getData(string $name = null, $default = null)
 	{
 		if ($name === null) {
 			return $this->data;
 		}
 
-		if (!array_key_exists($name, $this->data)) {
+		if (!$this->hasData($name)) {
 			return $default;
 		}
 
@@ -165,6 +171,12 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	public function setData(array $data): void
 	{
 		$this->data = $data;
+	}
+
+
+	public function addData(string $name, $value): void
+	{
+		$this->data[$name] = $value;
 	}
 
 
