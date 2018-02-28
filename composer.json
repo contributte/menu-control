@@ -16,15 +16,15 @@
 		"issues": "https://github.com/Carrooi/Nette-Menu/issues"
 	},
 	"require": {
-		"nette/application": "^2.2",
-		"nette/bootstrap": "^2.2",
-		"nette/component-model": "^2.2",
-		"nette/di": "^2.2",
-		"nette/robot-loader": "^2.2",
-		"nette/security": "^2.2",
-		"nette/utils": "^2.2",
-		"tracy/tracy": "^2.2",
-		"latte/latte": "^2.2"
+		"nette/application": "^2.4",
+		"nette/bootstrap": "^2.4",
+		"nette/component-model": "^2.4",
+		"nette/di": "^2.4",
+		"nette/robot-loader": "^2.4 || ^3.0",
+		"nette/security": "^2.4",
+		"nette/utils": "^2.4",
+		"tracy/tracy": "^2.4",
+		"latte/latte": "^2.4"
 	},
 	"require-dev": {
 		"nette/tester": "@dev"
