@@ -82,6 +82,36 @@ final class MenuItemTest extends TestCase
 		Assert::true($item->isActive());
 	}
 
+	public function testIsActive_include(): void
+	{
+		$linkGenerator = $this->createMockLinkGenerator();
+		$translator = $this->createMockTranslator();
+		$request = $this->createMockHttpRequest();
+		$itemFactory = $this->createMockMenuItemFactory();
+
+		$authorizator = $this->createMockAuthorizator(function(MockInterface $authorizator) {
+			$authorizator->shouldReceive('isMenuItemAllowed')->andReturn(true);
+		});
+
+		$application = $this->createMockApplication(function(MockInterface $application) {
+			$application->shouldReceive('getPresenter')->andReturn(
+				$this->createMockPresenter(function(MockInterface $presenter) {
+					$presenter->shouldReceive('link')->andReturn('#');
+					$presenter->shouldReceive('getLastCreatedRequestFlag')->andReturn(false);
+					$presenter->shouldReceive('getName')->andReturn('Home');
+					$presenter->shouldReceive('getAction')->andReturn('edit');
+				})
+			);
+		});
+
+		$item = new MenuItem($linkGenerator, $translator, $authorizator, $application, $request, $itemFactory, 'item');
+		$item->setAction('Home:');
+		$item->setInclude([
+			'^Home\:[a-zA-Z\:]+$'
+		]);
+
+		Assert::true($item->isActive());
+	}
 
 	public function testIsActive_active_child(): void
 	{

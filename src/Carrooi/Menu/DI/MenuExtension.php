@@ -48,6 +48,7 @@ final class MenuExtension extends CompilerExtension
 		'title' => null,
 		'action' => null,
 		'link' => null,
+		'include' => null,
 		'data' => [],
 		'items' => [],
 		'visibility' => [
