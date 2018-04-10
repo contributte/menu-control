@@ -154,6 +154,26 @@ menu:
           sitemap: true
 ```
 
+### Mark active item via regex
+
+Menu item can be labeled as active by a regular expression (or array of regular expressions) that is compared to the entire Presenter's name and action.
+You can set your regular expression via `include` setting.
+
+```yaml
+menu:
+  front:
+    items:
+    
+      Home:
+        action: :Front:Home:
+        include: '^Front\:Home\:[a-zA-Z\:]+$' # mark as active for all actions of "Front:Home:" presenter
+      Books:
+      	action: :Front:Books:
+      	include: # mark as active for actions "Front:Books:default" and "Front:Books:edit"
+      		- '^Front\:Books\:default$'
+      		- '^Front\:Books\:edit$'
+```
+
 ## Translations
 
 When displaying title of link in some template, we always work with translated titles.
