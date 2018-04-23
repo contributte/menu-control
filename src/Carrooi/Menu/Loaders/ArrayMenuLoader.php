@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Carrooi\Menu\Loaders;
 
-use Nette\Utils;
 use Carrooi\Menu\IMenu;
 use Carrooi\Menu\IMenuItem;
 use Carrooi\Menu\IMenuItemsContainer;
+use Nette\Utils;
 
 /**
  * @author David Kudera <kudera.d@gmail.com>
