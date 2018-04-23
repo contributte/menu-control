@@ -53,6 +53,9 @@ interface IMenuItem extends IMenuItemsContainer
 	public function addData(string $name, $value): void;
 
 
+	public function setInclude(array $include) : void;
+
+
 	public function isVisibleOnMenu(): bool;
 
 

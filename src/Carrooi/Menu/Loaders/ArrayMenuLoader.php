@@ -7,6 +7,7 @@ namespace Carrooi\Menu\Loaders;
 use Carrooi\Menu\IMenu;
 use Carrooi\Menu\IMenuItem;
 use Carrooi\Menu\IMenuItemsContainer;
+use Nette\Utils;
 
 /**
  * @author David Kudera <kudera.d@gmail.com>
@@ -62,6 +63,15 @@ final class ArrayMenuLoader implements IMenuLoader
 
 			if ($config['link'] !== null) {
 				$item->setLink($config['link']);
+			}
+
+			if ($config['include'] !== null) {
+				$include = array_map(function ($include) {
+					Utils\Validators::assert($include, 'string');
+
+					return $include;
+				}, is_array($config['include']) ? $config['include'] : [$config['include']]);
+				$item->setInclude($include);
 			}
 
 			$this->processItems($item, $config['items']);

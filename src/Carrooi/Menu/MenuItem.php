@@ -43,6 +43,8 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	/** @var bool */
 	private $active;
 
+	/** @var string[] */
+	private $include = [];
 
 	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Application $application, Request $httpRequest, IMenuItemFactory $menuItemFactory, string $title)
 	{
@@ -73,6 +75,15 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 
 			if ($presenter->getLastCreatedRequestFlag('current')) {
 				return $this->active = true;
+			}
+
+			if (!empty($this->include)) {
+				$actionName = sprintf('%s:%s', $presenter->getName(), $presenter->getAction());
+				foreach ($this->include as $include) {
+					if (preg_match(sprintf('~%s~', $include), $actionName)) {
+						return $this->active = true;
+					}
+				}
 			}
 		}
 
@@ -177,6 +188,12 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	public function addData(string $name, $value): void
 	{
 		$this->data[$name] = $value;
+	}
+
+
+	public function setInclude(array $include): void
+	{
+		$this->include = $include;
 	}
 
 
