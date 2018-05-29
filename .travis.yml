@@ -1,17 +1,18 @@
 language: php
 
+sudo: false
+
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - hhvm
+  - 7.1
 
-matrix:
-  allow_failures:
-    - php: hhvm
+cache:
+  directories:
+    - $HOME/.composer/cache
 
-before_script:
-  - composer self-update
-  - composer install --no-interaction --prefer-source --dev
+install:
+  - travis_retry composer install --no-progress --prefer-dist
 
-script: ./vendor/bin/tester -s -p php -c ./tests/php.ini-unix ./tests/DKTests/
+script: vendor/bin/tester -s -p php -c tests/php.ini tests/CarrooiTests/Menu/
+
+after_failure:
+  - for i in $(find tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done

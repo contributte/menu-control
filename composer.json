@@ -1,8 +1,8 @@
 {
 	"name": "carrooi/nette-menu",
 	"type": "library",
-	"description": "Menu controls for Nette framework",
-	"keywords": ["nette", "menu", "control", "breadcrumbs"],
+	"description": "Menu for Nette framework",
+	"keywords": ["nette", "menu", "control", "component", "breadcrumbs"],
 	"homepage": "https://github.com/Carrooi/Nette-Menu",
 	"license": "MIT",
 	"authors": [
@@ -27,11 +27,12 @@
 		"latte/latte": "^2.4"
 	},
 	"require-dev": {
-		"nette/tester": "@dev"
+		"nette/tester": "^1.7",
+		"mockery/mockery": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {
-			"DK\\Menu\\": "src/"
+			"Carrooi\\Menu\\": "src/"
 		}
 	}
 }

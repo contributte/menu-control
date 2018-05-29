@@ -3,356 +3,329 @@
 
 # Nette menu
 
-Nette component for creating menus and breadcrumbs.
+Nette component for creating menus, breadcrumbs and sitemaps.
+
+## Requirements
+
+* PHP >=7.1
+* Nette ^2.4 
 
 ## Installation
+
+**Install package with composer:**
 
 ```
 $ composer require carrooi/nette-menu
 ```
 
-Now you need to register this as Nette extension in your config.neon file.
+**Register as nette extension:**
 
 ```yaml
 extensions:
-	menu: DK\Menu\DI\Extension
+  menu: Carrooi\Menu\DI\MenuExtension
 
-includes:
-	- ./menu.neon
+menu:
 ```
 
-Than you can create new `menu` section for example in menu.neon.
+## Basic usage
+
+You can write menu links as associated multi dimensional arrays. Because of this you are able to create any
+structure of menus and submenus you may need.
 
 ```yaml
 menu:
 
-	default:
+  front:
+    items:
 
-		items:
-			Homepage: Home:default
+      Home:
+        action: :Front:Home:
 
-			Books:
-				target: Book:default
-				items:
-					By author: Book:byAuthor
+      Books:
+        link: '#'
+        items:
+        
+          All:
+            action: :Front:Books:all
+            
+          Featured:
+            action: :Front:Books:featured
+            
+  admin:
+    items:
+    
+      Users:
+        action: :Admin:Users:
+        
+      Books:
+        action: :Admin:Books:
 ```
-
-This will create this menu:
-
-* Homepage         (Home:default)
-* Books            (Book:default)
-	+ By author    (Book:byAuthor)
-
-Of course you can create more nested menu.
-
-Also you can see that there are more ways how to write link. If you have got single link without children, you can use
-this.
-
-```yaml
-Title of link: Presenter:action
-```
-
-or links with children
-
-```yaml
-Title of link:
-	target: Presenter:action
-	items: []
-```
-
-there is actually also third way, but it is useful just for specific cases and is written about below.
-
-## Render menu and breadcrumb
 
 ```php
-class BasePresenter extends Nette\Application\UI\Presenter
+<?php
+
+namespace App;
+
+use Carrooi\Menu\UI\IMenuComponentFactory;
+use Carrooi\Menu\UI\MenuComponent;
+use Nette\Application\UI\Presenter;
+
+final class BasePresenter extends Presenter
 {
-
-
-	/** @var \DK\Menu\UI\IControlFactory @inject */
-	public $menuFactory;
-
-
-	/**
-	 * @return \DK\Menu\UI\Control
-	 */
-	protected function createComponentMenu()
+	
+	
+	private $menuFactory;
+	
+	
+	public function injectBasePresenter(IMenuComponentFactory $menuFactory)
 	{
-		return $this->menuFactory->create();
+		$this->menuFactory = $menuFactory;
 	}
-
+	
+	
+	protected function createComponentMenu(): MenuComponent
+	{
+		return $this->menuFactory->create('front');
+	}
+	
 }
 ```
 
-@layout.latte:
-
-```smarty
-{control menu:breadcrumb}
-
-{control menu}
+```html
+{control menu}              <!-- display menu -->
+{control menu:breadcrumbs}  <!-- display breadcrumbs -->
+{control menu:sitemap}      <!-- display sitemap -->
 ```
 
-## Render sitemap.xml 
+That structure in neon config will generate two menus:
 
-Router
-```php
-$router[] = new Route('sitemap.xml', 'Homepage:sitemap');
+**front:**
+
+* Home (action: `:Front:Home:`)
+* Books (link: `#`)
+	+ All (action: `:Front:Books:all`)
+	+ Featured (action: `:Front:Books:featured`)
+	
+**admin:**
+
+* Users (action: `:Admin:Users:`)
+* Books (action: `:Admin:Books:`)
+
+## Templates
+
+This package includes 3 default templates (menu, breadcrumbs, sitemap). However only the default sitemap template 
+should be used in real project. The other two templates should only help you in the beginning with building your own 
+templates which will fit your's website look.
+
+* [menu.latte](./src/Carrooi/Menu/UI/templates/menu.latte)
+* [breadcrumbs.latte](./src/Carrooi/Menu/UI/templates/menu.latte)
+* [sitemap.latte](./src/Carrooi/Menu/UI/templates/sitemap.latte)
+
+Changing templates can be done in your menu configuration:
+
+```yaml
+menu:
+
+  front:
+    templates:
+      menu: %appDir%/path/to/custom/menu.latte
+      breadcrumbs: %appDir%/path/to/custom/breadcrumbs.latte
+      sitemap: %appDir%/path/to/custom/sitemap.latte
 ```
 
-Homepage/sitemap.latte
-```smarty
-{extends none}
-{control menu:sitemapXml}
+**As you can see, each menu can have different templates.**
+
+### Visibility of items
+
+It may be useful to hide some links in specific situations. For that we have the `visibility` option on items where 
+you can tell on which template the link should be visible.
+
+```yaml
+menu:
+
+  front:
+    items:
+    
+      Home:
+        action: :Front:Home:
+        visibility:
+          menu: true
+          breadcrumbs: false
+          sitemap: true
+```
+
+### Mark active item via regex
+
+Menu item can be labeled as active by a regular expression (or array of regular expressions) that is compared to the entire Presenter's name and action.
+You can set your regular expression via `include` setting.
+
+```yaml
+menu:
+  front:
+    items:
+    
+      Home:
+        action: :Front:Home:
+        include: '^Front\:Home\:[a-zA-Z\:]+$' # mark as active for all actions of "Front:Home:" presenter
+      Books:
+      	action: :Front:Books:
+      	include: # mark as active for actions "Front:Books:default" and "Front:Books:edit"
+      		- '^Front\:Books\:default$'
+      		- '^Front\:Books\:edit$'
+```
+
+## Translations
+
+When displaying title of link in some template, we always work with translated titles.
+
+You have three options for translator:
+
+* Do nothing: Original `ReturnTranslator` class will be used. This translator just returns the given text.
+* Set translator manually: Provide your own implementation of `Nette\Localization\ITranslator`.
+* Set translator to `true`: Menu extension will try to find your translator in DI container automatically.
+
+```yaml
+services:
+
+  - App\MyOwnFrontTranslator
+
+menu:
+
+  front:
+    translator: @App\MyOwnFrontTranslator
+    
+  admin:
+    translator: true
+```
+
+## Custom data
+
+Every link can contain additional data which can be later used eg. in your custom latte templates.
+
+```yaml
+menu:
+
+  admin:
+    items:
+    
+      Adminer:
+        link: http://localhost:20000
+        data:
+          icon: fa fa-database
+          attrs:
+            target: _blank
+```
+
+```html
+<a href="{$item->getRealLink()" n:attr="(expand) $link->getData('attrs')">
+	<i class="{$item->getData('icon')"></i> {$link->getRealTitle()}
+</a>
 ```
 
 ## Authorization
 
-You can hide some links for example for users without specific role, guest users, actions in other module or when
-needed presenter parameter is missing.
+Sometimes you may want to hide some links based on custom rules, that includes for example authorization from nette.
 
-```yaml
-menu:
-
-	default:
-
-		items:
-			Settings:
-				target: Settings:default
-				allow:
-					loggedIn: true
-				items:
-					Users:
-						target: User:default
-						allow:
-							roles: [admin]
-					Books:
-						target: Book:default
-						allow:
-							module: admin
-					Images:
-						target: Image:default
-						allow:
-							parameters:
-								[allowed: maybe]
-					Authors:
-						target: Authors:default
-						allow:
-							acl:
-								resource: authors
-								permission: view #optional - 'view' is default permission
-```
-
-or whole menu can be allowed for example just logged users:
-
-```yaml
-menu:
-
-	default:
-
-		allow:
-			loggedIn: true
-
-		items: []
-```
-
-## Hidden links
-
-Imagine that you have for example link to books settings and page for adding book which you do not wish to add to your
-menu but at the same time you want base books settings link to be highlighted.
-
-```yaml
-menu:
-
-	default:
-
-		Books settings:
-			target: Book:default
-			items:
-				add:
-					target: Book:add
-					visual: false
-```
-
-**This `visual` option does not affects breadcrumb component.**
-
-if you want to highlight "Books settings" link for all actions in BookPresenter, you can include all targets with
-regexp.
-
-```yaml
-menu:
-
-	default:
-
-		Books settings:
-			target: Book:default
-			include: '^Book\:[a-zA-Z]+$'
-```
-
-or with array of included targets.
-
-```yaml
-menu:
-
-	default:
-
-		Books settings:
-			target: Book:default
-			include:
-				- Book:add
-				- Book:edit
-				- Front:Book:detail			# in module
-				- <module>:Book:delete		# "dynamic" module
-```
-
-## Custom templates
-
-```yaml
-menu:
-
-	default:
-
-		template:
-			menu: %appDir%/templates/components/menu/menu.latte
-			breadcrumb: %appDir%/templates/components/menu/breadcrumb.latte
-
-		items: []
-```
-
-## Translated titles
-
-```yaml
-menu:
-
-	default:
-
-		translator: true
-```
-
-## More menus
-
-Lets say that we want base menu and menu just for users in `admin` role.
-
-```yaml
-menu:
-
-	default:
-		items: []
-
-	admin:
-		allow:
-			roles: [admin]
-		items: []
-```
-
-Problem with this is that it will create more services with same class, so Nette autowiring will be disabled for all
-menu services.
-
-Solution is to create custom control and factory classes.
+This menu package uses custom `IAuthorizator` interface which you can use to write your own authorizators.
 
 ```php
-namespace App\Components\AdminMenu;
+<?php
 
-use DK;
+namespace App;
 
-class MenuControl extends DK\Menu\UI\Control {}
+use Carrooi\Menu\IMenuItem;
+use Carrooi\Menu\Security\IAuthorizator;
 
-interface IMenuControlFactory
+final class FrontAuthorizator implements IAuthorizator
 {
-
-
-	/**
-	 * @return \App\Components\AdminMenu\MenuControl
-	 */
-	public function create();
-
+	
+	public function isMenuItemAllowed(IMenuItem $item): bool
+	{
+		return isItemAllowed($item);
+	}
+	
 }
 ```
 
-now we have to update our menu configuration
+```yaml
+services:
+
+  - App\FrontAuthorizator
+
+menu:
+
+  front:
+    authorizator: @App\FrontAuthorizator
+```
+
+## Link generator
+
+When you want to display a link in your template it uses the `ILinkGenerator` interface to generate it from the data
+in your menu config. If you want to change the default logic (which uses `link` method from nette) you can just implement
+your custom link generator.
+
+```php
+<?php
+
+namespace App;
+
+use Carrooi\Menu\IMenuItem;
+use Carrooi\Menu\LinkGenerator\ILinkGenerator;
+
+final class FrontLinkGenerator implements ILinkGenerator
+{
+
+
+	public function link(IMenuItem $item): string
+	{
+		return generateLink($item);
+	}
+	
+}
+```
+
+```yaml
+services:
+
+  - App\FrontLinkGenerator
+  
+menu:
+
+  front:
+    linkGenerator: @App\FrontLinkGenerator
+```
+
+**You can also override link generator later for some subtree of links:**
 
 ```yaml
 menu:
 
-	admin:
-		controlClass: App\Components\AdminMenu\MenuControl
-		controlInterface: App\Components\AdminMenu\IMenuControlFactory
+  front:
+    items:
+    
+      Home:
+        action: :Front:Home:
+        
+      Books:
+        link: '#'
+        linkGenerator: @App\BooksLinkGenerator
 ```
 
-next step is to inject your custom control factory into BasePresenter.
+## Menu loader
 
-## Dynamic links
+If you want to build your menu maybe from database instead of neon config, you can do that by creating `IMenuLoader`
+class.
 
-We already have got links to adding books, but now we want links in breadcrumb with editing books just like in example
-below:
-
-Books / Harry Potter / Edit
-
-```yaml
-menu:
-
-	default:
-
-		items:
-			books:
-				title: Books
-				target: Book:default
-```
-
-There you can see the third way of writing links. Title is now in own option because we will need to access `books`
-link for adding another links into it.
-
-First, we will add just one small helper method to our BasePresenter.
-
-```php
-class BasePresenter extends Nette\Application\UI\Presenter
-{
-
-
-	/** @var \DK\Menu\UI\IControlFactory @inject */
-	public $menuFactory;
-
-
-	/**
-	 * @return \DK\Menu\UI\Control
-	 */
-	protected function createComponentMenu()
-	{
-		return $this->menuFactory->create();
-	}
-
-
-	/**
-	 * Basically just helper for IDE because of @return annotation
-	 *
-	 * @return \DK\Menu\Menu
-	 */
-	protected function getMenu()
-	{
-		return $this['menu']->getMenu();
-	}
-
-}
-```
-
-BookPresenter:
-
-```php
-class BookPresenter extends BasePresenter
-{
-
-	public function actionEdit($id)
-	{
-		$book = getBookEntitySomehow($id);
-
-		$this->getMenu()->getItem('books')
-			->addItem($book->title, 'Book:detail', array('id' => $id))->setVisual(false)	// do not show this link in menu
-			->addItem('Edit', 'Book:edit', array('id' => $id));
-	}
-
-}
-```
+See the default [ArrayMenuLoader](./src/Carrooi/Menu/Loaders/ArrayMenuLoader.php) how it works.
 
 ## Changelog
+
+* 2.1.0
+	+ Fixed registration of more menus [#23](https://github.com/Carrooi/Nette-Menu/pull/23)
+	+ Added shortcuts for working with data [#24](https://github.com/Carrooi/Nette-Menu/pull/24)
+
+* 2.0.0
+	+ Refactoring - complete rewrite
 
 * 1.1.1
 	+ Move under Carrooi organization

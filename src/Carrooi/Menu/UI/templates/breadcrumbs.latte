@@ -1,0 +1,3 @@
+{foreach $menu->getPath() as $item}
+	<a href="{$item->getRealLink()}">{$item->getRealTitle()}</a>{sep} / {/sep}
+{/foreach}
