@@ -27,7 +27,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	protected $authorizator;
 
 	/** @var \Nette\Application\Application */
-	protected $application;
+	protected $nativeLinkGenerator;
 
 	/** @var \Nette\Http\Request */
 	protected $httpRequest;
@@ -35,18 +35,26 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	/** @var \Carrooi\Menu\IMenuItemFactory */
 	protected $menuItemFactory;
 
+	/** @var \Nette\Application\UI\Presenter */
+	protected $presenter;
+
 	/** @var \Carrooi\Menu\IMenuItem[] */
 	private $items = [];
 
 
-	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Application $application, Request $httpRequest, IMenuItemFactory $menuItemFactory)
+	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator,  \Nette\Application\LinkGenerator $nativeLinkGenerator, Request $httpRequest, IMenuItemFactory $menuItemFactory)
 	{
 		$this->linkGenerator = $linkGenerator;
 		$this->translator = $translator;
 		$this->authorizator = $authorizator;
-		$this->application = $application;
+		$this->nativeLinkGenerator = $nativeLinkGenerator;
 		$this->httpRequest = $httpRequest;
 		$this->menuItemFactory = $menuItemFactory;
+	}
+
+	public function setPresenter(\Nette\Application\UI\Presenter $presenter): void
+	{
+		$this->presenter = $presenter;
 	}
 
 
@@ -85,7 +93,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 
 	public function addItem(string $name, string $title, callable $fn = null): void
 	{
-		$this->items[$name] = $item = $this->menuItemFactory->create($this->linkGenerator, $this->translator, $this->authorizator, $this->application, $this->httpRequest, $this->menuItemFactory, $title);
+		$this->items[$name] = $item = $this->menuItemFactory->create($this->linkGenerator, $this->translator, $this->authorizator, $this->nativeLinkGenerator, $this->httpRequest, $this->menuItemFactory, $title);
 
 		if ($fn) {
 			$fn($item);

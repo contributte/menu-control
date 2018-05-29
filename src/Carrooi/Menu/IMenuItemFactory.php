@@ -17,6 +17,6 @@ interface IMenuItemFactory
 {
 
 
-	public function create(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Application $application, Request $httpRequest, IMenuItemFactory $menuItemFactory, string $title): IMenuItem;
+	public function create(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, \Nette\Application\LinkGenerator $nativeLinkGenerator, Request $httpRequest, IMenuItemFactory $menuItemFactory, string $title): IMenuItem;
 
 }

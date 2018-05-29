@@ -48,7 +48,6 @@ final class MenuExtension extends CompilerExtension
 		'title' => null,
 		'action' => null,
 		'link' => null,
-		'include' => null,
 		'data' => [],
 		'items' => [],
 		'visibility' => [
@@ -127,7 +126,7 @@ final class MenuExtension extends CompilerExtension
 				$linkGenerator,
 				$translator,
 				$authorizator,
-				'@'. Application::class,
+				'@'. \Nette\Application\LinkGenerator::class,
 				'@'. Http\Request::class,
 				$itemFactory,
 				$loader,

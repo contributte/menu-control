@@ -30,6 +30,16 @@ final class MenuComponent extends Control
 		$this->menuName = $name;
 	}
 
+	protected function attached($presenter)
+	{
+		parent::attached($presenter);
+		foreach ($this->container->getMenus() as $menu) {
+			foreach ($menu->getItems() as $item) {
+				$item->setPresenter($presenter);
+			}
+			$menu->setPresenter($presenter);
+		}
+	}
 
 	public function render(): void
 	{

@@ -26,4 +26,12 @@ final class MenuContainer
 		$this->menus[$menu->getName()] = $menu;
 	}
 
+	/**
+	 * @return IMenu[]
+	 */
+	public function getMenus(): array
+	{
+		return $this->menus;
+	}
+
 }
