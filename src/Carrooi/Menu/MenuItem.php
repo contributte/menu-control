@@ -43,7 +43,10 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	/** @var bool */
 	private $active;
 
+	/** @var string[] */
+	private $include = [];
 
+	
 	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, \Nette\Application\LinkGenerator $nativeLinkGenerator, Request $httpRequest, IMenuItemFactory $menuItemFactory, string $title)
 	{
 		parent::__construct($linkGenerator, $translator, $authorizator,  $nativeLinkGenerator, $httpRequest, $menuItemFactory);
@@ -190,6 +193,10 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		$this->visibility['menu'] = $visibility;
 	}
 
+	public function setInclude(array $include): void
+	{
+		$this->include = $include;
+	}
 
 	public function isVisibleOnBreadcrumbs(): bool
 	{
