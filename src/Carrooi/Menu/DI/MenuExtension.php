@@ -14,6 +14,7 @@ use Carrooi\Menu\Security\OptimisticAuthorizator;
 use Carrooi\Menu\UI\IMenuComponentFactory;
 use Carrooi\Menu\UI\MenuComponent;
 use Nette\Application\Application;
+use Nette\Application\LinkGenerator;
 use Nette\DI\CompilerExtension;
 use Nette\DI\ContainerBuilder;
 use Nette\DI\ServiceDefinition;
@@ -48,6 +49,7 @@ final class MenuExtension extends CompilerExtension
 		'title' => null,
 		'action' => null,
 		'link' => null,
+		'include' => null,
 		'data' => [],
 		'items' => [],
 		'visibility' => [
@@ -126,7 +128,7 @@ final class MenuExtension extends CompilerExtension
 				$linkGenerator,
 				$translator,
 				$authorizator,
-				'@'. \Nette\Application\LinkGenerator::class,
+				'@'. LinkGenerator::class,
 				'@'. Http\Request::class,
 				$itemFactory,
 				$loader,

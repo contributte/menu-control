@@ -7,7 +7,9 @@ namespace Carrooi\Menu;
 use Carrooi\Menu\LinkGenerator\ILinkGenerator;
 use Carrooi\Menu\Security\IAuthorizator;
 use Nette\Application\Application;
+use Nette\Application\LinkGenerator;
 use Nette\Application\UI\InvalidLinkException;
+use Nette\Application\UI\Presenter;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
 
@@ -47,7 +49,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	private $include = [];
 
 	
-	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, \Nette\Application\LinkGenerator $nativeLinkGenerator, Request $httpRequest, IMenuItemFactory $menuItemFactory, string $title)
+	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, LinkGenerator $nativeLinkGenerator, Request $httpRequest, IMenuItemFactory $menuItemFactory, string $title)
 	{
 		parent::__construct($linkGenerator, $translator, $authorizator,  $nativeLinkGenerator, $httpRequest, $menuItemFactory);
 
@@ -71,9 +73,18 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 				$this->nativeLinkGenerator->link($this->getAction(), $this->getActionParameters());
 			} catch (InvalidLinkException $e) {}
 
-			if ($this->presenter instanceof \Nette\Application\UI\Presenter) {
+			if ($this->presenter instanceof Presenter) {
 				if ($this->presenter->getLastCreatedRequestFlag('current')) {
 					return $this->active = true;
+				}
+			}
+
+			if (!empty($this->include)) {
+				$actionName = sprintf('%s:%s', $this->presenter->getName(), $this->presenter->getAction());
+				foreach ($this->include as $include) {
+					if (preg_match(sprintf('~%s~', $include), $actionName)) {
+						return $this->active = true;
+					}
 				}
 			}
 		}

@@ -6,7 +6,8 @@ namespace Carrooi\Menu;
 
 use Carrooi\Menu\LinkGenerator\ILinkGenerator;
 use Carrooi\Menu\Security\IAuthorizator;
-use Nette\Application\Application;
+use Nette\Application\LinkGenerator;
+use Nette\Application\UI\Presenter;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
 
@@ -26,7 +27,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	/** @var \Carrooi\Menu\Security\IAuthorizator */
 	protected $authorizator;
 
-	/** @var \Nette\Application\Application */
+	/** @var LinkGenerator */
 	protected $nativeLinkGenerator;
 
 	/** @var \Nette\Http\Request */
@@ -35,14 +36,14 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	/** @var \Carrooi\Menu\IMenuItemFactory */
 	protected $menuItemFactory;
 
-	/** @var \Nette\Application\UI\Presenter */
+	/** @var Presenter */
 	protected $presenter;
 
 	/** @var \Carrooi\Menu\IMenuItem[] */
 	private $items = [];
 
 
-	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator,  \Nette\Application\LinkGenerator $nativeLinkGenerator, Request $httpRequest, IMenuItemFactory $menuItemFactory)
+	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator,  LinkGenerator $nativeLinkGenerator, Request $httpRequest, IMenuItemFactory $menuItemFactory)
 	{
 		$this->linkGenerator = $linkGenerator;
 		$this->translator = $translator;
@@ -52,7 +53,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 		$this->menuItemFactory = $menuItemFactory;
 	}
 
-	public function setPresenter(\Nette\Application\UI\Presenter $presenter): void
+	public function setPresenter(Presenter $presenter): void
 	{
 		$this->presenter = $presenter;
 	}

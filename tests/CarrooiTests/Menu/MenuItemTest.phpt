@@ -66,16 +66,13 @@ final class MenuItemTest extends TestCase
 		$authorizator = $this->createMockAuthorizator(function(MockInterface $authorizator) {
 			$authorizator->shouldReceive('isMenuItemAllowed')->andReturn(true);
 		});
-
 		$presenter = $this->createMockPresenter(function(MockInterface $presenter) {
 					$presenter->shouldReceive('link')->andReturn('#');
 					$presenter->shouldReceive('getLastCreatedRequestFlag')->andReturn(true);
 		});
-
 		$nativeLinkGenerator = $this->createMockNativeLinkGenerator(function(MockInterface $nativeLinkGenerator) {
 			$nativeLinkGenerator->shouldReceive('link')->andReturn('#');
 		});
-
 
 		$item = new MenuItem($linkGenerator, $translator, $authorizator, $nativeLinkGenerator, $request, $itemFactory, 'item');
 		$item->setPresenter($presenter);
@@ -84,6 +81,32 @@ final class MenuItemTest extends TestCase
 		Assert::true($item->isActive());
 	}
 
+	public function testIsActive_include(): void
+	{
+		$linkGenerator = $this->createMockLinkGenerator();
+		$translator = $this->createMockTranslator();
+		$request = $this->createMockHttpRequest();
+		$itemFactory = $this->createMockMenuItemFactory();
+		$authorizator = $this->createMockAuthorizator(function(MockInterface $authorizator) {
+			$authorizator->shouldReceive('isMenuItemAllowed')->andReturn(true);
+		});
+		$presenter = $this->createMockPresenter(function(MockInterface $presenter) {
+			$presenter->shouldReceive('link')->andReturn('#');
+			$presenter->shouldReceive('getLastCreatedRequestFlag')->andReturn(false);
+			$presenter->shouldReceive('getName')->andReturn('Home');
+			$presenter->shouldReceive('getAction')->andReturn('edit');
+		});
+		$nativeLinkGenerator = $this->createMockNativeLinkGenerator(function(MockInterface $nativeLinkGenerator) {
+			$nativeLinkGenerator->shouldReceive('link')->andReturn('#');
+		});
+		$item = new MenuItem($linkGenerator, $translator, $authorizator, $nativeLinkGenerator, $request, $itemFactory, 'item');
+		$item->setPresenter($presenter);
+		$item->setAction('Home:');
+		$item->setInclude([
+			'^Home\:[a-zA-Z\:]+$'
+		]);
+		Assert::true($item->isActive());
+	}
 
 	public function testIsActive_active_child(): void
 	{
