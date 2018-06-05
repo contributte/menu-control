@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Carrooi\Menu\LinkGenerator;
 
 use Carrooi\Menu\IMenuItem;
-use Nette\Application\Application;
+use Nette\Application\LinkGenerator;
 
 /**
  * @author David Kudera <kudera.d@gmail.com>
@@ -13,21 +13,21 @@ use Nette\Application\Application;
 final class NetteLinkGenerator implements ILinkGenerator
 {
 
+	/** @var LinkGenerator  */
+	private $nativeLinkGenerator;
 
-	/** @var \Nette\Application\Application */
-	private $application;
 
 
-	public function __construct(Application $application)
+	public function __construct(LinkGenerator $nativeLinkGenerator)
 	{
-		$this->application = $application;
+		$this->nativeLinkGenerator = $nativeLinkGenerator;
 	}
 
 
 	public function link(IMenuItem $item): string
 	{
 		if (($action = $item->getAction()) !== null) {
-			return $this->application->getPresenter()->link($action, $item->getActionParameters());
+			return $this->nativeLinkGenerator->link($action, $item->getActionParameters());
 
 		} elseif (($link = $item->getLink()) !== null) {
 			return $link;

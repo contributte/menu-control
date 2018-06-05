@@ -6,7 +6,8 @@ namespace Carrooi\Menu;
 
 use Carrooi\Menu\LinkGenerator\ILinkGenerator;
 use Carrooi\Menu\Security\IAuthorizator;
-use Nette\Application\Application;
+use Nette\Application\LinkGenerator;
+use Nette\Application\UI\Presenter;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
 
@@ -26,8 +27,8 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	/** @var \Carrooi\Menu\Security\IAuthorizator */
 	protected $authorizator;
 
-	/** @var \Nette\Application\Application */
-	protected $application;
+	/** @var LinkGenerator */
+	protected $nativeLinkGenerator;
 
 	/** @var \Nette\Http\Request */
 	protected $httpRequest;
@@ -35,18 +36,26 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	/** @var \Carrooi\Menu\IMenuItemFactory */
 	protected $menuItemFactory;
 
+	/** @var Presenter */
+	protected $presenter;
+
 	/** @var \Carrooi\Menu\IMenuItem[] */
 	private $items = [];
 
 
-	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Application $application, Request $httpRequest, IMenuItemFactory $menuItemFactory)
+	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator,  LinkGenerator $nativeLinkGenerator, Request $httpRequest, IMenuItemFactory $menuItemFactory)
 	{
 		$this->linkGenerator = $linkGenerator;
 		$this->translator = $translator;
 		$this->authorizator = $authorizator;
-		$this->application = $application;
+		$this->nativeLinkGenerator = $nativeLinkGenerator;
 		$this->httpRequest = $httpRequest;
 		$this->menuItemFactory = $menuItemFactory;
+	}
+
+	public function setPresenter(Presenter $presenter): void
+	{
+		$this->presenter = $presenter;
 	}
 
 
@@ -85,7 +94,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 
 	public function addItem(string $name, string $title, callable $fn = null): void
 	{
-		$this->items[$name] = $item = $this->menuItemFactory->create($this->linkGenerator, $this->translator, $this->authorizator, $this->application, $this->httpRequest, $this->menuItemFactory, $title);
+		$this->items[$name] = $item = $this->menuItemFactory->create($this->linkGenerator, $this->translator, $this->authorizator, $this->nativeLinkGenerator, $this->httpRequest, $this->menuItemFactory, $title);
 
 		if ($fn) {
 			$fn($item);

@@ -7,7 +7,9 @@ namespace Carrooi\Menu;
 use Carrooi\Menu\LinkGenerator\ILinkGenerator;
 use Carrooi\Menu\Security\IAuthorizator;
 use Nette\Application\Application;
+use Nette\Application\LinkGenerator;
 use Nette\Application\UI\InvalidLinkException;
+use Nette\Application\UI\Presenter;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
 
@@ -46,9 +48,10 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	/** @var string[] */
 	private $include = [];
 
-	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Application $application, Request $httpRequest, IMenuItemFactory $menuItemFactory, string $title)
+	
+	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, LinkGenerator $nativeLinkGenerator, Request $httpRequest, IMenuItemFactory $menuItemFactory, string $title)
 	{
-		parent::__construct($linkGenerator, $translator, $authorizator, $application, $httpRequest, $menuItemFactory);
+		parent::__construct($linkGenerator, $translator, $authorizator,  $nativeLinkGenerator, $httpRequest, $menuItemFactory);
 
 		$this->title = $title;
 	}
@@ -66,19 +69,18 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 
 		if ($this->getAction()) {
 
-			/** @var \Nette\Application\UI\Presenter $presenter */
-			$presenter = $this->application->getPresenter();
-
 			try {
-				$presenter->link($this->getAction(), $this->getActionParameters());
+				$this->nativeLinkGenerator->link($this->getAction(), $this->getActionParameters());
 			} catch (InvalidLinkException $e) {}
 
-			if ($presenter->getLastCreatedRequestFlag('current')) {
-				return $this->active = true;
+			if ($this->presenter instanceof Presenter) {
+				if ($this->presenter->getLastCreatedRequestFlag('current')) {
+					return $this->active = true;
+				}
 			}
 
 			if (!empty($this->include)) {
-				$actionName = sprintf('%s:%s', $presenter->getName(), $presenter->getAction());
+				$actionName = sprintf('%s:%s', $this->presenter->getName(), $this->presenter->getAction());
 				foreach ($this->include as $include) {
 					if (preg_match(sprintf('~%s~', $include), $actionName)) {
 						return $this->active = true;
@@ -191,12 +193,6 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	}
 
 
-	public function setInclude(array $include): void
-	{
-		$this->include = $include;
-	}
-
-
 	public function isVisibleOnMenu(): bool
 	{
 		return $this->visibility['menu'];
@@ -208,6 +204,10 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		$this->visibility['menu'] = $visibility;
 	}
 
+	public function setInclude(array $include): void
+	{
+		$this->include = $include;
+	}
 
 	public function isVisibleOnBreadcrumbs(): bool
 	{

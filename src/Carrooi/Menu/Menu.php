@@ -8,6 +8,7 @@ use Carrooi\Menu\LinkGenerator\ILinkGenerator;
 use Carrooi\Menu\Loaders\IMenuLoader;
 use Carrooi\Menu\Security\IAuthorizator;
 use Nette\Application\Application;
+use Nette\Application\LinkGenerator;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
 
@@ -32,9 +33,9 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 	];
 
 
-	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Application $application, Request $httpRequest, IMenuItemFactory $menuItemFactory, IMenuLoader $loader, string $name, string $menuTemplate, string $breadcrumbsTemplate, string $sitemapTemplate)
+	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, LinkGenerator $nativeLinkGenerator, Request $httpRequest, IMenuItemFactory $menuItemFactory, IMenuLoader $loader, string $name, string $menuTemplate, string $breadcrumbsTemplate, string $sitemapTemplate)
 	{
-		parent::__construct($linkGenerator, $translator, $authorizator, $application, $httpRequest, $menuItemFactory);
+		parent::__construct($linkGenerator, $translator, $authorizator, $nativeLinkGenerator, $httpRequest, $menuItemFactory);
 
 		$this->loader = $loader;
 		$this->name = $name;

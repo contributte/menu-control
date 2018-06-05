@@ -20,12 +20,8 @@ final class NetteLinkGeneratorTest extends TestCase
 
 	public function testLink_action(): void
 	{
-		$application = $this->createMockApplication(function(MockInterface $application) {
-			$application->shouldReceive('getPresenter')->andReturn(
-				$this->createMockPresenter(function(MockInterface $presenter) {
-					$presenter->shouldReceive('link')->andReturn('/');
-				})
-			);
+		$nativeLinkGenerator = $this->createMockNativeLinkGenerator(function(MockInterface $nativeLinkGenerator) {
+			$nativeLinkGenerator->shouldReceive('link')->andReturn('/');
 		});
 
 		$item = $this->createMockMenuItem(function(MockInterface $item) {
@@ -33,7 +29,7 @@ final class NetteLinkGeneratorTest extends TestCase
 			$item->shouldReceive('getActionParameters')->andReturn([]);
 		});
 
-		$linkGenerator = new NetteLinkGenerator($application);
+		$linkGenerator = new NetteLinkGenerator($nativeLinkGenerator);
 
 		Assert::same('/', $linkGenerator->link($item));
 	}
@@ -41,14 +37,14 @@ final class NetteLinkGeneratorTest extends TestCase
 
 	public function testLink_link(): void
 	{
-		$application = $this->createMockApplication();
+		$nativeLinkGenerator = $this->createMockNativeLinkGenerator();
 
 		$item = $this->createMockMenuItem(function(MockInterface $item) {
 			$item->shouldReceive('getAction')->andReturn(null);
 			$item->shouldReceive('getLink')->andReturn('/');
 		});
 
-		$linkGenerator = new NetteLinkGenerator($application);
+		$linkGenerator = new NetteLinkGenerator($nativeLinkGenerator);
 
 		Assert::same('/', $linkGenerator->link($item));
 	}
@@ -56,14 +52,14 @@ final class NetteLinkGeneratorTest extends TestCase
 
 	public function testLink(): void
 	{
-		$application = $this->createMockApplication();
+		$nativeLinkGenerator = $this->createMockNativeLinkGenerator();
 
 		$item = $this->createMockMenuItem(function(MockInterface $item) {
 			$item->shouldReceive('getAction')->andReturn(null);
 			$item->shouldReceive('getLink')->andReturn(null);
 		});
 
-		$linkGenerator = new NetteLinkGenerator($application);
+		$linkGenerator = new NetteLinkGenerator($nativeLinkGenerator);
 
 		Assert::same('#', $linkGenerator->link($item));
 	}
