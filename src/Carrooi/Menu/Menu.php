@@ -7,7 +7,7 @@ namespace Carrooi\Menu;
 use Carrooi\Menu\LinkGenerator\ILinkGenerator;
 use Carrooi\Menu\Loaders\IMenuLoader;
 use Carrooi\Menu\Security\IAuthorizator;
-use Nette\Application\Application;
+use Nette\Application\UI\Presenter;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
 
@@ -31,10 +31,13 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 		'sitemap' => null,
 	];
 
+	/** @var Presenter */
+	private $activePresenter;
 
-	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Application $application, Request $httpRequest, IMenuItemFactory $menuItemFactory, IMenuLoader $loader, string $name, string $menuTemplate, string $breadcrumbsTemplate, string $sitemapTemplate)
+
+	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Request $httpRequest, IMenuItemFactory $menuItemFactory, IMenuLoader $loader, string $name, string $menuTemplate, string $breadcrumbsTemplate, string $sitemapTemplate)
 	{
-		parent::__construct($linkGenerator, $translator, $authorizator, $application, $httpRequest, $menuItemFactory);
+		parent::__construct($this, $linkGenerator, $translator, $authorizator, $httpRequest, $menuItemFactory);
 
 		$this->loader = $loader;
 		$this->name = $name;
@@ -90,6 +93,18 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 		}
 
 		return $path;
+	}
+
+
+	public function getActivePresenter(): ?Presenter
+	{
+		return $this->activePresenter;
+	}
+
+
+	public function setActivePresenter(?Presenter $presenter): void
+	{
+		$this->activePresenter = $presenter;
 	}
 
 }

@@ -6,7 +6,6 @@ namespace Carrooi\Menu;
 
 use Carrooi\Menu\LinkGenerator\ILinkGenerator;
 use Carrooi\Menu\Security\IAuthorizator;
-use Nette\Application\Application;
 use Nette\Application\UI\InvalidLinkException;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
@@ -46,9 +45,10 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	/** @var string[] */
 	private $include = [];
 
-	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Application $application, Request $httpRequest, IMenuItemFactory $menuItemFactory, string $title)
+
+	public function __construct(IMenu $menu, ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Request $httpRequest, IMenuItemFactory $menuItemFactory, string $title)
 	{
-		parent::__construct($linkGenerator, $translator, $authorizator, $application, $httpRequest, $menuItemFactory);
+		parent::__construct($menu, $linkGenerator, $translator, $authorizator, $httpRequest, $menuItemFactory);
 
 		$this->title = $title;
 	}
@@ -64,10 +64,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 			return $this->active = false;
 		}
 
-		if ($this->getAction()) {
-
-			/** @var \Nette\Application\UI\Presenter $presenter */
-			$presenter = $this->application->getPresenter();
+		if ($this->getAction() && ($presenter = $this->menu->getActivePresenter())) {
 
 			try {
 				$presenter->link($this->getAction(), $this->getActionParameters());

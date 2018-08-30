@@ -28,7 +28,6 @@ final class MenuTest extends TestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$application = $this->createMockApplication();
 		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
@@ -36,7 +35,7 @@ final class MenuTest extends TestCase
 			$loader->shouldReceive('load');
 		});
 
-		$menu = new Menu($linkGenerator, $translator, $authorizator, $application, $request, $itemFactory, $loader, 'menu', '', '', '');
+		$menu = new Menu($linkGenerator, $translator, $authorizator, $request, $itemFactory, $loader, 'menu', '', '', '');
 		$menu->init();
 	}
 
@@ -46,12 +45,11 @@ final class MenuTest extends TestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$application = $this->createMockApplication();
 		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 		$loader = $this->createMockMenuLoader();
 
-		$menu = new Menu($linkGenerator, $translator, $authorizator, $application, $request, $itemFactory, $loader, 'menu', '', '', '');
+		$menu = new Menu($linkGenerator, $translator, $authorizator, $request, $itemFactory, $loader, 'menu', '', '', '');
 
 		Assert::same('menu', $menu->getName());
 	}
@@ -62,12 +60,11 @@ final class MenuTest extends TestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$application = $this->createMockApplication();
 		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 		$loader = $this->createMockMenuLoader();
 
-		$menu = new Menu($linkGenerator, $translator, $authorizator, $application, $request, $itemFactory, $loader, 'menu', 'menu-template.latte', 'breadcrumbs-template.latte', 'sitemap-template.latte');
+		$menu = new Menu($linkGenerator, $translator, $authorizator, $request, $itemFactory, $loader, 'menu', 'menu-template.latte', 'breadcrumbs-template.latte', 'sitemap-template.latte');
 
 		Assert::same('menu-template.latte', $menu->getMenuTemplate());
 		Assert::same('breadcrumbs-template.latte', $menu->getBreadcrumbsTemplate());
@@ -80,7 +77,6 @@ final class MenuTest extends TestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$application = $this->createMockApplication();
 		$request = $this->createMockHttpRequest();
 		$loader = $this->createMockMenuLoader();
 
@@ -106,7 +102,7 @@ final class MenuTest extends TestCase
 			$itemFactory->shouldReceive('create')->andReturn($itemA);
 		});
 
-		$menu = new Menu($linkGenerator, $translator, $authorizator, $application, $request, $itemFactory, $loader, 'menu', '', '', '');
+		$menu = new Menu($linkGenerator, $translator, $authorizator, $request, $itemFactory, $loader, 'menu', '', '', '');
 		$menu->addItem('a','ItemA');
 
 		Assert::equal([

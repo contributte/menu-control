@@ -14,7 +14,8 @@ use Carrooi\Menu\Menu;
 use Carrooi\Menu\Security\IAuthorizator;
 use Mockery\MockInterface;
 use Nette\Application\Application;
-use Nette\Application\IPresenter;
+use Nette\Application\LinkGenerator;
+use Nette\Application\UI\Presenter;
 use Nette\Http\Request;
 use Nette\Http\Url;
 use Nette\Localization\ITranslator;
@@ -69,6 +70,12 @@ abstract class TestCase extends Tester\TestCase
 	}
 
 
+	protected function createMockNetteLinkGenerator(callable $fn = null): LinkGenerator
+	{
+		return $this->createMock(LinkGenerator::class, $fn);
+	}
+
+
 	protected function createMockTranslator(callable $fn = null): ITranslator
 	{
 		return $this->createMock(ITranslator::class, $fn);
@@ -87,9 +94,9 @@ abstract class TestCase extends Tester\TestCase
 	}
 
 
-	protected function createMockPresenter(callable $fn = null): IPresenter
+	protected function createMockPresenter(callable $fn = null): Presenter
 	{
-		return $this->createMock(IPresenter::class, $fn);
+		return $this->createMock(Presenter::class, $fn);
 	}
 
 

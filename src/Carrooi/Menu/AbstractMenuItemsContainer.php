@@ -6,7 +6,6 @@ namespace Carrooi\Menu;
 
 use Carrooi\Menu\LinkGenerator\ILinkGenerator;
 use Carrooi\Menu\Security\IAuthorizator;
-use Nette\Application\Application;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
 
@@ -17,6 +16,9 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 {
 
 
+	/** @var \Carrooi\Menu\IMenu */
+	protected $menu;
+
 	/** @var \Carrooi\Menu\LinkGenerator\ILinkGenerator */
 	protected $linkGenerator;
 
@@ -25,9 +27,6 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 
 	/** @var \Carrooi\Menu\Security\IAuthorizator */
 	protected $authorizator;
-
-	/** @var \Nette\Application\Application */
-	protected $application;
 
 	/** @var \Nette\Http\Request */
 	protected $httpRequest;
@@ -39,12 +38,12 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	private $items = [];
 
 
-	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Application $application, Request $httpRequest, IMenuItemFactory $menuItemFactory)
+	public function __construct(IMenu $menu, ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Request $httpRequest, IMenuItemFactory $menuItemFactory)
 	{
+		$this->menu = $menu;
 		$this->linkGenerator = $linkGenerator;
 		$this->translator = $translator;
 		$this->authorizator = $authorizator;
-		$this->application = $application;
 		$this->httpRequest = $httpRequest;
 		$this->menuItemFactory = $menuItemFactory;
 	}
@@ -85,7 +84,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 
 	public function addItem(string $name, string $title, callable $fn = null): void
 	{
-		$this->items[$name] = $item = $this->menuItemFactory->create($this->linkGenerator, $this->translator, $this->authorizator, $this->application, $this->httpRequest, $this->menuItemFactory, $title);
+		$this->items[$name] = $item = $this->menuItemFactory->create($this->menu, $this->linkGenerator, $this->translator, $this->authorizator, $this->httpRequest, $this->menuItemFactory, $title);
 
 		if ($fn) {
 			$fn($item);
