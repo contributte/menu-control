@@ -66,11 +66,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 
 		if ($this->getAction() && ($presenter = $this->menu->getActivePresenter())) {
 
-			try {
-				$presenter->link($this->getAction(), $this->getActionParameters());
-			} catch (InvalidLinkException $e) {}
-
-			if ($presenter->getLastCreatedRequestFlag('current')) {
+			if ($presenter->link('//this') === $this->linkGenerator->link($this)) {
 				return $this->active = true;
 			}
 

@@ -74,16 +74,18 @@ final class MenuItemTest extends TestCase
 
 	public function testIsActive_action_current(): void
 	{
-		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
+
+		$linkGenerator = $this->createMockLinkGenerator(function (MockInterface $linkGenerator) {
+			$linkGenerator->shouldReceive('link')->andReturn('#');
+		});
 
 		$menu = $this->createMockMenu(function (MockInterface $menu) {
 			$menu->shouldReceive('getActivePresenter')->andReturn(
 				$this->createMockPresenter(function(MockInterface $presenter) {
 					$presenter->shouldReceive('link')->andReturn('#');
-					$presenter->shouldReceive('getLastCreatedRequestFlag')->andReturn(true);
 				})
 			);
 		});
@@ -100,16 +102,18 @@ final class MenuItemTest extends TestCase
 
 	public function testIsActive_include(): void
 	{
-		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
+
+		$linkGenerator = $this->createMockLinkGenerator(function (MockInterface $linkGenerator) {
+			$linkGenerator->shouldReceive('link')->andReturn('#');
+		});
 
 		$menu = $this->createMockMenu(function (MockInterface $menu) {
 			$menu->shouldReceive('getActivePresenter')->andReturn(
 				$this->createMockPresenter(function(MockInterface $presenter) {
 					$presenter->shouldReceive('link')->andReturn('#');
-					$presenter->shouldReceive('getLastCreatedRequestFlag')->andReturn(false);
 					$presenter->shouldReceive('getName')->andReturn('Home');
 					$presenter->shouldReceive('getAction')->andReturn('edit');
 				})

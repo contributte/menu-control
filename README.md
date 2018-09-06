@@ -39,26 +39,26 @@ menu:
     items:
 
       Home:
-        action: :Front:Home:
+        action: Front:Home:
 
       Books:
         link: '#'
         items:
         
           All:
-            action: :Front:Books:all
+            action: Front:Books:all
             
           Featured:
-            action: :Front:Books:featured
+            action: Front:Books:featured
             
   admin:
     items:
     
       Users:
-        action: :Admin:Users:
+        action: Admin:Users:
         
       Books:
-        action: :Admin:Books:
+        action: Admin:Books:
 ```
 
 ```php
@@ -101,15 +101,15 @@ That structure in neon config will generate two menus:
 
 **front:**
 
-* Home (action: `:Front:Home:`)
+* Home (action: `Front:Home:`)
 * Books (link: `#`)
-	+ All (action: `:Front:Books:all`)
-	+ Featured (action: `:Front:Books:featured`)
+	+ All (action: `Front:Books:all`)
+	+ Featured (action: `Front:Books:featured`)
 	
 **admin:**
 
-* Users (action: `:Admin:Users:`)
-* Books (action: `:Admin:Books:`)
+* Users (action: `Admin:Users:`)
+* Books (action: `Admin:Books:`)
 
 ## Templates
 
@@ -147,7 +147,7 @@ menu:
     items:
     
       Home:
-        action: :Front:Home:
+        action: Front:Home:
         visibility:
           menu: true
           breadcrumbs: false
@@ -165,10 +165,10 @@ menu:
     items:
     
       Home:
-        action: :Front:Home:
+        action: Front:Home:
         include: '^Front\:Home\:[a-zA-Z\:]+$' # mark as active for all actions of "Front:Home:" presenter
       Books:
-      	action: :Front:Books:
+      	action: Front:Books:
       	include: # mark as active for actions "Front:Books:default" and "Front:Books:edit"
       		- '^Front\:Books\:default$'
       		- '^Front\:Books\:edit$'
@@ -304,7 +304,7 @@ menu:
     items:
     
       Home:
-        action: :Front:Home:
+        action: Front:Home:
         
       Books:
         link: '#'
