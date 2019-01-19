@@ -25,10 +25,13 @@ final class MenuComponent extends Control
 
 	public function __construct(MenuContainer $container, string $name)
 	{
-		parent::__construct();
-
 		$this->container = $container;
 		$this->menuName = $name;
+
+		$this->monitor(Presenter::class, function (Presenter $presenter): void {
+			$menu = $this->container->getMenu($this->menuName);
+			$menu->setActivePresenter($presenter);
+		});
 	}
 
 
@@ -59,23 +62,6 @@ final class MenuComponent extends Control
 		$this->template->menu = $menu;
 
 		$this->template->render();
-	}
-
-
-	/**
-	 * This method will be called when the component (or component's parent)
-	 * becomes attached to a monitored object. Do not call this method yourself.
-	 * @param  \Nette\ComponentModel\IComponent
-	 * @return void
-	 */
-	protected function attached($presenter)
-	{
-		if ($presenter instanceof Presenter) {
-			$menu = $this->container->getMenu($this->menuName);
-			$menu->setActivePresenter($presenter);
-		}
-
-		parent::attached($presenter);
 	}
 
 }

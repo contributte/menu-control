@@ -13,7 +13,7 @@ final class ReturnTranslator implements ITranslator
 {
 
 
-	public function translate($message, $count = null)
+	public function translate($message, ...$parameters): string
 	{
 		return $message;
 	}

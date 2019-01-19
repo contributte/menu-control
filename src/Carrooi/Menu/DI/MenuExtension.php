@@ -15,7 +15,7 @@ use Carrooi\Menu\UI\IMenuComponentFactory;
 use Carrooi\Menu\UI\MenuComponent;
 use Nette\DI\CompilerExtension;
 use Nette\DI\ContainerBuilder;
-use Nette\DI\ServiceDefinition;
+use Nette\DI\Definitions\ServiceDefinition;
 use Nette\Http;
 use Nette\Localization\ITranslator;
 use Nette\Utils\Strings;
@@ -64,11 +64,12 @@ final class MenuExtension extends CompilerExtension
 		$builder = $this->getContainerBuilder();
 
 		$container = $builder->addDefinition($this->prefix('container'))
-			->setClass(MenuContainer::class);
+			->setType(MenuContainer::class);
 
-		$builder->addDefinition($this->prefix('component.menu'))
-			->setClass(MenuComponent::class)
-			->setImplement(IMenuComponentFactory::class);
+		$builder->addFactoryDefinition($this->prefix('component.menu'))
+			->setImplement(IMenuComponentFactory::class)
+			->getResultDefinition()
+				->setType(MenuComponent::class);
 
 		foreach ($config as $menuName => $menu) {
 			$container->addSetup('addMenu', [
@@ -92,41 +93,42 @@ final class MenuExtension extends CompilerExtension
 
 		} else if (!Strings::startsWith($config['translator'], '@')) {
 			$translator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.translator'))
-				->setClass($config['translator'])
+				->setType($config['translator'])
 				->setAutowired(false);
 		}
 
 		if (!Strings::startsWith($config['authorizator'], '@')) {
 			$authorizator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.authorizator'))
-				->setClass($config['authorizator'])
+				->setType($config['authorizator'])
 				->setAutowired(false);
 		}
 
 		if (!Strings::startsWith($config['loader'], '@')) {
 			$loader = $builder->addDefinition($this->prefix('menu.'. $menuName. '.loader'))
-				->setClass($config['loader'])
+				->setType($config['loader'])
 				->setAutowired(false);
 		}
 
 		if (!Strings::startsWith($config['linkGenerator'], '@')) {
 			$linkGenerator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.linkGenerator'))
-				->setClass($config['linkGenerator'])
+				->setType($config['linkGenerator'])
 				->setAutowired(false);
 		}
 
-		if ($loader->getClass() === ArrayMenuLoader::class) {
+		if ($loader->getType() === ArrayMenuLoader::class) {
 			$loader->setArguments([$this->normalizeMenuItems($config['items'])]);
 		}
 
 		$itemFactory = $builder->addDefinition($this->prefix('menu.'. $menuName. '.factory'))
-			->setClass(MenuItemFactory::class);
+			->setType(MenuItemFactory::class);
 
 		return $builder->addDefinition($this->prefix('menu.' . $menuName))
-			->setClass(Menu::class, [
+			->setType(Menu::class)
+			->setArguments([
 				$linkGenerator,
 				$translator,
 				$authorizator,
-				'@'. Http\Request::class,
+				'@'. Http\IRequest::class,
 				$itemFactory,
 				$loader,
 				$menuName,

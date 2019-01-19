@@ -18,6 +18,7 @@ use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Presenter;
 use Nette\Http\Request;
 use Nette\Http\Url;
+use Nette\Http\UrlScript;
 use Nette\Localization\ITranslator;
 use Tester;
 
@@ -106,9 +107,9 @@ abstract class TestCase extends Tester\TestCase
 	}
 
 
-	protected function createMockHttpUrl(callable $fn = null): Url
+	protected function createMockHttpUrl(callable $fn = null): UrlScript
 	{
-		return $this->createMock(Url::class, $fn);
+		return $this->createMock(UrlScript::class, $fn);
 	}
 
 
