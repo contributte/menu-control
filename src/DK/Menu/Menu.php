@@ -33,8 +33,9 @@ class Menu extends Container
 	{
 		parent::__construct();
 
+		// E_USER_DEPRECATED fix - Nette\ComponentModel\Component::__construct() argument $name is deprecated, use $parent->setParent(null, $name) instead.
 		$parent = $this->getParent();
-		if ($parent !== NULL) {
+		if ($parent !== null) {
 			$parent->setParent(null, $name);
 		}
 
