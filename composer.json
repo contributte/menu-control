@@ -16,7 +16,8 @@
 		"issues": "https://github.com/Carrooi/Nette-Menu/issues"
 	},
 	"require": {
-		"nette/nette": ">= 2.2.0"
+		"php": ">=5.6.0 <7.0.0", 
+		"nette/nette": "~2.4.0"
 	},
 	"require-dev": {
 		"nette/tester": "@dev"

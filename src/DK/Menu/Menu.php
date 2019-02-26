@@ -31,7 +31,12 @@ class Menu extends Container
 	 */
 	public function __construct(User $user, $name)
 	{
-		parent::__construct(null, $name);
+		parent::__construct();
+
+		$parent = $this->getParent();
+		if ($parent !== NULL) {
+			$parent->setParent(null, $name);
+		}
 
 		$this->user = $user;
 	}
