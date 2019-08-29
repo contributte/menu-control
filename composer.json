@@ -1,5 +1,5 @@
 {
-	"name": "darkling/nette-menu",
+	"name": "carrooi/nette-menu",
 	"type": "library",
 	"description": "Menu for Nette framework",
 	"keywords": ["nette", "menu", "control", "component", "breadcrumbs"],
