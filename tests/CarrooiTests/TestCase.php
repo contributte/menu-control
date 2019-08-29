@@ -17,7 +17,6 @@ use Nette\Application\Application;
 use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Presenter;
 use Nette\Http\Request;
-use Nette\Http\Url;
 use Nette\Http\UrlScript;
 use Nette\Localization\ITranslator;
 use Tester;
