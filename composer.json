@@ -30,6 +30,5 @@
 		"psr-0": {
 			"Carrooi\\Menu\\": "src/"
 		}
-	},
-	"minimum-stability": "beta"
+	}
 }
