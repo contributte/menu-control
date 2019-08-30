@@ -320,6 +320,9 @@ See the default [ArrayMenuLoader](./src/Carrooi/Menu/Loaders/ArrayMenuLoader.php
 
 ## Changelog
 
+* 2.2.0
+	+ Nette 3 compatibility
+
 * 2.1.0
 	+ Fixed registration of more menus [#23](https://github.com/Carrooi/Nette-Menu/pull/23)
 	+ Added shortcuts for working with data [#24](https://github.com/Carrooi/Nette-Menu/pull/24)
