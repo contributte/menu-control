@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Carrooi\Menu;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 interface IMenuItem extends IMenuItemsContainer
 {
 

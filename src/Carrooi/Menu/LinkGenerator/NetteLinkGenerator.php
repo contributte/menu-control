@@ -7,9 +7,6 @@ namespace Carrooi\Menu\LinkGenerator;
 use Carrooi\Menu\IMenuItem;
 use Nette\Application\LinkGenerator;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class NetteLinkGenerator implements ILinkGenerator
 {
 

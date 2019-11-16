@@ -9,9 +9,6 @@ use Carrooi\Menu\MenuContainer;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Presenter;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class MenuComponent extends Control
 {
 

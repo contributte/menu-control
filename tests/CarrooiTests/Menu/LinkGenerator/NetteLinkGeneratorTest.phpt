@@ -11,9 +11,6 @@ use Tester\Assert;
 
 require_once __DIR__. '/../../../bootstrap.php';
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class NetteLinkGeneratorTest extends TestCase
 {
 

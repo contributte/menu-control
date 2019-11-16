@@ -6,9 +6,6 @@ namespace Carrooi\Menu;
 
 use Nette\Application\UI\Presenter;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 interface IMenu extends IMenuItemsContainer
 {
 

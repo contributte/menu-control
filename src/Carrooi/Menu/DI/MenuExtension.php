@@ -20,9 +20,6 @@ use Nette\Http;
 use Nette\Localization\ITranslator;
 use Nette\Utils\Strings;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class MenuExtension extends CompilerExtension
 {
 

@@ -6,9 +6,6 @@ namespace Carrooi\Menu\Security;
 
 use Carrooi\Menu\IMenuItem;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class OptimisticAuthorizator implements IAuthorizator
 {
 

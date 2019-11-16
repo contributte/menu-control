@@ -9,9 +9,6 @@ use Carrooi\Menu\IMenuItem;
 use Carrooi\Menu\IMenuItemsContainer;
 use Nette\Utils;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class ArrayMenuLoader implements IMenuLoader
 {
 

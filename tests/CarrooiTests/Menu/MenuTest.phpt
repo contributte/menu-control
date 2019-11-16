@@ -14,8 +14,6 @@ require_once __DIR__. '/../../bootstrap.php';
 
 /**
  * @testCase
- *
- * @author David Kudera <kudera.d@gmail.com>
  */
 final class MenuTest extends TestCase
 {

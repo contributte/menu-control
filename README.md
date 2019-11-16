@@ -353,3 +353,42 @@ See the default [ArrayMenuLoader](./src/Carrooi/Menu/Loaders/ArrayMenuLoader.php
 
 * 1.0.0
 	+ First version
+
+## Maintainers
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/foxycode">
+            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/1284781?s=460&v=4">
+        </a>
+        </br>
+        <a href="https://github.com/foxycode">Tomáš Jacík</a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/f3l1x">
+            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=150">
+        </a>
+        </br>
+        <a href="https://github.com/f3l1x">Milan Felix Šulc</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Former maintainers
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/juniwalk">
+            <img width="150" height="150" src="https://avatars1.githubusercontent.com/u/1174072?s=460&v=4">
+        </a>
+        </br>
+        <a href="https://github.com/juniwalk">David Kudera</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

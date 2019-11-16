@@ -11,9 +11,6 @@ use Nette\Application\UI\Presenter;
 use Nette\Http\IRequest;
 use Nette\Localization\ITranslator;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class Menu extends AbstractMenuItemsContainer implements IMenu
 {
 

@@ -19,9 +19,6 @@ use Nette\Http\UrlScript;
 use Nette\Localization\ITranslator;
 use Tester;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 abstract class TestCase extends Tester\TestCase
 {
 

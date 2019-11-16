@@ -6,9 +6,6 @@ namespace Carrooi\Menu;
 
 use Carrooi\Menu\LinkGenerator\ILinkGenerator;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 interface IMenuItemsContainer
 {
 

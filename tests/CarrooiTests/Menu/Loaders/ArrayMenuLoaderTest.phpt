@@ -11,9 +11,6 @@ use Tester\Environment;
 
 require_once __DIR__. '/../../../bootstrap.php';
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class ArrayMenuLoaderTest extends TestCase
 {
 

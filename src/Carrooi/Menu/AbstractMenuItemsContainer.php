@@ -9,9 +9,6 @@ use Carrooi\Menu\Security\IAuthorizator;
 use Nette\Http\IRequest;
 use Nette\Localization\ITranslator;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 {
 
