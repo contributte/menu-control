@@ -24,7 +24,8 @@
 	},
 	"require-dev": {
 		"nette/tester": "^2.1",
-		"mockery/mockery": "dev-master"
+		"mockery/mockery": "dev-master",
+		"ninjify/coding-standard": "^0.9.0"
 	},
 	"autoload": {
 		"psr-0": {
@@ -32,6 +33,8 @@
 		}
 	},
 	"scripts": {
-		"tests": "vendor/bin/tester -s -p php -c tests/php.ini tests/CarrooiTests/Menu/"
+		"tests": "vendor/bin/tester -s -p php -c tests/php.ini tests/CarrooiTests/Menu/",
+		"phpcs": "vendor/bin/phpcs --standard=vendor/ninjify/coding-standard/ruleset-gamee.xml --extensions=php,phpt --tab-width=4 -sp src tests",
+		"phpcsfix": "vendor/bin/phpcbf --standard=vendor/ninjify/coding-standard/ruleset-gamee.xml --extensions=php,phpt --tab-width=4 -sp src tests"
 	}
 }
