@@ -17,7 +17,6 @@ require_once __DIR__. '/../../../bootstrap.php';
 final class ArrayMenuLoaderTest extends TestCase
 {
 
-
 	public function testLoad_simple(): void
 	{
 		Environment::$checkAssertions = false;

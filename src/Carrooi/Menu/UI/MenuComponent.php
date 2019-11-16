@@ -15,11 +15,14 @@ use Nette\Application\UI\Presenter;
 final class MenuComponent extends Control
 {
 
-
-	/** @var \Carrooi\Menu\MenuContainer */
+	/**
+	 * @var MenuContainer
+	 */
 	private $container;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $menuName;
 
 

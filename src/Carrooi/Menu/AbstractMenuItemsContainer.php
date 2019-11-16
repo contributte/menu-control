@@ -15,31 +15,50 @@ use Nette\Localization\ITranslator;
 abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 {
 
-
-	/** @var \Carrooi\Menu\IMenu */
+	/**
+	 * @var \Carrooi\Menu\IMenu
+	 */
 	protected $menu;
 
-	/** @var \Carrooi\Menu\LinkGenerator\ILinkGenerator */
+	/**
+	 * @var ILinkGenerator
+	 */
 	protected $linkGenerator;
 
-	/** @var \Nette\Localization\ITranslator */
+	/**
+	 * @var ITranslator
+	 */
 	protected $translator;
 
-	/** @var \Carrooi\Menu\Security\IAuthorizator */
+	/**
+	 * @var IAuthorizator
+	 */
 	protected $authorizator;
 
-	/** @var \Nette\Http\IRequest */
+	/**
+	 * @var IRequest
+	 */
 	protected $httpRequest;
 
-	/** @var \Carrooi\Menu\IMenuItemFactory */
+	/**
+	 * @var IMenuItemFactory
+	 */
 	protected $menuItemFactory;
 
-	/** @var \Carrooi\Menu\IMenuItem[] */
+	/**
+	 * @var IMenuItem[]
+	 */
 	private $items = [];
 
 
-	public function __construct(IMenu $menu, ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, IRequest $httpRequest, IMenuItemFactory $menuItemFactory)
-	{
+	public function __construct(
+		IMenu $menu,
+		ILinkGenerator $linkGenerator,
+		ITranslator $translator,
+		IAuthorizator $authorizator,
+		IRequest $httpRequest,
+		IMenuItemFactory $menuItemFactory
+	) {
 		$this->menu = $menu;
 		$this->linkGenerator = $linkGenerator;
 		$this->translator = $translator;
@@ -56,7 +75,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 
 
 	/**
-	 * @return \Carrooi\Menu\IMenuItem[]
+	 * @return IMenuItem[]
 	 */
 	public function getItems(): array
 	{
@@ -82,9 +101,17 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	}
 
 
-	public function addItem(string $name, string $title, callable $fn = null): void
+	public function addItem(string $name, string $title, ?callable $fn = null): void
 	{
-		$this->items[$name] = $item = $this->menuItemFactory->create($this->menu, $this->linkGenerator, $this->translator, $this->authorizator, $this->httpRequest, $this->menuItemFactory, $title);
+		$this->items[$name] = $item = $this->menuItemFactory->create(
+			$this->menu,
+			$this->linkGenerator,
+			$this->translator,
+			$this->authorizator,
+			$this->httpRequest,
+			$this->menuItemFactory,
+			$title
+		);
 
 		if ($fn) {
 			$fn($item);
@@ -148,16 +175,20 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 
 	/**
 	 * @param string $type
-	 * @return \Carrooi\Menu\AbstractMenuItemsContainer[]
+	 * @return AbstractMenuItemsContainer[]
 	 */
 	private function getVisibleItemsOn(string $type): array
 	{
 		return array_filter($this->getItems(), function(IMenuItem $item) use ($type) {
 			switch ($type) {
-				case 'menu': return $item->isVisibleOnMenu();
-				case 'breadcrumbs': return $item->isVisibleOnBreadcrumbs();
-				case 'sitemap': return $item->isVisibleOnSitemap();
-				default: return false;
+				case 'menu':
+					return $item->isVisibleOnMenu();
+				case 'breadcrumbs':
+					return $item->isVisibleOnBreadcrumbs();
+				case 'sitemap':
+					return $item->isVisibleOnSitemap();
+				default:
+					return false;
 			}
 		});
 	}

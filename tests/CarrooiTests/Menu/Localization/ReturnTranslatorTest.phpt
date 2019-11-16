@@ -18,7 +18,6 @@ require_once __DIR__. '/../../../bootstrap.php';
 final class ReturnTranslatorTest extends TestCase
 {
 
-
 	public function testTranslate(): void
 	{
 		$translator = new ReturnTranslator;

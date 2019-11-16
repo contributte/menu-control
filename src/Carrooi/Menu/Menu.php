@@ -17,26 +17,43 @@ use Nette\Localization\ITranslator;
 final class Menu extends AbstractMenuItemsContainer implements IMenu
 {
 
-
-	/** @var \Carrooi\Menu\Loaders\IMenuLoader */
+	/**
+	 * @var IMenuLoader
+	 */
 	private $loader;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $name;
 
-	/** @var string[] */
+	/**
+	 * @var string[]
+	 */
 	private $templates = [
 		'menu' => null,
 		'breadcrumbs' => null,
 		'sitemap' => null,
 	];
 
-	/** @var Presenter */
+	/**
+	 * @var Presenter
+	 */
 	private $activePresenter;
 
 
-	public function __construct(ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, IRequest $httpRequest, IMenuItemFactory $menuItemFactory, IMenuLoader $loader, string $name, string $menuTemplate, string $breadcrumbsTemplate, string $sitemapTemplate)
-	{
+	public function __construct(
+		ILinkGenerator $linkGenerator,
+		ITranslator $translator,
+		IAuthorizator $authorizator,
+		IRequest $httpRequest,
+		IMenuItemFactory $menuItemFactory,
+		IMenuLoader $loader,
+		string $name,
+		string $menuTemplate,
+		string $breadcrumbsTemplate,
+		string $sitemapTemplate
+	) {
 		parent::__construct($this, $linkGenerator, $translator, $authorizator, $httpRequest, $menuItemFactory);
 
 		$this->loader = $loader;

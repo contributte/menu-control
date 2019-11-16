@@ -10,7 +10,6 @@ namespace Carrooi\Menu;
 interface IMenuItem extends IMenuItemsContainer
 {
 
-
 	public function isActive(): bool;
 
 
@@ -44,7 +43,7 @@ interface IMenuItem extends IMenuItemsContainer
 	public function hasData(string $name): bool;
 
 
-	public function getData(string $type = null, $default = null);
+	public function getData(?string $type = null, $default = null);
 
 
 	public function setData(array $data): void;
@@ -53,7 +52,7 @@ interface IMenuItem extends IMenuItemsContainer
 	public function addData(string $name, $value): void;
 
 
-	public function setInclude(array $include) : void;
+	public function setInclude(array $include): void;
 
 
 	public function isVisibleOnMenu(): bool;

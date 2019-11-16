@@ -16,7 +16,6 @@ require_once __DIR__. '/../../bootstrap.php';
 final class AbstractMenuItemsContainerTest extends TestCase
 {
 
-
 	public function testItems(): void
 	{
 		$menu = $this->createMockMenu();

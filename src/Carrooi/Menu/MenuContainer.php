@@ -10,8 +10,9 @@ namespace Carrooi\Menu;
 final class MenuContainer
 {
 
-
-	/** @var \Carrooi\Menu\IMenu[] */
+	/**
+	 * @var IMenu[]
+	 */
 	private $menus = [];
 
 

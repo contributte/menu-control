@@ -12,7 +12,6 @@ use Nette\Application\UI\Presenter;
 interface IMenu extends IMenuItemsContainer
 {
 
-
 	public function getName(): string;
 
 

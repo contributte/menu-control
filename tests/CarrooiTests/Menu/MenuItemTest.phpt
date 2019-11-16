@@ -19,7 +19,6 @@ require_once __DIR__. '/../../bootstrap.php';
 final class MenuItemTest extends TestCase
 {
 
-
 	public function testIsAllowed(): void
 	{
 		$linkGenerator = $this->createMockLinkGenerator();
@@ -127,7 +126,7 @@ final class MenuItemTest extends TestCase
 		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
 		$item->setAction('Home:');
 		$item->setInclude([
-			'^Home\:[a-zA-Z\:]+$'
+			'^Home\:[a-zA-Z\:]+$',
 		]);
 
 		Assert::true($item->isActive());

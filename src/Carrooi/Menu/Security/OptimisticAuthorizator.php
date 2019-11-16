@@ -12,7 +12,6 @@ use Carrooi\Menu\IMenuItem;
 final class OptimisticAuthorizator implements IAuthorizator
 {
 
-
 	public function isMenuItemAllowed(IMenuItem $item): bool
 	{
 		return true;

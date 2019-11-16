@@ -15,8 +15,9 @@ use Nette\Utils;
 final class ArrayMenuLoader implements IMenuLoader
 {
 
-
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	private $items;
 
 

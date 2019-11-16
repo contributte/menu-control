@@ -20,7 +20,6 @@ require_once __DIR__. '/../../bootstrap.php';
 final class MenuTest extends TestCase
 {
 
-
 	public function testInit(): void
 	{
 		Environment::$checkAssertions = false;
@@ -64,7 +63,18 @@ final class MenuTest extends TestCase
 		$itemFactory = $this->createMockMenuItemFactory();
 		$loader = $this->createMockMenuLoader();
 
-		$menu = new Menu($linkGenerator, $translator, $authorizator, $request, $itemFactory, $loader, 'menu', 'menu-template.latte', 'breadcrumbs-template.latte', 'sitemap-template.latte');
+		$menu = new Menu(
+			$linkGenerator,
+			$translator,
+			$authorizator,
+			$request,
+			$itemFactory,
+			$loader,
+			'menu',
+			'menu-template.latte',
+			'breadcrumbs-template.latte',
+			'sitemap-template.latte'
+		);
 
 		Assert::same('menu-template.latte', $menu->getMenuTemplate());
 		Assert::same('breadcrumbs-template.latte', $menu->getBreadcrumbsTemplate());

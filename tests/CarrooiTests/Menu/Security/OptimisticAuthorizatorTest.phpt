@@ -18,7 +18,6 @@ require_once __DIR__. '/../../../bootstrap.php';
 final class OptimisticAuthorizatorTest extends TestCase
 {
 
-
 	public function testIsMenuItemAllowed(): void
 	{
 		$item = $this->createMockMenuItem();

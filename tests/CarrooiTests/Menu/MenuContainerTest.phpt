@@ -19,7 +19,6 @@ require_once __DIR__. '/../../bootstrap.php';
 final class MenuContainerTest extends TestCase
 {
 
-
 	public function testMenu(): void
 	{
 		$menu = $this->createMockMenu(function(MockInterface $menu) {

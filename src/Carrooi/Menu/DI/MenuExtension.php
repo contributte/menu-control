@@ -26,8 +26,9 @@ use Nette\Utils\Strings;
 final class MenuExtension extends CompilerExtension
 {
 
-
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	private $menuDefaults = [
 		'authorizator' => OptimisticAuthorizator::class,
 		'translator' => ReturnTranslator::class,
@@ -41,7 +42,9 @@ final class MenuExtension extends CompilerExtension
 		],
 	];
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	private $itemDefaults = [
 		'linkGenerator' => null,
 		'title' => null,
@@ -91,7 +94,7 @@ final class MenuExtension extends CompilerExtension
 		if ($config['translator'] === true) {
 			$translator = $builder->getDefinitionByType(ITranslator::class);
 
-		} else if (!Strings::startsWith($config['translator'], '@')) {
+		} elseif (!Strings::startsWith($config['translator'], '@')) {
 			$translator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.translator'))
 				->setType($config['translator'])
 				->setAutowired(false);

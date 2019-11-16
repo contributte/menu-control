@@ -17,7 +17,6 @@ require_once __DIR__. '/../../../bootstrap.php';
 final class NetteLinkGeneratorTest extends TestCase
 {
 
-
 	public function testLink_action(): void
 	{
 		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function(MockInterface $netteLinkGenerator) {

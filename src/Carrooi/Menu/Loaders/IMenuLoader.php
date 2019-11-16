@@ -12,7 +12,6 @@ use Carrooi\Menu\IMenu;
 interface IMenuLoader
 {
 
-
 	public function load(IMenu $menu): void;
 
 }
