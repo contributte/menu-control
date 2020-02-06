@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace CarrooiTests;
+namespace Tests;
 
-use Carrooi\Menu\AbstractMenuItemsContainer;
-use Carrooi\Menu\IMenu;
-use Carrooi\Menu\IMenuItem;
-use Carrooi\Menu\IMenuItemFactory;
-use Carrooi\Menu\LinkGenerator\ILinkGenerator;
-use Carrooi\Menu\Loaders\IMenuLoader;
-use Carrooi\Menu\Security\IAuthorizator;
+use Contributte\MenuControl\AbstractMenuItemsContainer;
+use Contributte\MenuControl\IMenu;
+use Contributte\MenuControl\IMenuItem;
+use Contributte\MenuControl\IMenuItemFactory;
+use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
+use Contributte\MenuControl\Loaders\IMenuLoader;
+use Contributte\MenuControl\Security\IAuthorizator;
 use Nette\Application\Application;
 use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Presenter;
@@ -19,7 +19,7 @@ use Nette\Http\UrlScript;
 use Nette\Localization\ITranslator;
 use Tester;
 
-abstract class TestCase extends Tester\TestCase
+abstract class AbstractTestCase extends Tester\TestCase
 {
 
 	public function tearDown()

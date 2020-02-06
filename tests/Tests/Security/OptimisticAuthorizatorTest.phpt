@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace CarrooiTests\Menu\Security;
+namespace Tests\Security;
 
-use Carrooi\Menu\Security\OptimisticAuthorizator;
-use CarrooiTests\TestCase;
+use Contributte\MenuControl\Security\OptimisticAuthorizator;
 use Tester\Assert;
+use Tests\AbstractTestCase;
 
-require_once __DIR__. '/../../../bootstrap.php';
+require_once __DIR__. '/../../bootstrap.php';
 
 /**
  * @testCase
  */
-final class OptimisticAuthorizatorTest extends TestCase
+final class OptimisticAuthorizatorTest extends AbstractTestCase
 {
 
 	public function testIsMenuItemAllowed(): void

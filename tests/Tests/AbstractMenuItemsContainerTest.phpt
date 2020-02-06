@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-namespace CarrooiTests\Menu;
+namespace Tests;
 
-use CarrooiTests\TestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
 
-require_once __DIR__. '/../../bootstrap.php';
+require_once __DIR__. '/../bootstrap.php';
 
-final class AbstractMenuItemsContainerTest extends TestCase
+final class AbstractMenuItemsContainerTest extends AbstractTestCase
 {
 
 	public function testItems(): void

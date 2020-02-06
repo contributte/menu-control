@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu\Security;
+namespace Contributte\MenuControl\Security;
 
-use Carrooi\Menu\IMenuItem;
+use Contributte\MenuControl\IMenuItem;
 
 interface IAuthorizator
 {

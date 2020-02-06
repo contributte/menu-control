@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace CarrooiTests\Menu\Localization;
+namespace Tests\Localization;
 
-use Carrooi\Menu\Localization\ReturnTranslator;
-use CarrooiTests\TestCase;
+use Contributte\MenuControl\Localization\ReturnTranslator;
 use Tester\Assert;
+use Tests\AbstractTestCase;
 
-require_once __DIR__. '/../../../bootstrap.php';
+require_once __DIR__. '/../../bootstrap.php';
 
 /**
  * @testCase
  */
-final class ReturnTranslatorTest extends TestCase
+final class ReturnTranslatorTest extends AbstractTestCase
 {
 
 	public function testTranslate(): void

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu\UI;
+namespace Contributte\MenuControl\UI;
 
-use Carrooi\Menu\IMenu;
-use Carrooi\Menu\MenuContainer;
+use Contributte\MenuControl\IMenu;
+use Contributte\MenuControl\MenuContainer;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Presenter;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu;
+namespace Contributte\MenuControl;
 
 final class MenuContainer
 {

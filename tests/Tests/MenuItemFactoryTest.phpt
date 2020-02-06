@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace CarrooiTests\Menu;
+namespace Tests;
 
-use Carrooi\Menu\IMenuItem;
-use Carrooi\Menu\MenuItemFactory;
-use CarrooiTests\TestCase;
+use Contributte\MenuControl\IMenuItem;
+use Contributte\MenuControl\MenuItemFactory;
 use Tester\Assert;
 
-require_once __DIR__. '/../../bootstrap.php';
+require_once __DIR__. '/../bootstrap.php';
 
 /**
  * @testCase
  */
-final class MenuItemFactoryTest extends TestCase
+final class MenuItemFactoryTest extends AbstractTestCase
 {
 
 	public function testCreate(): void

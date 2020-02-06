@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu\DI;
+namespace Contributte\MenuControl\DI;
 
-use Carrooi\Menu\LinkGenerator\NetteLinkGenerator;
-use Carrooi\Menu\Loaders\ArrayMenuLoader;
-use Carrooi\Menu\Localization\ReturnTranslator;
-use Carrooi\Menu\Menu;
-use Carrooi\Menu\MenuContainer;
-use Carrooi\Menu\MenuItemFactory;
-use Carrooi\Menu\Security\OptimisticAuthorizator;
-use Carrooi\Menu\UI\IMenuComponentFactory;
-use Carrooi\Menu\UI\MenuComponent;
+use Contributte\MenuControl\LinkGenerator\NetteLinkGenerator;
+use Contributte\MenuControl\Loaders\ArrayMenuLoader;
+use Contributte\MenuControl\Localization\ReturnTranslator;
+use Contributte\MenuControl\Menu;
+use Contributte\MenuControl\MenuContainer;
+use Contributte\MenuControl\MenuItemFactory;
+use Contributte\MenuControl\Security\OptimisticAuthorizator;
+use Contributte\MenuControl\UI\IMenuComponentFactory;
+use Contributte\MenuControl\UI\MenuComponent;
 use Nette\DI\CompilerExtension;
 use Nette\DI\ContainerBuilder;
 use Nette\DI\Definitions\ServiceDefinition;

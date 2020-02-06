@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu;
+namespace Contributte\MenuControl;
 
-use Carrooi\Menu\LinkGenerator\ILinkGenerator;
-use Carrooi\Menu\Security\IAuthorizator;
+use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
+use Contributte\MenuControl\Security\IAuthorizator;
 use Nette\Http\IRequest;
 use Nette\Localization\ITranslator;
 
@@ -13,7 +13,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 {
 
 	/**
-	 * @var \Carrooi\Menu\IMenu
+	 * @var IMenu
 	 */
 	protected $menu;
 

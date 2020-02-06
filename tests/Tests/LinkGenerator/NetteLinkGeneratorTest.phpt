@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace CarrooiTests\Menu\LinkGenerator;
+namespace Tests\LinkGenerator;
 
-use Carrooi\Menu\LinkGenerator\NetteLinkGenerator;
-use CarrooiTests\TestCase;
+use Contributte\MenuControl\LinkGenerator\NetteLinkGenerator;
 use Mockery\MockInterface;
 use Tester\Assert;
+use Tests\AbstractTestCase;
 
-require_once __DIR__. '/../../../bootstrap.php';
+require_once __DIR__. '/../../bootstrap.php';
 
-final class NetteLinkGeneratorTest extends TestCase
+final class NetteLinkGeneratorTest extends AbstractTestCase
 {
 
 	public function testLink_action(): void

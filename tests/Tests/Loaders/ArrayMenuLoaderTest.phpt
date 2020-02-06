@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace CarrooiTests\Menu\Loaders;
+namespace Tests\Loaders;
 
-use Carrooi\Menu\Loaders\ArrayMenuLoader;
-use CarrooiTests\TestCase;
+use Contributte\MenuControl\Loaders\ArrayMenuLoader;
 use Mockery\MockInterface;
 use Tester\Environment;
+use Tests\AbstractTestCase;
 
-require_once __DIR__. '/../../../bootstrap.php';
+require_once __DIR__. '/../../bootstrap.php';
 
-final class ArrayMenuLoaderTest extends TestCase
+final class ArrayMenuLoaderTest extends AbstractTestCase
 {
 
 	public function testLoad_simple(): void
