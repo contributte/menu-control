@@ -2,7 +2,7 @@
 
 Nette component for creating menus, breadcrumbs and sitemaps.
 
-[![Build Status](https://img.shields.io/travis/contributte/nette-menu.svg?style=flat-square)](https://travis-ci.org/contributte/nette-menu)
+[![Build Status](https://img.shields.io/travis/contributte/menu-control.svg?style=flat-square)](https://travis-ci.org/contributte/menu-control)
 
 ## Documentation
 
