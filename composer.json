@@ -35,8 +35,13 @@
 		"ninjify/coding-standard": "^0.9.0"
 	},
 	"autoload": {
-		"psr-0": {
+		"psr-4": {
 			"Carrooi\\Menu\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"CarrooiTests\\": "tests/CarrooiTests/"
 		}
 	},
 	"scripts": {
