@@ -86,7 +86,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 				return $this->active = true;
 			}
 
-			if (!$this->include) {
+			if ($this->include) {
 				$actionName = sprintf('%s:%s', $presenter->getName(), $presenter->getAction());
 				foreach ($this->include as $include) {
 					if (preg_match(sprintf('~%s~', $include), $actionName)) {

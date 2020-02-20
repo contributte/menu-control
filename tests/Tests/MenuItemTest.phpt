@@ -103,13 +103,13 @@ final class MenuItemTest extends AbstractTestCase
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$linkGenerator = $this->createMockLinkGenerator(function (MockInterface $linkGenerator) {
-			$linkGenerator->shouldReceive('link')->andReturn('#');
+			$linkGenerator->shouldReceive('link')->andReturn('/home');
 		});
 
 		$menu = $this->createMockMenu(function (MockInterface $menu) {
 			$menu->shouldReceive('getActivePresenter')->andReturn(
 				$this->createMockPresenter(function(MockInterface $presenter) {
-					$presenter->shouldReceive('link')->andReturn('#');
+					$presenter->shouldReceive('link')->andReturn('/home/edit');
 					$presenter->shouldReceive('getName')->andReturn('Home');
 					$presenter->shouldReceive('getAction')->andReturn('edit');
 				})
