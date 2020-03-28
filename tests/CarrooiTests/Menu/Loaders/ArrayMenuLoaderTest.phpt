@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CarrooiTests\Menu\Loaders;
 
-use Carrooi\Menu\Loaders\ArrayMenuLoader;
+use Contributte\MenuControl\Loaders\ArrayMenuLoader;
 use CarrooiTests\TestCase;
 use Mockery\MockInterface;
 use Tester\Environment;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu\Loaders;
+namespace Contributte\MenuControl\Loaders;
 
-use Carrooi\Menu\IMenu;
-use Carrooi\Menu\IMenuItem;
-use Carrooi\Menu\IMenuItemsContainer;
+use Contributte\MenuControl\IMenu;
+use Contributte\MenuControl\IMenuItem;
+use Contributte\MenuControl\IMenuItemsContainer;
 use Nette\Utils;
 
 /**

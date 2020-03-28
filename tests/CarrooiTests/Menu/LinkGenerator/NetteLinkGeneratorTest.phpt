@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CarrooiTests\Menu\LinkGenerator;
 
-use Carrooi\Menu\LinkGenerator\NetteLinkGenerator;
+use Contributte\MenuControl\LinkGenerator\NetteLinkGenerator;
 use CarrooiTests\TestCase;
 use Mockery\MockInterface;
 use Tester\Assert;

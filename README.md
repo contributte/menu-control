@@ -1,5 +1,4 @@
-[![Build Status](https://img.shields.io/travis/Carrooi/Nette-Menu.svg?style=flat-square)](https://travis-ci.org/Carrooi/Nette-Menu)
-[![Donate](https://img.shields.io/badge/donate-PayPal-brightgreen.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HPH6AC9D5LGHY)
+[![Build Status](https://travis-ci.org/contributte/menu-control.svg?branch=nette24)](https://travis-ci.org/contributte/menu-control)
 
 # Nette menu
 
@@ -15,14 +14,14 @@ Nette component for creating menus, breadcrumbs and sitemaps.
 **Install package with composer:**
 
 ```
-$ composer require carrooi/nette-menu
+$ composer require contributte/menu-control
 ```
 
 **Register as nette extension:**
 
 ```yaml
 extensions:
-  menu: Carrooi\Menu\DI\MenuExtension
+  menu: Contributte\MenuControl\DI\MenuExtension
 
 menu:
 ```
@@ -66,8 +65,8 @@ menu:
 
 namespace App;
 
-use Carrooi\Menu\UI\IMenuComponentFactory;
-use Carrooi\Menu\UI\MenuComponent;
+use Contributte\MenuControl\UI\IMenuComponentFactory;
+use Contributte\MenuControl\UI\MenuComponent;
 use Nette\Application\UI\Presenter;
 
 final class BasePresenter extends Presenter
@@ -117,9 +116,9 @@ This package includes 3 default templates (menu, breadcrumbs, sitemap). However 
 should be used in real project. The other two templates should only help you in the beginning with building your own 
 templates which will fit your's website look.
 
-* [menu.latte](./src/Carrooi/Menu/UI/templates/menu.latte)
-* [breadcrumbs.latte](./src/Carrooi/Menu/UI/templates/menu.latte)
-* [sitemap.latte](./src/Carrooi/Menu/UI/templates/sitemap.latte)
+* [menu.latte](./src/UI/templates/menu.latte)
+* [breadcrumbs.latte](./src/UI/templates/menu.latte)
+* [sitemap.latte](./src/UI/templates/sitemap.latte)
 
 Changing templates can be done in your menu configuration:
 
@@ -233,8 +232,8 @@ This menu package uses custom `IAuthorizator` interface which you can use to wri
 
 namespace App;
 
-use Carrooi\Menu\IMenuItem;
-use Carrooi\Menu\Security\IAuthorizator;
+use Contributte\MenuControl\IMenuItem;
+use Contributte\MenuControl\Security\IAuthorizator;
 
 final class FrontAuthorizator implements IAuthorizator
 {
@@ -269,8 +268,8 @@ your custom link generator.
 
 namespace App;
 
-use Carrooi\Menu\IMenuItem;
-use Carrooi\Menu\LinkGenerator\ILinkGenerator;
+use Contributte\MenuControl\IMenuItem;
+use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 
 final class FrontLinkGenerator implements ILinkGenerator
 {
@@ -316,7 +315,7 @@ menu:
 If you want to build your menu maybe from database instead of neon config, you can do that by creating `IMenuLoader`
 class.
 
-See the default [ArrayMenuLoader](./src/Carrooi/Menu/Loaders/ArrayMenuLoader.php) how it works.
+See the default [ArrayMenuLoader](../src/Loaders/ArrayMenuLoader.php) how it works.
 
 ## Changelog
 

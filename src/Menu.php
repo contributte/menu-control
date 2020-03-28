@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu;
+namespace Contributte\MenuControl;
 
-use Carrooi\Menu\LinkGenerator\ILinkGenerator;
-use Carrooi\Menu\Loaders\IMenuLoader;
-use Carrooi\Menu\Security\IAuthorizator;
+use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
+use Contributte\MenuControl\Loaders\IMenuLoader;
+use Contributte\MenuControl\Security\IAuthorizator;
 use Nette\Application\UI\Presenter;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
@@ -18,7 +18,7 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 {
 
 
-	/** @var \Carrooi\Menu\Loaders\IMenuLoader */
+	/** @var IMenuLoader */
 	private $loader;
 
 	/** @var string */

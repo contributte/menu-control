@@ -1,19 +1,26 @@
 {
-	"name": "carrooi/nette-menu",
+	"name": "contributte/menu-control",
 	"type": "library",
-	"description": "Menu for Nette framework",
+	"description": "Menu control for Nette framework",
 	"keywords": ["nette", "menu", "control", "component", "breadcrumbs"],
-	"homepage": "https://github.com/Carrooi/Nette-Menu",
+	"homepage": "https://github.com/contributte/menu-control",
 	"license": "MIT",
 	"authors": [
 		{
 			"name": "David Kudera",
-			"homepage": "http://davidkudera.com",
-			"email": "kudera.d@gmail.com"
+			"homepage": "https://kudera.dev"
+		},
+		{
+			"name": "Milan Felix Šulc",
+			"homepage": "https://f3l1x.io"
+		},
+		{
+			"name": "Tomáš Jacík",
+			"homepage": "https://tomasjacik.cz"
 		}
 	],
 	"support": {
-		"issues": "https://github.com/Carrooi/Nette-Menu/issues"
+		"issues": "https://github.com/contributte/menu-control/issues"
 	},
 	"require": {
 		"php": ">=7.1",
@@ -28,7 +35,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Carrooi\\Menu\\": "src/"
+			"Contributte\\MenuControl\\": "src/"
 		}
 	},
 	"autoload-dev": {

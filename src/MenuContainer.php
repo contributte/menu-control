@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu;
+namespace Contributte\MenuControl;
 
 /**
  * @author David Kudera <kudera.d@gmail.com>
@@ -11,7 +11,7 @@ final class MenuContainer
 {
 
 
-	/** @var \Carrooi\Menu\IMenu[] */
+	/** @var IMenu[] */
 	private $menus = [];
 
 

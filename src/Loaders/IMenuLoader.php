@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu\Loaders;
+namespace Contributte\MenuControl\Loaders;
 
-use Carrooi\Menu\IMenu;
+use Contributte\MenuControl\IMenu;
 
 /**
  * @author David Kudera <kudera.d@gmail.com>

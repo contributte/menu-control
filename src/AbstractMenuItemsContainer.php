@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu;
+namespace Contributte\MenuControl;
 
-use Carrooi\Menu\LinkGenerator\ILinkGenerator;
-use Carrooi\Menu\Security\IAuthorizator;
+use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
+use Contributte\MenuControl\Security\IAuthorizator;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
 
@@ -16,25 +16,25 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 {
 
 
-	/** @var \Carrooi\Menu\IMenu */
+	/** @var IMenu */
 	protected $menu;
 
-	/** @var \Carrooi\Menu\LinkGenerator\ILinkGenerator */
+	/** @var ILinkGenerator */
 	protected $linkGenerator;
 
-	/** @var \Nette\Localization\ITranslator */
+	/** @var ITranslator */
 	protected $translator;
 
-	/** @var \Carrooi\Menu\Security\IAuthorizator */
+	/** @var IAuthorizator */
 	protected $authorizator;
 
 	/** @var \Nette\Http\Request */
 	protected $httpRequest;
 
-	/** @var \Carrooi\Menu\IMenuItemFactory */
+	/** @var IMenuItemFactory */
 	protected $menuItemFactory;
 
-	/** @var \Carrooi\Menu\IMenuItem[] */
+	/** @var IMenuItem[] */
 	private $items = [];
 
 
@@ -56,7 +56,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 
 
 	/**
-	 * @return \Carrooi\Menu\IMenuItem[]
+	 * @return \Contributte\MenuControl\IMenuItem[]
 	 */
 	public function getItems(): array
 	{
@@ -148,7 +148,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 
 	/**
 	 * @param string $type
-	 * @return \Carrooi\Menu\AbstractMenuItemsContainer[]
+	 * @return AbstractMenuItemsContainer[]
 	 */
 	private function getVisibleItemsOn(string $type): array
 	{

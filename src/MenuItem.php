@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu;
+namespace Contributte\MenuControl;
 
-use Carrooi\Menu\LinkGenerator\ILinkGenerator;
-use Carrooi\Menu\Security\IAuthorizator;
-use Nette\Application\UI\InvalidLinkException;
+use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
+use Contributte\MenuControl\Security\IAuthorizator;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
 

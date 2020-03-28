@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu;
+namespace Contributte\MenuControl;
 
-use Carrooi\Menu\LinkGenerator\ILinkGenerator;
+use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 
 /**
  * @author David Kudera <kudera.d@gmail.com>

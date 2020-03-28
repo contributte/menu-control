@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CarrooiTests\Menu;
 
-use Carrooi\Menu\MenuItem;
+use Contributte\MenuControl\MenuItem;
 use CarrooiTests\TestCase;
 use Mockery\MockInterface;
 use Tester\Assert;

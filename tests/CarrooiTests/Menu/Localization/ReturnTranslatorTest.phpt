@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CarrooiTests\Menu\Localization;
 
-use Carrooi\Menu\Localization\ReturnTranslator;
+use Contributte\MenuControl\Localization\ReturnTranslator;
 use CarrooiTests\TestCase;
 use Tester\Assert;
 

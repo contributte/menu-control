@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu\LinkGenerator;
+namespace Contributte\MenuControl\LinkGenerator;
 
-use Carrooi\Menu\IMenuItem;
+use Contributte\MenuControl\IMenuItem;
 use Nette\Application\LinkGenerator;
 
 /**

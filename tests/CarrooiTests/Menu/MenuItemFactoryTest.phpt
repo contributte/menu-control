@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CarrooiTests\Menu;
 
-use Carrooi\Menu\IMenuItem;
-use Carrooi\Menu\MenuItemFactory;
+use Contributte\MenuControl\IMenuItem;
+use Contributte\MenuControl\MenuItemFactory;
 use CarrooiTests\TestCase;
 use Tester\Assert;
 

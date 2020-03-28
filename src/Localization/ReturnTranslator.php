@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Carrooi\Menu\Localization;
+namespace Contributte\MenuControl\Localization;
 
 use Nette\Localization\ITranslator;
 

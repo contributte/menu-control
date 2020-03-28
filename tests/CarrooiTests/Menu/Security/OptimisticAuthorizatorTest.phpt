@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CarrooiTests\Menu\Security;
 
-use Carrooi\Menu\Security\OptimisticAuthorizator;
+use Contributte\MenuControl\Security\OptimisticAuthorizator;
 use CarrooiTests\TestCase;
 use Tester\Assert;
 
