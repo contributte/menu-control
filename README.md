@@ -2,8 +2,6 @@
 
 Nette component for creating menus, breadcrumbs and sitemaps.
 
-[![Build Status](https://img.shields.io/travis/contributte/menu-control.svg?style=flat-square)](https://travis-ci.org/contributte/menu-control)
-
 ## Documentation
 
 - [Setup](.docs/README.md#setup)
@@ -14,10 +12,10 @@ Nette component for creating menus, breadcrumbs and sitemaps.
 
 ## Versions
 
-| State  | Version      | Branch   | Nette  | PHP     |
-|--------|--------------|----------|--------|---------|
-| stable | `^2.2.0`     | `master` | `3.0+` | `>=7.1` |
-| stable | `^2.1.0`     | `master` | `2.4`  | `>=7.1` |
+| State  | Version      | Branch   | Nette  | PHP     | CI |
+|--------|--------------|----------|--------|---------|----|
+| stable | `^2.2.0`     | `master` | `3.0+` | `>=7.1` | ![Tests](https://github.com/contributte/menu-control/workflows/Tests/badge.svg?branch=master) ![QA](https://github.com/contributte/menu-control/workflows/QA/badge.svg?branch=master) |
+| stable | `^2.1.0`     | `master` | `2.4`  | `>=7.1` | ![Tests](https://github.com/contributte/menu-control/workflows/Tests/badge.svg?branch=2.4) ![QA](https://github.com/contributte/menu-control/workflows/QA/badge.svg?branch=2.4) |
 
 ## Maintainers
 
