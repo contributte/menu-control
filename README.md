@@ -49,11 +49,11 @@ Nette component for creating menus, breadcrumbs and sitemaps.
   <tbody>
     <tr>
       <td align="center">
-        <a href="https://github.com/juniwalk">
+        <a href="https://github.com/davidkudera">
             <img width="150" height="150" src="https://avatars1.githubusercontent.com/u/1174072?s=460&v=4">
         </a>
         </br>
-        <a href="https://github.com/juniwalk">David Kudera</a>
+        <a href="https://github.com/davidkudera">David Kudera</a>
       </td>
     </tr>
   </tbody>
