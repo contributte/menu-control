@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace CarrooiTests\Menu\Localization;
+namespace Contributte\MenuControlTests\Menu\Localization;
 
 use Contributte\MenuControl\Localization\ReturnTranslator;
-use CarrooiTests\TestCase;
+use Contributte\MenuControlTests\TestCase;
 use Tester\Assert;
 
 require_once __DIR__. '/../../../bootstrap.php';

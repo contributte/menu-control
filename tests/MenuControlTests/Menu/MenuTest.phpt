@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace CarrooiTests\Menu;
+namespace Contributte\MenuControlTests\Menu;
 
 use Contributte\MenuControl\Menu;
-use CarrooiTests\TestCase;
+use Contributte\MenuControlTests\TestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
 use Tester\Environment;

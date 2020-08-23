@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace CarrooiTests\Menu\Security;
+namespace Contributte\MenuControlTests\Menu\Security;
 
 use Contributte\MenuControl\Security\OptimisticAuthorizator;
-use CarrooiTests\TestCase;
+use Contributte\MenuControlTests\TestCase;
 use Tester\Assert;
 
 require_once __DIR__. '/../../../bootstrap.php';

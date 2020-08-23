@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace CarrooiTests\Menu;
+namespace Contributte\MenuControlTests\Menu;
 
 use Contributte\MenuControl\IMenuItem;
 use Contributte\MenuControl\MenuItemFactory;
-use CarrooiTests\TestCase;
+use Contributte\MenuControlTests\TestCase;
 use Tester\Assert;
 
 require_once __DIR__. '/../../bootstrap.php';

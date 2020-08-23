@@ -40,7 +40,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"CarrooiTests\\": "tests/CarrooiTests/"
+			"Contributte\\MenuControlTests\\": "tests/MenuControlTests/"
 		}
 	}
 }
