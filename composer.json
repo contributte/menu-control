@@ -32,7 +32,9 @@
 	"require-dev": {
 		"nette/tester": "^2.1",
 		"mockery/mockery": "^1.3",
-		"ninjify/coding-standard": "^0.9.0"
+		"ninjify/coding-standard": "^0.9.0",
+		"phpstan/phpstan": "^0.12.38",
+		"phpstan/phpstan-strict-rules": "^0.12.4"
 	},
 	"autoload": {
 		"psr-4": {
@@ -47,6 +49,7 @@
 	"scripts": {
 		"tests": "vendor/bin/tester -s -p php -c tests/php.ini tests/MenuControlTests/",
 		"phpcs": "vendor/bin/phpcs --standard=vendor/ninjify/coding-standard/ruleset-gamee.xml --extensions=php,phpt --tab-width=4 -sp src tests",
-		"phpcsfix": "vendor/bin/phpcbf --standard=vendor/ninjify/coding-standard/ruleset-gamee.xml --extensions=php,phpt --tab-width=4 -sp src tests"
+		"phpcsfix": "vendor/bin/phpcbf --standard=vendor/ninjify/coding-standard/ruleset-gamee.xml --extensions=php,phpt --tab-width=4 -sp src tests",
+		"phpstan": "vendor/bin/phpstan analyse -c phpstan.neon src --level 7"
 	}
 }
