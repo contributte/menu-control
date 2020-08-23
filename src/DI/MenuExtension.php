@@ -20,14 +20,12 @@ use Nette\Http;
 use Nette\Localization\ITranslator;
 use Nette\Utils\Strings;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class MenuExtension extends CompilerExtension
 {
 
-
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	private $menuDefaults = [
 		'authorizator' => OptimisticAuthorizator::class,
 		'translator' => ReturnTranslator::class,
@@ -41,7 +39,9 @@ final class MenuExtension extends CompilerExtension
 		],
 	];
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	private $itemDefaults = [
 		'linkGenerator' => null,
 		'title' => null,
@@ -90,7 +90,7 @@ final class MenuExtension extends CompilerExtension
 		if ($config['translator'] === true) {
 			$translator = $builder->getDefinitionByType(ITranslator::class);
 
-		} else if (!Strings::startsWith($config['translator'], '@')) {
+		} elseif (!Strings::startsWith($config['translator'], '@')) {
 			$translator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.translator'))
 				->setClass($config['translator'])
 				->setAutowired(false);
@@ -153,5 +153,4 @@ final class MenuExtension extends CompilerExtension
 
 		return $items;
 	}
-
 }

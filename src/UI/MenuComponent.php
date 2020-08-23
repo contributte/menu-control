@@ -9,17 +9,17 @@ use Contributte\MenuControl\MenuContainer;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Presenter;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class MenuComponent extends Control
 {
 
-
-	/** @var MenuContainer */
+	/**
+	 * @var MenuContainer
+	 */
 	private $container;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $menuName;
 
 

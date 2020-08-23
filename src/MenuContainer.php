@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControl;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class MenuContainer
 {
 
-
-	/** @var IMenu[] */
+	/**
+	 * @var IMenu[]
+	 */
 	private $menus = [];
 
 

@@ -9,37 +9,53 @@ use Contributte\MenuControl\Security\IAuthorizator;
 use Nette\Http\Request;
 use Nette\Localization\ITranslator;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 {
 
-
-	/** @var IMenu */
+	/**
+	 * @var IMenu
+	 */
 	protected $menu;
 
-	/** @var ILinkGenerator */
+	/**
+	 * @var ILinkGenerator
+	 */
 	protected $linkGenerator;
 
-	/** @var ITranslator */
+	/**
+	 * @var ITranslator
+	 */
 	protected $translator;
 
-	/** @var IAuthorizator */
+	/**
+	 * @var IAuthorizator
+	 */
 	protected $authorizator;
 
-	/** @var \Nette\Http\Request */
+	/**
+	 * @var \Nette\Http\Request
+	 */
 	protected $httpRequest;
 
-	/** @var IMenuItemFactory */
+	/**
+	 * @var IMenuItemFactory
+	 */
 	protected $menuItemFactory;
 
-	/** @var IMenuItem[] */
+	/**
+	 * @var IMenuItem[]
+	 */
 	private $items = [];
 
 
-	public function __construct(IMenu $menu, ILinkGenerator $linkGenerator, ITranslator $translator, IAuthorizator $authorizator, Request $httpRequest, IMenuItemFactory $menuItemFactory)
-	{
+	public function __construct(
+		IMenu $menu,
+		ILinkGenerator $linkGenerator,
+		ITranslator $translator,
+		IAuthorizator $authorizator,
+		Request $httpRequest,
+		IMenuItemFactory $menuItemFactory
+	) {
 		$this->menu = $menu;
 		$this->linkGenerator = $linkGenerator;
 		$this->translator = $translator;
@@ -82,9 +98,17 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	}
 
 
-	public function addItem(string $name, string $title, callable $fn = null): void
+	public function addItem(string $name, string $title, ?callable $fn = null): void
 	{
-		$this->items[$name] = $item = $this->menuItemFactory->create($this->menu, $this->linkGenerator, $this->translator, $this->authorizator, $this->httpRequest, $this->menuItemFactory, $title);
+		$this->items[$name] = $item = $this->menuItemFactory->create(
+			$this->menu,
+			$this->linkGenerator,
+			$this->translator,
+			$this->authorizator,
+			$this->httpRequest,
+			$this->menuItemFactory,
+			$title
+		);
 
 		if ($fn) {
 			$fn($item);
@@ -154,10 +178,14 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	{
 		return array_filter($this->getItems(), function(IMenuItem $item) use ($type) {
 			switch ($type) {
-				case 'menu': return $item->isVisibleOnMenu();
-				case 'breadcrumbs': return $item->isVisibleOnBreadcrumbs();
-				case 'sitemap': return $item->isVisibleOnSitemap();
-				default: return false;
+				case 'menu':
+					return $item->isVisibleOnMenu();
+				case 'breadcrumbs':
+					return $item->isVisibleOnBreadcrumbs();
+				case 'sitemap':
+					return $item->isVisibleOnSitemap();
+				default:
+					return false;
 			}
 		});
 	}

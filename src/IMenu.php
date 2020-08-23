@@ -6,12 +6,8 @@ namespace Contributte\MenuControl;
 
 use Nette\Application\UI\Presenter;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 interface IMenu extends IMenuItemsContainer
 {
-
 
 	public function getName(): string;
 

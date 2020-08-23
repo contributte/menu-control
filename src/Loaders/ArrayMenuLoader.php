@@ -9,14 +9,12 @@ use Contributte\MenuControl\IMenuItem;
 use Contributte\MenuControl\IMenuItemsContainer;
 use Nette\Utils;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class ArrayMenuLoader implements IMenuLoader
 {
 
-
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	private $items;
 
 

@@ -7,14 +7,12 @@ namespace Contributte\MenuControl\LinkGenerator;
 use Contributte\MenuControl\IMenuItem;
 use Nette\Application\LinkGenerator;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 final class NetteLinkGenerator implements ILinkGenerator
 {
 
-
-	/** @var \Nette\Application\LinkGenerator */
+	/**
+	 * @var \Nette\Application\LinkGenerator
+	 */
 	private $linkGenerator;
 
 
@@ -26,14 +24,16 @@ final class NetteLinkGenerator implements ILinkGenerator
 
 	public function link(IMenuItem $item): string
 	{
-		if (($action = $item->getAction()) !== null) {
+		$action = $item->getAction();
+		if ($action !== null) {
 			return $this->linkGenerator->link($action, $item->getActionParameters());
+		}
 
-		} elseif (($link = $item->getLink()) !== null) {
+		$link = $item->getLink();
+		if ($link !== null) {
 			return $link;
 		}
 
 		return '#';
 	}
-
 }

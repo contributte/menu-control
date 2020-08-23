@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControl;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 interface IMenuItem extends IMenuItemsContainer
 {
-
 
 	public function isActive(): bool;
 
@@ -44,7 +40,7 @@ interface IMenuItem extends IMenuItemsContainer
 	public function hasData(string $name): bool;
 
 
-	public function getData(string $type = null, $default = null);
+	public function getData(?string $type = null, $default = null);
 
 
 	public function setData(array $data): void;
@@ -53,7 +49,7 @@ interface IMenuItem extends IMenuItemsContainer
 	public function addData(string $name, $value): void;
 
 
-	public function setInclude(array $include) : void;
+	public function setInclude(array $include): void;
 
 
 	public function isVisibleOnMenu(): bool;

@@ -6,13 +6,8 @@ namespace Contributte\MenuControl\LinkGenerator;
 
 use Contributte\MenuControl\IMenuItem;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 interface ILinkGenerator
 {
 
-
 	public function link(IMenuItem $item): string;
-
 }

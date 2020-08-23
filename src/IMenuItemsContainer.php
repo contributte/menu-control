@@ -6,12 +6,8 @@ namespace Contributte\MenuControl;
 
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
 interface IMenuItemsContainer
 {
-
 
 	public function setLinkGenerator(ILinkGenerator $linkGenerator): void;
 
@@ -22,7 +18,7 @@ interface IMenuItemsContainer
 	public function getItem(string $name): IMenuItem;
 
 
-	public function addItem(string $name, string $title, callable $fn = null): void;
+	public function addItem(string $name, string $title, ?callable $fn = null): void;
 
 
 	public function findActiveItem(): ?IMenuItem;
