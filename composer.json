@@ -30,8 +30,9 @@
 		"nette/http": "^2.4"
 	},
 	"require-dev": {
-		"nette/tester": "^1.7",
-		"mockery/mockery": "dev-master"
+		"nette/tester": "^2.1",
+		"mockery/mockery": "^1.3",
+		"ninjify/coding-standard": "^0.9.0"
 	},
 	"autoload": {
 		"psr-4": {
@@ -42,5 +43,10 @@
 		"psr-4": {
 			"Contributte\\MenuControlTests\\": "tests/MenuControlTests/"
 		}
+	},
+	"scripts": {
+		"tests": "vendor/bin/tester -s -p php -c tests/php.ini tests/MenuControlTests/",
+		"phpcs": "vendor/bin/phpcs --standard=vendor/ninjify/coding-standard/ruleset-gamee.xml --extensions=php,phpt --tab-width=4 -sp src tests",
+		"phpcsfix": "vendor/bin/phpcbf --standard=vendor/ninjify/coding-standard/ruleset-gamee.xml --extensions=php,phpt --tab-width=4 -sp src tests"
 	}
 }

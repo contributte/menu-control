@@ -1,0 +1,57 @@
+name: Tests
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 7.1
+          - 7.2
+          - 7.3
+          - 7.4
+
+      fail-fast: false
+
+    name: PHP ${{ matrix.php }} tests
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v1
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - run: composer install --no-progress --prefer-dist
+      - run: composer tests
+      - if: failure()
+        run: for i in $(find tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done
+        shell: bash
+
+
+  lowest_dependencies:
+    name: Lowest Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v1
+        with:
+          php-version: 7.1
+          coverage: none
+
+      - run: composer update --no-progress --prefer-dist --prefer-lowest --prefer-stable
+      - run: composer tests
