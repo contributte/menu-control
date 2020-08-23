@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Contributte\MenuControlTests;
 
 use Contributte\MenuControl\AbstractMenuItemsContainer;
 use Contributte\MenuControl\IMenu;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\LinkGenerator;
+namespace Contributte\MenuControlTests\LinkGenerator;
 
 use Contributte\MenuControl\LinkGenerator\NetteLinkGenerator;
+use Contributte\MenuControlTests\AbstractTestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
-use Tests\AbstractTestCase;
 
 require_once __DIR__. '/../../bootstrap.php';
 

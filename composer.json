@@ -41,11 +41,11 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Tests\\": "tests/Tests/"
+			"Contributte\\MenuControlTests\\": "tests/MenuControlTests/"
 		}
 	},
 	"scripts": {
-		"tests": "vendor/bin/tester -s -p php -c tests/php.ini tests/Tests/",
+		"tests": "vendor/bin/tester -s -p php -c tests/php.ini tests/MenuControlTests/",
 		"phpcs": "vendor/bin/phpcs --standard=vendor/ninjify/coding-standard/ruleset-gamee.xml --extensions=php,phpt --tab-width=4 -sp src tests",
 		"phpcsfix": "vendor/bin/phpcbf --standard=vendor/ninjify/coding-standard/ruleset-gamee.xml --extensions=php,phpt --tab-width=4 -sp src tests"
 	}

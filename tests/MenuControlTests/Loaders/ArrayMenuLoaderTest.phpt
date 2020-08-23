@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Loaders;
+namespace Contributte\MenuControlTests\Loaders;
 
 use Contributte\MenuControl\Loaders\ArrayMenuLoader;
+use Contributte\MenuControlTests\AbstractTestCase;
 use Mockery\MockInterface;
 use Tester\Environment;
-use Tests\AbstractTestCase;
 
 require_once __DIR__. '/../../bootstrap.php';
 

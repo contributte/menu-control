@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Security;
+namespace Contributte\MenuControlTests\Security;
 
 use Contributte\MenuControl\Security\OptimisticAuthorizator;
+use Contributte\MenuControlTests\AbstractTestCase;
 use Tester\Assert;
-use Tests\AbstractTestCase;
 
 require_once __DIR__. '/../../bootstrap.php';
 

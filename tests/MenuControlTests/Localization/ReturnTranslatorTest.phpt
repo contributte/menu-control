@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Localization;
+namespace Contributte\MenuControlTests\Localization;
 
 use Contributte\MenuControl\Localization\ReturnTranslator;
+use Contributte\MenuControlTests\AbstractTestCase;
 use Tester\Assert;
-use Tests\AbstractTestCase;
 
 require_once __DIR__. '/../../bootstrap.php';
 
