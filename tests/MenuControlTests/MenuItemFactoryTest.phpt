@@ -2,23 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\Menu;
+namespace Contributte\MenuControlTests;
 
 use Contributte\MenuControl\IMenuItem;
 use Contributte\MenuControl\MenuItemFactory;
-use Contributte\MenuControlTests\TestCase;
 use Tester\Assert;
 
-require_once __DIR__. '/../../bootstrap.php';
+require_once __DIR__. '/../bootstrap.php';
 
 /**
  * @testCase
- *
- * @author David Kudera <kudera.d@gmail.com>
  */
-final class MenuItemFactoryTest extends TestCase
+final class MenuItemFactoryTest extends AbstractTestCase
 {
-
 
 	public function testCreate(): void
 	{

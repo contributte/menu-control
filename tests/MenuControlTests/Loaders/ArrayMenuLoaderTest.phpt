@@ -2,21 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\Menu\Loaders;
+namespace Contributte\MenuControlTests\Loaders;
 
 use Contributte\MenuControl\Loaders\ArrayMenuLoader;
-use Contributte\MenuControlTests\TestCase;
+use Contributte\MenuControlTests\AbstractTestCase;
 use Mockery\MockInterface;
 use Tester\Environment;
 
-require_once __DIR__. '/../../../bootstrap.php';
+require_once __DIR__. '/../../bootstrap.php';
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
-final class ArrayMenuLoaderTest extends TestCase
+final class ArrayMenuLoaderTest extends AbstractTestCase
 {
-
 
 	public function testLoad_simple(): void
 	{

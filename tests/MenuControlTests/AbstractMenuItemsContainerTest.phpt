@@ -2,20 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\Menu;
+namespace Contributte\MenuControlTests;
 
-use Contributte\MenuControlTests\TestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
 
-require_once __DIR__. '/../../bootstrap.php';
+require_once __DIR__. '/../bootstrap.php';
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
-final class AbstractMenuItemsContainerTest extends TestCase
+final class AbstractMenuItemsContainerTest extends AbstractTestCase
 {
-
 
 	public function testItems(): void
 	{

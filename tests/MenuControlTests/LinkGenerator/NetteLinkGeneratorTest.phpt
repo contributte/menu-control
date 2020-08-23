@@ -2,21 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\Menu\LinkGenerator;
+namespace Contributte\MenuControlTests\LinkGenerator;
 
 use Contributte\MenuControl\LinkGenerator\NetteLinkGenerator;
-use Contributte\MenuControlTests\TestCase;
+use Contributte\MenuControlTests\AbstractTestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
 
-require_once __DIR__. '/../../../bootstrap.php';
+require_once __DIR__. '/../../bootstrap.php';
 
-/**
- * @author David Kudera <kudera.d@gmail.com>
- */
-final class NetteLinkGeneratorTest extends TestCase
+final class NetteLinkGeneratorTest extends AbstractTestCase
 {
-
 
 	public function testLink_action(): void
 	{

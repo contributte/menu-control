@@ -2,22 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\Menu\Security;
+namespace Contributte\MenuControlTests\Security;
 
 use Contributte\MenuControl\Security\OptimisticAuthorizator;
-use Contributte\MenuControlTests\TestCase;
+use Contributte\MenuControlTests\AbstractTestCase;
 use Tester\Assert;
 
-require_once __DIR__. '/../../../bootstrap.php';
+require_once __DIR__. '/../../bootstrap.php';
 
 /**
  * @testCase
- *
- * @author David Kudera <kudera.d@gmail.com>
  */
-final class OptimisticAuthorizatorTest extends TestCase
+final class OptimisticAuthorizatorTest extends AbstractTestCase
 {
-
 
 	public function testIsMenuItemAllowed(): void
 	{

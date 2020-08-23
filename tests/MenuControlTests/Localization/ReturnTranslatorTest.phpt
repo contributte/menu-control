@@ -2,22 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\Menu\Localization;
+namespace Contributte\MenuControlTests\Localization;
 
 use Contributte\MenuControl\Localization\ReturnTranslator;
-use Contributte\MenuControlTests\TestCase;
+use Contributte\MenuControlTests\AbstractTestCase;
 use Tester\Assert;
 
-require_once __DIR__. '/../../../bootstrap.php';
+require_once __DIR__. '/../../bootstrap.php';
 
 /**
  * @testCase
- *
- * @author David Kudera <kudera.d@gmail.com>
  */
-final class ReturnTranslatorTest extends TestCase
+final class ReturnTranslatorTest extends AbstractTestCase
 {
-
 
 	public function testTranslate(): void
 	{

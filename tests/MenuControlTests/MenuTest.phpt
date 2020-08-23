@@ -2,24 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\Menu;
+namespace Contributte\MenuControlTests;
 
 use Contributte\MenuControl\Menu;
-use Contributte\MenuControlTests\TestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
 use Tester\Environment;
 
-require_once __DIR__. '/../../bootstrap.php';
+require_once __DIR__. '/../bootstrap.php';
 
 /**
  * @testCase
- *
- * @author David Kudera <kudera.d@gmail.com>
  */
-final class MenuTest extends TestCase
+final class MenuTest extends AbstractTestCase
 {
-
 
 	public function testInit(): void
 	{
@@ -64,7 +60,18 @@ final class MenuTest extends TestCase
 		$itemFactory = $this->createMockMenuItemFactory();
 		$loader = $this->createMockMenuLoader();
 
-		$menu = new Menu($linkGenerator, $translator, $authorizator, $request, $itemFactory, $loader, 'menu', 'menu-template.latte', 'breadcrumbs-template.latte', 'sitemap-template.latte');
+		$menu = new Menu(
+			$linkGenerator,
+			$translator,
+			$authorizator,
+			$request,
+			$itemFactory,
+			$loader,
+			'menu',
+			'menu-template.latte',
+			'breadcrumbs-template.latte',
+			'sitemap-template.latte'
+		);
 
 		Assert::same('menu-template.latte', $menu->getMenuTemplate());
 		Assert::same('breadcrumbs-template.latte', $menu->getBreadcrumbsTemplate());

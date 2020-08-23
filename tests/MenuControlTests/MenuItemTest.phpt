@@ -2,23 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\Menu;
+namespace Contributte\MenuControlTests;
 
 use Contributte\MenuControl\MenuItem;
-use Contributte\MenuControlTests\TestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
 
-require_once __DIR__. '/../../bootstrap.php';
+require_once __DIR__. '/../bootstrap.php';
 
 /**
  * @testCase
- *
- * @author David Kudera <kudera.d@gmail.com>
  */
-final class MenuItemTest extends TestCase
+final class MenuItemTest extends AbstractTestCase
 {
-
 
 	public function testIsAllowed(): void
 	{
@@ -107,13 +103,13 @@ final class MenuItemTest extends TestCase
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$linkGenerator = $this->createMockLinkGenerator(function (MockInterface $linkGenerator) {
-			$linkGenerator->shouldReceive('link')->andReturn('#');
+			$linkGenerator->shouldReceive('link')->andReturn('/home');
 		});
 
 		$menu = $this->createMockMenu(function (MockInterface $menu) {
 			$menu->shouldReceive('getActivePresenter')->andReturn(
 				$this->createMockPresenter(function(MockInterface $presenter) {
-					$presenter->shouldReceive('link')->andReturn('#');
+					$presenter->shouldReceive('link')->andReturn('/home/edit');
 					$presenter->shouldReceive('getName')->andReturn('Home');
 					$presenter->shouldReceive('getAction')->andReturn('edit');
 				})
@@ -127,7 +123,7 @@ final class MenuItemTest extends TestCase
 		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
 		$item->setAction('Home:');
 		$item->setInclude([
-			'^Home\:[a-zA-Z\:]+$'
+			'^Home\:[a-zA-Z\:]+$',
 		]);
 
 		Assert::true($item->isActive());
