@@ -115,9 +115,9 @@ This package includes 3 default templates (menu, breadcrumbs, sitemap). However 
 should be used in real project. The other two templates should only help you in the beginning with building your own 
 templates which will fit your's website look.
 
-* [menu.latte](./src/UI/templates/menu.latte)
-* [breadcrumbs.latte](./src/UI/templates/menu.latte)
-* [sitemap.latte](./src/UI/templates/sitemap.latte)
+* [menu.latte](../src/UI/templates/menu.latte)
+* [breadcrumbs.latte](../src/UI/templates/breadcrumbs.latte)
+* [sitemap.latte](../src/UI/templates/sitemap.latte)
 
 Changing templates can be done in your menu configuration:
 
