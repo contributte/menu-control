@@ -3,7 +3,7 @@ includes:
 
 parameters:
 	ignoreErrors:
-		- '#Access to an undefined property Nette\\Application\\UI\\ITemplate::#'
+		- '#Access to an undefined property Nette\\Application\\UI\\Template::#'
 		- '#Only booleans are allowed in &&#'
 		- '#Only booleans are allowed in an if condition#'
 		- '#Only booleans are allowed in a negated boolean#'
