@@ -15,10 +15,11 @@ Nette component for creating menus, breadcrumbs and sitemaps.
 
 ## Versions
 
-| State  | Version      | Branch   | Nette  | PHP     |
-|--------|--------------|----------|--------|---------|
-| stable | `^2.2.0`     | `master` | `3.0+` | `>=7.1` |
-| stable | `^2.1.0`     | `master` | `2.4`  | `>=7.1` |
+| State  | Version    | Branch   | Nette  | PHP     |
+|--------|------------|----------|--------|---------|
+| dev    | `^3.0`     | `master` | `3.1`  | `>=7.2` |
+| stable | `^2.2`     | `v2.2`   | `3.0`  | `>=7.1` |
+| stable | `^2.1`     | `v2.1`   | `2.4`  | `>=7.1` |
 
 ## Maintainers
 
