@@ -12,6 +12,9 @@ interface IMenuItemsContainer
 	public function setLinkGenerator(ILinkGenerator $linkGenerator): void;
 
 
+	/**
+	 * @return IMenuItem[]
+	 */
 	public function getItems(): array;
 
 
@@ -33,12 +36,21 @@ interface IMenuItemsContainer
 	public function hasVisibleItemsOnSitemap(): bool;
 
 
+	/**
+	 * @return IMenuItem[]
+	 */
 	public function getVisibleItemsOnMenu(): array;
 
 
+	/**
+	 * @return IMenuItem[]
+	 */
 	public function getVisibleItemsOnBreadcrumbs(): array;
 
 
+	/**
+	 * @return IMenuItem[]
+	 */
 	public function getVisibleItemsOnSitemap(): array;
 
 }

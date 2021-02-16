@@ -21,6 +21,9 @@ interface IMenu extends IMenuItemsContainer
 	public function getSitemapTemplate(): string;
 
 
+	/**
+	 * @return IMenuItem[]
+	 */
 	public function getPath(): array;
 
 

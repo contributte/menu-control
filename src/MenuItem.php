@@ -6,7 +6,7 @@ namespace Contributte\MenuControl;
 
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Security\IAuthorizator;
-use Nette\Http\Request;
+use Nette\Http\IRequest;
 use Nette\Localization\ITranslator;
 
 final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
@@ -18,7 +18,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	private $title;
 
 	/**
-	 * @var array
+	 * @var array{'target': ?string, "parameters": array}
 	 */
 	private $action = [
 		'target' => null,
@@ -31,7 +31,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	private $link;
 
 	/**
-	 * @var array
+	 * @var array<string, string>
 	 */
 	private $data = [];
 
@@ -60,7 +60,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		ILinkGenerator $linkGenerator,
 		ITranslator $translator,
 		IAuthorizator $authorizator,
-		Request $httpRequest,
+		IRequest $httpRequest,
 		IMenuItemFactory $menuItemFactory,
 		string $title
 	) {
@@ -118,12 +118,18 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	}
 
 
+	/**
+	 * @return array<string, string>
+	 */
 	public function getActionParameters(): array
 	{
 		return $this->action['parameters'];
 	}
 
 
+	/**
+	 * @param array<string, string> $parameters
+	 */
 	public function setAction(string $target, array $parameters = []): void
 	{
 		$this->action['target'] = $target;
@@ -174,6 +180,10 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	}
 
 
+	/**
+	 * @param ?string $default
+	 * @return array<string, string>|string|null
+	 */
 	public function getData(?string $name = null, $default = null)
 	{
 		if ($name === null) {
@@ -188,18 +198,27 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	}
 
 
+	/**
+	 * @param array<string, string> $data
+	 */
 	public function setData(array $data): void
 	{
 		$this->data = $data;
 	}
 
 
+	/**
+	 * @param string $value
+	 */
 	public function addData(string $name, $value): void
 	{
 		$this->data[$name] = $value;
 	}
 
 
+	/**
+	 * @param string[] $include
+	 */
 	public function setInclude(array $include): void
 	{
 		$this->include = $include;

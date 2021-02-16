@@ -58,10 +58,11 @@ final class MenuComponent extends Control
 
 	public function renderType(IMenu $menu, string $menuTemplate): void
 	{
-		$this->template->setFile($menuTemplate);
-		$this->template->menu = $menu;
+		$template = $this->getTemplate();
+		$template->setFile($menuTemplate);
+		$template->menu = $menu;
 
-		$this->template->render();
+		$template->render();
 	}
 
 }

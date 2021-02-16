@@ -16,9 +16,15 @@ interface IMenuItem extends IMenuItemsContainer
 	public function getAction(): ?string;
 
 
+	/**
+	 * @return array<string, string>
+	 */
 	public function getActionParameters(): array;
 
 
+	/**
+	 * @param array<string, string> $parameters
+	 */
 	public function setAction(string $target, array $parameters = []): void;
 
 
@@ -40,15 +46,28 @@ interface IMenuItem extends IMenuItemsContainer
 	public function hasData(string $name): bool;
 
 
+	/**
+	 * @param ?string $default
+	 * @return array<string, string>|string|null
+	 */
 	public function getData(?string $type = null, $default = null);
 
 
+	/**
+	 * @param array<string, string> $data
+	 */
 	public function setData(array $data): void;
 
 
+	/**
+	 * @param string $value
+	 */
 	public function addData(string $name, $value): void;
 
 
+	/**
+	 * @param string[] $include
+	 */
 	public function setInclude(array $include): void;
 
 

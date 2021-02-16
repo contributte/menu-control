@@ -25,7 +25,7 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 	private $name;
 
 	/**
-	 * @var string[]
+	 * @var array{'menu': ?string, 'breadcrumbs': ?string, 'sitemap': ?string}
 	 */
 	private $templates = [
 		'menu' => null,
@@ -91,6 +91,9 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 	}
 
 
+	/**
+	 * @return IMenuItem[]
+	 */
 	public function getPath(): array
 	{
 		$path = [];

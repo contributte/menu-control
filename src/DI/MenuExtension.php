@@ -24,7 +24,7 @@ final class MenuExtension extends CompilerExtension
 {
 
 	/**
-	 * @var array
+	 * @var array<string, mixed>
 	 */
 	private $menuDefaults = [
 		'authorizator' => OptimisticAuthorizator::class,
@@ -40,7 +40,7 @@ final class MenuExtension extends CompilerExtension
 	];
 
 	/**
-	 * @var array
+	 * @var array<string, mixed>
 	 */
 	private $itemDefaults = [
 		'linkGenerator' => null,
@@ -60,7 +60,8 @@ final class MenuExtension extends CompilerExtension
 
 	public function loadConfiguration(): void
 	{
-		$config = $this->config;
+		/** @var array<string, mixed> $config */
+		$config = $this->getConfig();
 		$builder = $this->getContainerBuilder();
 
 		$container = $builder->addDefinition($this->prefix('container'))
@@ -79,6 +80,9 @@ final class MenuExtension extends CompilerExtension
 	}
 
 
+	/**
+	 * @param array<string, mixed> $config
+	 */
 	private function loadMenuConfiguration(ContainerBuilder $builder, string $menuName, array $config): ServiceDefinition
 	{
 		$config = $this->validateConfig($this->menuDefaults, $config);
@@ -141,9 +145,13 @@ final class MenuExtension extends CompilerExtension
 	}
 
 
+	/**
+	 * @param array<string, mixed> $items
+	 * @return array<string, mixed>
+	 */
 	private function normalizeMenuItems(array $items): array
 	{
-		array_walk($items, function(array &$item, string $key) {
+		array_walk($items, function(array &$item, string $key): void {
 			$item = $this->validateConfig($this->itemDefaults, $item);
 
 			if ($item['title'] === null) {

@@ -13,11 +13,14 @@ final class ArrayMenuLoader implements IMenuLoader
 {
 
 	/**
-	 * @var array
+	 * @var array<string, array>
 	 */
 	private $items;
 
 
+	/**
+	 * @param array<string, array> $items
+	 */
 	public function __construct(array $items)
 	{
 		$this->items = $items;
@@ -30,6 +33,9 @@ final class ArrayMenuLoader implements IMenuLoader
 	}
 
 
+	/**
+	 * @param array<string, array> $items
+	 */
 	private function processItems(IMenuItemsContainer $parent, array $items): void
 	{
 		foreach ($items as $name => $item) {
@@ -38,9 +44,12 @@ final class ArrayMenuLoader implements IMenuLoader
 	}
 
 
+	/**
+	 * @param array<string, mixed> $config
+	 */
 	private function processItem(IMenuItemsContainer $parent, string $name, array $config): void
 	{
-		$parent->addItem($name, $config['title'], function(IMenuItem $item) use ($config) {
+		$parent->addItem($name, $config['title'], function(IMenuItem $item) use ($config): void {
 			$item->setData($config['data']);
 
 			$item->setMenuVisibility($config['visibility']['menu']);

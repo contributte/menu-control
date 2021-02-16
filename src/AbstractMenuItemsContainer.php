@@ -134,6 +134,9 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	}
 
 
+	/**
+	 * @return IMenuItem[]
+	 */
 	public function getVisibleItemsOnMenu(): array
 	{
 		return $this->getVisibleItemsOn('menu');
@@ -146,6 +149,9 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	}
 
 
+	/**
+	 * @return IMenuItem[]
+	 */
 	public function getVisibleItemsOnBreadcrumbs(): array
 	{
 		return $this->getVisibleItemsOn('breadcrumbs');
@@ -158,6 +164,9 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	}
 
 
+	/**
+	 * @return IMenuItem[]
+	 */
 	public function getVisibleItemsOnSitemap(): array
 	{
 		return $this->getVisibleItemsOn('sitemap');
@@ -172,11 +181,11 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 
 	/**
 	 * @param string $type
-	 * @return AbstractMenuItemsContainer[]
+	 * @return IMenuItem[]
 	 */
 	private function getVisibleItemsOn(string $type): array
 	{
-		return array_filter($this->getItems(), function(IMenuItem $item) use ($type) {
+		return array_filter($this->getItems(), function(IMenuItem $item) use ($type): bool {
 			switch ($type) {
 				case 'menu':
 					return $item->isVisibleOnMenu();
