@@ -7,7 +7,7 @@ namespace Contributte\MenuControl;
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Loaders\IMenuLoader;
 use Contributte\MenuControl\Security\IAuthorizator;
-use Contributte\MenuControl\UI\TemplateConfig;
+use Contributte\MenuControl\Config\TemplatePaths;
 use Nette\Application\UI\Presenter;
 use Nette\Localization\Translator;
 
@@ -25,7 +25,7 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 	private $name;
 
 	/**
-	 * @var TemplateConfig
+	 * @var \Contributte\MenuControl\Config\TemplatePaths
 	 */
 	private $templateConfig;
 
@@ -41,7 +41,7 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 		IMenuItemFactory $menuItemFactory,
 		IMenuLoader $loader,
 		string $name,
-		TemplateConfig $templateConfig
+		TemplatePaths $templateConfig
 	) {
 		parent::__construct($this, $linkGenerator, $translator, $authorizator, $menuItemFactory);
 

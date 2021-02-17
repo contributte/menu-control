@@ -12,7 +12,7 @@ use Contributte\MenuControl\MenuContainer;
 use Contributte\MenuControl\MenuItemFactory;
 use Contributte\MenuControl\Security\OptimisticAuthorizator;
 use Contributte\MenuControl\UI\MenuComponentFactory;
-use Contributte\MenuControl\UI\TemplateConfig;
+use Contributte\MenuControl\Config\TemplatePaths;
 use Nette\DI\CompilerExtension;
 use Nette\DI\ContainerBuilder;
 use Nette\DI\Definitions\ServiceDefinition;
@@ -50,7 +50,7 @@ final class MenuExtension extends CompilerExtension
 			'translator' => Expect::type('string|bool')->default(ReturnTranslator::class),
 			'loader' => Expect::string(ArrayMenuLoader::class),
 			'linkGenerator' => Expect::string(NetteLinkGenerator::class),
-			'templates' => Expect::from(new TemplateConfig),
+			'templates' => Expect::from(new TemplatePaths),
 			'items' => Expect::array()->required(),
 		]));
 	}
