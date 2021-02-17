@@ -32,15 +32,7 @@ final class MenuTest extends AbstractTestCase
 			$loader->shouldReceive('load');
 		});
 
-		$menu = new Menu(
-			$linkGenerator,
-			$translator,
-			$authorizator,
-			$itemFactory,
-			$loader,
-			'menu',
-			$templateConfig
-		);
+		$menu = new Menu($linkGenerator, $translator, $authorizator, $itemFactory, $loader, 'menu', $templateConfig);
 		$menu->init();
 	}
 
@@ -53,15 +45,7 @@ final class MenuTest extends AbstractTestCase
 		$loader = $this->createMockMenuLoader();
 		$templateConfig = $this->createMockTemplateConfig();
 
-		$menu = new Menu(
-			$linkGenerator,
-			$translator,
-			$authorizator,
-			$itemFactory,
-			$loader,
-			'menu',
-			$templateConfig
-		);
+		$menu = new Menu($linkGenerator, $translator, $authorizator, $itemFactory, $loader, 'menu', $templateConfig);
 
 		Assert::same('menu', $menu->getName());
 	}
@@ -75,15 +59,7 @@ final class MenuTest extends AbstractTestCase
 		$loader = $this->createMockMenuLoader();
 		$templateConfig = $this->createMockTemplateConfig();
 
-		$menu = new Menu(
-			$linkGenerator,
-			$translator,
-			$authorizator,
-			$itemFactory,
-			$loader,
-			'menu',
-			$templateConfig
-		);
+		$menu = new Menu($linkGenerator, $translator, $authorizator, $itemFactory, $loader, 'menu', $templateConfig);
 
 		Assert::same('menu-template.latte', $menu->getMenuTemplate());
 		Assert::same('breadcrumbs-template.latte', $menu->getBreadcrumbsTemplate());
@@ -120,15 +96,7 @@ final class MenuTest extends AbstractTestCase
 			$itemFactory->shouldReceive('create')->andReturn($itemA);
 		});
 
-		$menu = new Menu(
-			$linkGenerator,
-			$translator,
-			$authorizator,
-			$itemFactory,
-			$loader,
-			'menu',
-			$templateConfig
-		);
+		$menu = new Menu($linkGenerator, $translator, $authorizator, $itemFactory, $loader, 'menu', $templateConfig);
 		$menu->addItem('a','ItemA');
 
 		Assert::equal([

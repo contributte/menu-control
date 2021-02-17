@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControl;
 
+use Contributte\MenuControl\Config\TemplatePaths;
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Loaders\IMenuLoader;
 use Contributte\MenuControl\Security\IAuthorizator;
-use Contributte\MenuControl\Config\TemplatePaths;
 use Nette\Application\UI\Presenter;
 use Nette\Localization\Translator;
 

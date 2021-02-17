@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Contributte\MenuControl\DI;
 
 use Contributte\MenuControl\Config\MenuVisibility;
+use Contributte\MenuControl\Config\TemplatePaths;
 use Contributte\MenuControl\LinkGenerator\NetteLinkGenerator;
 use Contributte\MenuControl\Loaders\DefaultMenuLoader;
 use Contributte\MenuControl\Localization\ReturnTranslator;
@@ -13,7 +14,6 @@ use Contributte\MenuControl\MenuContainer;
 use Contributte\MenuControl\MenuItemFactory;
 use Contributte\MenuControl\Security\OptimisticAuthorizator;
 use Contributte\MenuControl\UI\MenuComponentFactory;
-use Contributte\MenuControl\Config\TemplatePaths;
 use Nette\DI\CompilerExtension;
 use Nette\DI\ContainerBuilder;
 use Nette\DI\Definitions\ServiceDefinition;

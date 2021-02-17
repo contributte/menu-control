@@ -24,7 +24,7 @@ final class MenuItemAction
 	{
 		$action = new self;
 		$action->target = $array['target'];
-		$action->parameters = isset($array['parameters']) ? $array['parameters'] : [];
+		$action->parameters = $array['parameters'] ?? [];
 
 		return $action;
 	}

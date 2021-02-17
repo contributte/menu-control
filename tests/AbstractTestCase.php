@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Contributte\MenuControlTests;
 
 use Contributte\MenuControl\AbstractMenuItemsContainer;
+use Contributte\MenuControl\Config\TemplatePaths;
 use Contributte\MenuControl\IMenu;
 use Contributte\MenuControl\IMenuItem;
 use Contributte\MenuControl\IMenuItemFactory;
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Loaders\IMenuLoader;
 use Contributte\MenuControl\Security\IAuthorizator;
-use Contributte\MenuControl\Config\TemplatePaths;
 use Nette\Application\Application;
 use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Presenter;

@@ -99,7 +99,9 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 
 	public function getActionTarget(): ?string
 	{
-		return $this->action !== null ? $this->action->target : null;
+		return $this->action !== null
+			? $this->action->target
+			: null;
 	}
 
 	/**
