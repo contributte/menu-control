@@ -7,7 +7,7 @@ namespace Contributte\MenuControl;
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Security\IAuthorizator;
 use Nette\Http\IRequest;
-use Nette\Localization\ITranslator;
+use Nette\Localization\Translator;
 
 abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 {
@@ -23,7 +23,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	protected $linkGenerator;
 
 	/**
-	 * @var ITranslator
+	 * @var Translator
 	 */
 	protected $translator;
 
@@ -50,7 +50,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	public function __construct(
 		IMenu $menu,
 		ILinkGenerator $linkGenerator,
-		ITranslator $translator,
+		Translator $translator,
 		IAuthorizator $authorizator,
 		IRequest $httpRequest,
 		IMenuItemFactory $menuItemFactory

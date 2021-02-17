@@ -18,7 +18,7 @@ use Nette\DI\CompilerExtension;
 use Nette\DI\ContainerBuilder;
 use Nette\DI\Definitions\ServiceDefinition;
 use Nette\Http;
-use Nette\Localization\ITranslator;
+use Nette\Localization\Translator;
 use Nette\Schema\Expect;
 use Nette\Schema\Schema;
 use Nette\Utils\Strings;
@@ -89,7 +89,7 @@ final class MenuExtension extends CompilerExtension
 		$linkGenerator = $config->linkGenerator;
 
 		if ($config->translator === true) {
-			$translator = $builder->getDefinitionByType(ITranslator::class);
+			$translator = $builder->getDefinitionByType(Translator::class);
 
 		} elseif (!Strings::startsWith($config->translator, '@')) {
 			$translator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.translator'))

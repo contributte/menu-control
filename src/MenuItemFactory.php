@@ -7,7 +7,7 @@ namespace Contributte\MenuControl;
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Security\IAuthorizator;
 use Nette\Http\IRequest;
-use Nette\Localization\ITranslator;
+use Nette\Localization\Translator;
 
 final class MenuItemFactory implements IMenuItemFactory
 {
@@ -15,7 +15,7 @@ final class MenuItemFactory implements IMenuItemFactory
 	public function create(
 		IMenu $menu,
 		ILinkGenerator $linkGenerator,
-		ITranslator $translator,
+		Translator $translator,
 		IAuthorizator $authorizator,
 		IRequest $httpRequest,
 		IMenuItemFactory $menuItemFactory,

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControl\Localization;
 
-use Nette\Localization\ITranslator;
+use Nette\Localization\Translator;
 
-final class ReturnTranslator implements ITranslator
+final class ReturnTranslator implements Translator
 {
 
 	/**

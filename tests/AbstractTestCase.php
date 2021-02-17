@@ -17,7 +17,7 @@ use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Presenter;
 use Nette\Http\Request;
 use Nette\Http\UrlScript;
-use Nette\Localization\ITranslator;
+use Nette\Localization\Translator;
 use Tester;
 
 abstract class AbstractTestCase extends Tester\TestCase
@@ -75,9 +75,9 @@ abstract class AbstractTestCase extends Tester\TestCase
 		return $this->createMock(LinkGenerator::class, $fn);
 	}
 
-	protected function createMockTranslator(?callable $fn = null): ITranslator
+	protected function createMockTranslator(?callable $fn = null): Translator
 	{
-		return $this->createMock(ITranslator::class, $fn);
+		return $this->createMock(Translator::class, $fn);
 	}
 
 	protected function createMockAuthorizator(?callable $fn = null): IAuthorizator

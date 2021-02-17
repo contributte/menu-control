@@ -10,7 +10,7 @@ use Contributte\MenuControl\Security\IAuthorizator;
 use Contributte\MenuControl\UI\TemplateConfig;
 use Nette\Application\UI\Presenter;
 use Nette\Http\IRequest;
-use Nette\Localization\ITranslator;
+use Nette\Localization\Translator;
 
 final class Menu extends AbstractMenuItemsContainer implements IMenu
 {
@@ -37,7 +37,7 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 
 	public function __construct(
 		ILinkGenerator $linkGenerator,
-		ITranslator $translator,
+		Translator $translator,
 		IAuthorizator $authorizator,
 		IRequest $httpRequest,
 		IMenuItemFactory $menuItemFactory,
