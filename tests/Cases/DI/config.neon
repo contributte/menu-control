@@ -1,13 +1,23 @@
-extensions:
-	menu: Contributte\MenuControl\DI\MenuExtension
-
 application:
 	scanDirs: false
 	mapping:
-		*: Contributte\MenuControlTests\Presenters\*Presenter
+		*: [Contributte\MenuControlTests, *Module, Presenters\*Presenter]
+
+di:
+	export:
+		parameters: no
+		tags: no
+
+services:
+	- Contributte\MenuControlTests\Router\TestRouterFactory::createRouter
+
+extensions:
+	menu: Contributte\MenuControl\DI\MenuExtension
 
 menu:
 	default:
 		items:
 			Homepage:
 				action: Homepage:default
+			Category:
+				action: Category:default

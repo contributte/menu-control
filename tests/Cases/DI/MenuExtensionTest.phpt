@@ -9,10 +9,12 @@ use Contributte\MenuControl\UI\MenuComponent;
 use Contributte\MenuControl\UI\MenuComponentFactory;
 use Contributte\MenuControlTests\AbstractTestCase;
 use Contributte\MenuControlTests\Presenters\HomepagePresenter;
-use Nette\Application\Request;
+use Nette\Application\Request as ApplicationRequest;
 use Nette\Application\Responses\TextResponse;
 use Nette\Bootstrap\Configurator;
 use Nette\DI\Container;
+use Nette\Http\Request as HttpRequest;
+use Nette\Http\UrlScript;
 use Tester\Assert;
 
 require_once __DIR__. '/../../bootstrap.php';
@@ -35,7 +37,10 @@ final class MenuExtensionTest extends AbstractTestCase
 	public function testRender(): void
 	{
 		$dic = $this->createContainer();
-		$request = new Request('Homepage', 'default');
+		$httpRequest = new HttpRequest(new UrlScript('http://localhost/'));
+		$dic->addService('http.request', $httpRequest);
+
+		$request = new ApplicationRequest('Homepage', 'default');
 
 		$presenter = new HomepagePresenter;
 		$dic->callInjects($presenter);
