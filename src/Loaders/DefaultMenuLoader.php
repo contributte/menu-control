@@ -50,10 +50,6 @@ final class DefaultMenuLoader implements IMenuLoader
 			$item->setBreadcrumbsVisibility($config->visibility->breadcrumbs);
 			$item->setSitemapVisibility($config->visibility->sitemap);
 
-			if ($config->linkGenerator !== null) {
-				$item->setLinkGenerator($config->linkGenerator);
-			}
-
 			if ($config->action !== null) {
 				if (is_array($config->action)) {
 					$item->setAction($config->action['target'], $config->action['parameters']);

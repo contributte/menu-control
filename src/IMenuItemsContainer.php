@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControl;
 
-use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
-
 interface IMenuItemsContainer
 {
-
-	public function setLinkGenerator(ILinkGenerator $linkGenerator): void;
 
 	/**
 	 * @return IMenuItem[]

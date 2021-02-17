@@ -42,7 +42,6 @@ final class MenuExtension extends CompilerExtension
 	public function getItemSchema(): Schema
 	{
 		return Expect::structure([
-			'linkGenerator' => Expect::string(),
 			'title' => Expect::string(),
 			'action' => Expect::type('string|array'),
 			'link' => Expect::string(),

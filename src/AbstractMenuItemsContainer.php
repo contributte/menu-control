@@ -55,11 +55,6 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 		$this->menuItemFactory = $menuItemFactory;
 	}
 
-	public function setLinkGenerator(ILinkGenerator $linkGenerator): void
-	{
-		$this->linkGenerator = $linkGenerator;
-	}
-
 	/**
 	 * @return IMenuItem[]
 	 */
