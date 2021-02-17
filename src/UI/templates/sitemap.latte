@@ -4,7 +4,7 @@
 	{define menu-branch, $itemsParent, $priority}
 		{foreach $itemsParent->getItems() as $item}
 			<url n:if="$item->isAllowed() && $item->isVisibleOnSitemap()">
-				<loc>{$item->getRealAbsoluteLink()}</loc>
+				<loc>{$item->getRealLink()}</loc>
 				<priority>{$priority}</priority>
 			</url>
 			{include menu-branch, $item, $priority - 0.1}
