@@ -27,14 +27,24 @@ final class MenuTest extends AbstractTestCase
 		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
-		$loader = $this->createMockMenuLoader(function(MockInterface $loader) {
+		$loader = $this->createMockMenuLoader(function (MockInterface $loader): void {
 			$loader->shouldReceive('load');
 		});
 
-		$menu = new Menu($linkGenerator, $translator, $authorizator, $request, $itemFactory, $loader, 'menu', '', '', '');
+		$menu = new Menu(
+			$linkGenerator,
+			$translator,
+			$authorizator,
+			$request,
+			$itemFactory,
+			$loader,
+			'menu',
+			'',
+			'',
+			''
+		);
 		$menu->init();
 	}
-
 
 	public function testGetName(): void
 	{
@@ -45,11 +55,21 @@ final class MenuTest extends AbstractTestCase
 		$itemFactory = $this->createMockMenuItemFactory();
 		$loader = $this->createMockMenuLoader();
 
-		$menu = new Menu($linkGenerator, $translator, $authorizator, $request, $itemFactory, $loader, 'menu', '', '', '');
+		$menu = new Menu(
+			$linkGenerator,
+			$translator,
+			$authorizator,
+			$request,
+			$itemFactory,
+			$loader,
+			'menu',
+			'',
+			'',
+			''
+		);
 
 		Assert::same('menu', $menu->getName());
 	}
-
 
 	public function testTemplates(): void
 	{
@@ -78,7 +98,6 @@ final class MenuTest extends AbstractTestCase
 		Assert::same('sitemap-template.latte', $menu->getSitemapTemplate());
 	}
 
-
 	public function testGetPath(): void
 	{
 		$linkGenerator = $this->createMockLinkGenerator();
@@ -87,29 +106,40 @@ final class MenuTest extends AbstractTestCase
 		$request = $this->createMockHttpRequest();
 		$loader = $this->createMockMenuLoader();
 
-		$itemC = $this->createMockMenuItem(function(MockInterface $itemC) {
+		$itemC = $this->createMockMenuItem(function (MockInterface $itemC): void {
 			$itemC->shouldReceive('isAllowed')->andReturn(true);
 			$itemC->shouldReceive('isActive')->andReturn(true);
 			$itemC->shouldReceive('findActiveItem')->andReturn(null);
 		});
 
-		$itemB = $this->createMockMenuItem(function(MockInterface $itemB) use ($itemC) {
+		$itemB = $this->createMockMenuItem(function (MockInterface $itemB) use ($itemC): void {
 			$itemB->shouldReceive('isAllowed')->andReturn(true);
 			$itemB->shouldReceive('isActive')->andReturn(true);
 			$itemB->shouldReceive('findActiveItem')->andReturn($itemC);
 		});
 
-		$itemA = $this->createMockMenuItem(function(MockInterface $itemA) use ($itemB) {
+		$itemA = $this->createMockMenuItem(function (MockInterface $itemA) use ($itemB): void {
 			$itemA->shouldReceive('isAllowed')->andReturn(true);
 			$itemA->shouldReceive('isActive')->andReturn(true);
 			$itemA->shouldReceive('findActiveItem')->andReturn($itemB);
 		});
 
-		$itemFactory = $this->createMockMenuItemFactory(function(MockInterface $itemFactory) use ($itemA) {
+		$itemFactory = $this->createMockMenuItemFactory(function (MockInterface $itemFactory) use ($itemA): void {
 			$itemFactory->shouldReceive('create')->andReturn($itemA);
 		});
 
-		$menu = new Menu($linkGenerator, $translator, $authorizator, $request, $itemFactory, $loader, 'menu', '', '', '');
+		$menu = new Menu(
+			$linkGenerator,
+			$translator,
+			$authorizator,
+			$request,
+			$itemFactory,
+			$loader,
+			'menu',
+			'',
+			'',
+			''
+		);
 		$menu->addItem('a','ItemA');
 
 		Assert::equal([

@@ -22,7 +22,6 @@ final class MenuComponent extends Control
 	 */
 	private $menuName;
 
-
 	public function __construct(MenuContainer $container, string $name)
 	{
 		$this->container = $container;
@@ -34,13 +33,11 @@ final class MenuComponent extends Control
 		});
 	}
 
-
 	public function render(): void
 	{
 		$menu = $this->container->getMenu($this->menuName);
 		$this->renderType($menu, $menu->getMenuTemplate());
 	}
-
 
 	public function renderBreadcrumbs(): void
 	{
@@ -48,13 +45,11 @@ final class MenuComponent extends Control
 		$this->renderType($menu, $menu->getBreadcrumbsTemplate());
 	}
 
-
 	public function renderSitemap(): void
 	{
 		$menu = $this->container->getMenu($this->menuName);
 		$this->renderType($menu, $menu->getSitemapTemplate());
 	}
-
 
 	public function renderType(IMenu $menu, string $menuTemplate): void
 	{

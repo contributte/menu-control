@@ -54,7 +54,6 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	 */
 	private $include = [];
 
-
 	public function __construct(
 		IMenu $menu,
 		ILinkGenerator $linkGenerator,
@@ -68,7 +67,6 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 
 		$this->title = $title;
 	}
-
 
 	public function isActive(): bool
 	{
@@ -105,18 +103,15 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		return $this->active = false;
 	}
 
-
 	public function isAllowed(): bool
 	{
 		return $this->authorizator->isMenuItemAllowed($this);
 	}
 
-
 	public function getAction(): ?string
 	{
 		return $this->action['target'];
 	}
-
 
 	/**
 	 * @return array<string, string>
@@ -125,7 +120,6 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	{
 		return $this->action['parameters'];
 	}
-
 
 	/**
 	 * @param array<string, string> $parameters
@@ -136,30 +130,25 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		$this->action['parameters'] = $parameters;
 	}
 
-
 	public function getLink(): ?string
 	{
 		return $this->link;
 	}
-
 
 	public function setLink(string $link): void
 	{
 		$this->link = $link;
 	}
 
-
 	public function getRealTitle(): string
 	{
 		return $this->translator->translate($this->title);
 	}
 
-
 	public function getRealLink(): string
 	{
 		return $this->linkGenerator->link($this);
 	}
-
 
 	public function getRealAbsoluteLink(): string
 	{
@@ -173,12 +162,10 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		return $prefix. $this->getRealLink();
 	}
 
-
 	public function hasData(string $name): bool
 	{
 		return array_key_exists($name, $this->data);
 	}
-
 
 	/**
 	 * @param ?string $default
@@ -197,7 +184,6 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		return $this->data[$name];
 	}
 
-
 	/**
 	 * @param array<string, string> $data
 	 */
@@ -205,7 +191,6 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	{
 		$this->data = $data;
 	}
-
 
 	/**
 	 * @param string $value
@@ -215,7 +200,6 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		$this->data[$name] = $value;
 	}
 
-
 	/**
 	 * @param string[] $include
 	 */
@@ -224,36 +208,30 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		$this->include = $include;
 	}
 
-
 	public function isVisibleOnMenu(): bool
 	{
 		return $this->visibility['menu'];
 	}
-
 
 	public function setMenuVisibility(bool $visibility): void
 	{
 		$this->visibility['menu'] = $visibility;
 	}
 
-
 	public function isVisibleOnBreadcrumbs(): bool
 	{
 		return $this->visibility['breadcrumbs'];
 	}
-
 
 	public function setBreadcrumbsVisibility(bool $visibility): void
 	{
 		$this->visibility['breadcrumbs'] = $visibility;
 	}
 
-
 	public function isVisibleOnSitemap(): bool
 	{
 		return $this->visibility['sitemap'];
 	}
-
 
 	public function setSitemapVisibility(bool $visibility): void
 	{

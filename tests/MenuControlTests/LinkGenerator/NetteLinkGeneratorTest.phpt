@@ -16,11 +16,11 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 
 	public function testLink_action(): void
 	{
-		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function(MockInterface $netteLinkGenerator) {
+		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function(MockInterface $netteLinkGenerator): void {
 			$netteLinkGenerator->shouldReceive('link')->andReturn('/');
 		});
 
-		$item = $this->createMockMenuItem(function(MockInterface $item) {
+		$item = $this->createMockMenuItem(function (MockInterface $item): void {
 			$item->shouldReceive('getAction')->andReturn(':Home:default');
 			$item->shouldReceive('getActionParameters')->andReturn([]);
 		});
@@ -30,14 +30,13 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 		Assert::same('/', $linkGenerator->link($item));
 	}
 
-
 	public function testLink_link(): void
 	{
-		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function(MockInterface $netteLinkGenerator) {
+		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function (MockInterface $netteLinkGenerator): void {
 			$netteLinkGenerator->shouldReceive('link')->andReturn('/');
 		});
 
-		$item = $this->createMockMenuItem(function(MockInterface $item) {
+		$item = $this->createMockMenuItem(function (MockInterface $item): void {
 			$item->shouldReceive('getAction')->andReturn(null);
 			$item->shouldReceive('getLink')->andReturn('/');
 		});
@@ -47,14 +46,13 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 		Assert::same('/', $linkGenerator->link($item));
 	}
 
-
 	public function testLink(): void
 	{
-		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function(MockInterface $netteLinkGenerator) {
+		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function (MockInterface $netteLinkGenerator): void {
 			$netteLinkGenerator->shouldReceive('link')->andReturn('/');
 		});
 
-		$item = $this->createMockMenuItem(function(MockInterface $item) {
+		$item = $this->createMockMenuItem(function (MockInterface $item): void {
 			$item->shouldReceive('getAction')->andReturn(null);
 			$item->shouldReceive('getLink')->andReturn(null);
 		});

@@ -57,7 +57,6 @@ final class MenuExtension extends CompilerExtension
 		],
 	];
 
-
 	public function loadConfiguration(): void
 	{
 		/** @var array<string, mixed> $config */
@@ -79,12 +78,14 @@ final class MenuExtension extends CompilerExtension
 		}
 	}
 
-
 	/**
 	 * @param array<string, mixed> $config
 	 */
-	private function loadMenuConfiguration(ContainerBuilder $builder, string $menuName, array $config): ServiceDefinition
-	{
+	private function loadMenuConfiguration(
+		ContainerBuilder $builder,
+		string $menuName,
+		array $config
+	): ServiceDefinition {
 		$config = $this->validateConfig($this->menuDefaults, $config);
 
 		$translator = $config['translator'];
@@ -144,21 +145,20 @@ final class MenuExtension extends CompilerExtension
 			->setAutowired(false);
 	}
 
-
 	/**
 	 * @param array<string, mixed> $items
 	 * @return array<string, mixed>
 	 */
 	private function normalizeMenuItems(array $items): array
 	{
-		array_walk($items, function(array &$item, string $key): void {
+		array_walk($items, function(array $item, string $key) use ($items): void {
 			$item = $this->validateConfig($this->itemDefaults, $item);
 
 			if ($item['title'] === null) {
 				$item['title'] = $key;
 			}
 
-			$item['items'] = $this->normalizeMenuItems($item['items']);
+			$items[$key]['items'] = $this->normalizeMenuItems($item['items']);
 		});
 
 		return $items;

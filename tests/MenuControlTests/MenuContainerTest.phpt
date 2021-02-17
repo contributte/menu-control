@@ -18,7 +18,7 @@ final class MenuContainerTest extends AbstractTestCase
 
 	public function testMenu(): void
 	{
-		$menu = $this->createMockMenu(function(MockInterface $menu) {
+		$menu = $this->createMockMenu(function (MockInterface $menu): void {
 			$menu->shouldReceive('getName')->andReturn('default');
 		});
 

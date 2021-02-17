@@ -17,7 +17,6 @@ final class ArrayMenuLoader implements IMenuLoader
 	 */
 	private $items;
 
-
 	/**
 	 * @param array<string, array> $items
 	 */
@@ -26,12 +25,10 @@ final class ArrayMenuLoader implements IMenuLoader
 		$this->items = $items;
 	}
 
-
 	public function load(IMenu $menu): void
 	{
 		$this->processItems($menu, $this->items);
 	}
-
 
 	/**
 	 * @param array<string, array> $items
@@ -42,7 +39,6 @@ final class ArrayMenuLoader implements IMenuLoader
 			$this->processItem($parent, $name, $item);
 		}
 	}
-
 
 	/**
 	 * @param array<string, mixed> $config

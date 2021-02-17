@@ -38,7 +38,6 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 	 */
 	private $activePresenter;
 
-
 	public function __construct(
 		ILinkGenerator $linkGenerator,
 		ITranslator $translator,
@@ -60,36 +59,30 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 		$this->templates['sitemap'] = $sitemapTemplate;
 	}
 
-
 	public function init(): void
 	{
 		$this->loader->load($this);
 	}
-
 
 	public function getName(): string
 	{
 		return $this->name;
 	}
 
-
 	public function getMenuTemplate(): string
 	{
 		return $this->templates['menu'];
 	}
-
 
 	public function getBreadcrumbsTemplate(): string
 	{
 		return $this->templates['breadcrumbs'];
 	}
 
-
 	public function getSitemapTemplate(): string
 	{
 		return $this->templates['sitemap'];
 	}
-
 
 	/**
 	 * @return IMenuItem[]
@@ -112,12 +105,10 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 		return $path;
 	}
 
-
 	public function getActivePresenter(): ?Presenter
 	{
 		return $this->activePresenter;
 	}
-
 
 	public function setActivePresenter(?Presenter $presenter): void
 	{

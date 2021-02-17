@@ -15,12 +15,10 @@ final class NetteLinkGenerator implements ILinkGenerator
 	 */
 	private $linkGenerator;
 
-
 	public function __construct(LinkGenerator $linkGenerator)
 	{
 		$this->linkGenerator = $linkGenerator;
 	}
-
 
 	public function link(IMenuItem $item): string
 	{

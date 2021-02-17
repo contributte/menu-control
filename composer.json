@@ -48,7 +48,7 @@
 	},
 	"scripts": {
 		"tests": "vendor/bin/tester -s -p php -c tests/php.ini tests/MenuControlTests/",
-		"phpcs": "vendor/bin/phpcs --standard=vendor/ninjify/coding-standard/ruleset-gamee.xml --extensions=php,phpt --tab-width=4 -sp src tests",
+		"phpcs": "vendor/bin/phpcs --standard=tests/phpcs-ruleset.xml --extensions=php,phpt --tab-width=4 -sp src tests",
 		"phpcsfix": "vendor/bin/phpcbf --standard=vendor/ninjify/coding-standard/ruleset-gamee.xml --extensions=php,phpt --tab-width=4 -sp src tests",
 		"phpstan": "vendor/bin/phpstan analyse -c phpstan.neon src --level 7"
 	},

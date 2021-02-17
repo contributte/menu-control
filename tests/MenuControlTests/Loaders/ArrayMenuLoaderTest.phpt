@@ -25,7 +25,7 @@ final class ArrayMenuLoaderTest extends AbstractTestCase
 			],
 		];
 
-		$menu = $this->createMockMenu(function(MockInterface $menu) {
+		$menu = $this->createMockMenu(function (MockInterface $menu): void {
 			$menu->shouldReceive('addItem')->withArgs(['home', 'Home', \Mockery::type('callable')]);
 		});
 

@@ -47,7 +47,6 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	 */
 	private $items = [];
 
-
 	public function __construct(
 		IMenu $menu,
 		ILinkGenerator $linkGenerator,
@@ -64,12 +63,10 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 		$this->menuItemFactory = $menuItemFactory;
 	}
 
-
 	public function setLinkGenerator(ILinkGenerator $linkGenerator): void
 	{
 		$this->linkGenerator = $linkGenerator;
 	}
-
 
 	/**
 	 * @return IMenuItem[]
@@ -78,7 +75,6 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	{
 		return $this->items;
 	}
-
 
 	public function getItem(string $name): IMenuItem
 	{
@@ -97,7 +93,6 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 		return $current;
 	}
 
-
 	public function addItem(string $name, string $title, ?callable $fn = null): void
 	{
 		$this->items[$name] = $item = $this->menuItemFactory->create(
@@ -115,7 +110,6 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 		}
 	}
 
-
 	public function findActiveItem(): ?IMenuItem
 	{
 		foreach ($this->getItems() as $item) {
@@ -127,12 +121,10 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 		return null;
 	}
 
-
 	public function hasVisibleItemsOnMenu(): bool
 	{
 		return $this->hasVisibleItemsOn('menu');
 	}
-
 
 	/**
 	 * @return IMenuItem[]
@@ -142,12 +134,10 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 		return $this->getVisibleItemsOn('menu');
 	}
 
-
 	public function hasVisibleItemsOnBreadcrumbs(): bool
 	{
 		return $this->hasVisibleItemsOn('breadcrumbs');
 	}
-
 
 	/**
 	 * @return IMenuItem[]
@@ -157,12 +147,10 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 		return $this->getVisibleItemsOn('breadcrumbs');
 	}
 
-
 	public function hasVisibleItemsOnSitemap(): bool
 	{
 		return $this->hasVisibleItemsOn('sitemap');
 	}
-
 
 	/**
 	 * @return IMenuItem[]
@@ -172,15 +160,12 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 		return $this->getVisibleItemsOn('sitemap');
 	}
 
-
 	private function hasVisibleItemsOn(string $type): bool
 	{
 		return count($this->getVisibleItemsOn($type)) > 0;
 	}
 
-
 	/**
-	 * @param string $type
 	 * @return IMenuItem[]
 	 */
 	private function getVisibleItemsOn(string $type): array

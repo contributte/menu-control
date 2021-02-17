@@ -12,12 +12,10 @@ final class MenuContainer
 	 */
 	private $menus = [];
 
-
 	public function getMenu(string $name): IMenu
 	{
 		return $this->menus[$name];
 	}
-
 
 	public function addMenu(IMenu $menu): void
 	{
