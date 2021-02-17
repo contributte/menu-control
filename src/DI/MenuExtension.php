@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControl\DI;
 
+use Contributte\MenuControl\Config\MenuVisibility;
 use Contributte\MenuControl\LinkGenerator\NetteLinkGenerator;
-use Contributte\MenuControl\Loaders\ArrayMenuLoader;
+use Contributte\MenuControl\Loaders\DefaultMenuLoader;
 use Contributte\MenuControl\Localization\ReturnTranslator;
 use Contributte\MenuControl\Menu;
 use Contributte\MenuControl\MenuContainer;
@@ -18,6 +19,7 @@ use Nette\DI\ContainerBuilder;
 use Nette\DI\Definitions\ServiceDefinition;
 use Nette\Localization\Translator;
 use Nette\Schema\Expect;
+use Nette\Schema\Processor;
 use Nette\Schema\Schema;
 use Nette\Utils\Strings;
 use stdClass;
@@ -25,34 +27,30 @@ use stdClass;
 final class MenuExtension extends CompilerExtension
 {
 
-	/**
-	 * @var array<string, mixed>
-	 */
-	private $itemDefaults = [
-		'linkGenerator' => null,
-		'title' => null,
-		'action' => null,
-		'link' => null,
-		'include' => null,
-		'data' => [],
-		'items' => [],
-		'visibility' => [
-			'menu' => true,
-			'breadcrumbs' => true,
-			'sitemap' => true,
-		],
-	];
-
 	public function getConfigSchema(): Schema
 	{
 		return Expect::arrayOf(Expect::structure([
 			'authorizator' => Expect::string(OptimisticAuthorizator::class),
 			'translator' => Expect::type('string|bool')->default(ReturnTranslator::class),
-			'loader' => Expect::string(ArrayMenuLoader::class),
+			'loader' => Expect::string(DefaultMenuLoader::class),
 			'linkGenerator' => Expect::string(NetteLinkGenerator::class),
 			'templates' => Expect::from(new TemplatePaths),
 			'items' => Expect::array()->required(),
 		]));
+	}
+
+	public function getItemSchema(): Schema
+	{
+		return Expect::structure([
+			'linkGenerator' => Expect::string(),
+			'title' => Expect::string(),
+			'action' => Expect::type('string|array'),
+			'link' => Expect::string(),
+			'include' => Expect::type('string|array'),
+			'data' => Expect::array(),
+			'items' => Expect::array(),
+			'visibility' => Expect::from(new MenuVisibility),
+		]);
 	}
 
 	public function loadConfiguration(): void
@@ -60,6 +58,7 @@ final class MenuExtension extends CompilerExtension
 		/** @var array<string, stdClass> $config */
 		$config = $this->getConfig();
 		$builder = $this->getContainerBuilder();
+		$processor = new Processor;
 
 		$container = $builder->addDefinition($this->prefix('container'))
 			->setType(MenuContainer::class);
@@ -69,13 +68,14 @@ final class MenuExtension extends CompilerExtension
 
 		foreach ($config as $menuName => $menu) {
 			$container->addSetup('addMenu', [
-				$this->loadMenuConfiguration($builder, $menuName, $menu),
+				$this->loadMenuConfiguration($builder, $processor, $menuName, $menu),
 			]);
 		}
 	}
 
 	private function loadMenuConfiguration(
 		ContainerBuilder $builder,
+		Processor $processor,
 		string $menuName,
 		stdClass $config
 	): ServiceDefinition {
@@ -111,8 +111,8 @@ final class MenuExtension extends CompilerExtension
 				->setAutowired(false);
 		}
 
-		if ($loader->getType() === ArrayMenuLoader::class) {
-			$loader->setArguments([$this->normalizeMenuItems($config->items)]);
+		if ($loader->getType() === DefaultMenuLoader::class) {
+			$loader->setArguments([$this->normalizeMenuItems($processor, $config->items)]);
 		}
 
 		$itemFactory = $builder->addDefinition($this->prefix('menu.'. $menuName. '.factory'))
@@ -137,16 +137,16 @@ final class MenuExtension extends CompilerExtension
 	 * @param array<string, array> $items
 	 * @return array<string, array>
 	 */
-	private function normalizeMenuItems(array $items): array
+	private function normalizeMenuItems(Processor $processor, array $items): array
 	{
-		array_walk($items, function(array &$item, string $key): void {
-			$item = $this->validateConfig($this->itemDefaults, $item);
+		array_walk($items, function(array &$item, string $key) use ($processor): void {
+			$item = $processor->process($this->getItemSchema(), $item);
 
-			if ($item['title'] === null) {
-				$item['title'] = $key;
+			if ($item->title === null) {
+				$item->title = $key;
 			}
 
-			$item['items'] = $this->normalizeMenuItems($item['items']);
+			$item->items = $this->normalizeMenuItems($processor, $item->items);
 		});
 
 		return $items;

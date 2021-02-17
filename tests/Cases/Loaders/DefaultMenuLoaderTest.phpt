@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControlTests\Cases\Loaders;
 
-use Contributte\MenuControl\Loaders\ArrayMenuLoader;
+use Contributte\MenuControl\Loaders\DefaultMenuLoader;
 use Contributte\MenuControlTests\AbstractTestCase;
 use Mockery\MockInterface;
 use Tester\Environment;
 
 require_once __DIR__. '/../../bootstrap.php';
 
-final class ArrayMenuLoaderTest extends AbstractTestCase
+final class DefaultMenuLoaderTest extends AbstractTestCase
 {
 
 	public function testLoad_simple(): void
@@ -19,9 +19,9 @@ final class ArrayMenuLoaderTest extends AbstractTestCase
 		Environment::$checkAssertions = false;
 
 		$config = [
-			'home' => [
+			'home' => (object) [
 				'title' => 'Home',
-				'action' => ':Home:default',
+				'action' => 'Home:default',
 			],
 		];
 
@@ -29,10 +29,10 @@ final class ArrayMenuLoaderTest extends AbstractTestCase
 			$menu->shouldReceive('addItem')->withArgs(['home', 'Home', \Mockery::type('callable')]);
 		});
 
-		$loader = new ArrayMenuLoader($config);
+		$loader = new DefaultMenuLoader($config);
 		$loader->load($menu);
 	}
 
 }
 
-(new ArrayMenuLoaderTest)->run();
+(new DefaultMenuLoaderTest)->run();

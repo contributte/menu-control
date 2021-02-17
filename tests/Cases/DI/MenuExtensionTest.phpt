@@ -52,6 +52,7 @@ final class MenuExtensionTest extends AbstractTestCase
 		$response->getSource()->render();
 		$output = ob_get_clean();
 
+		//file_put_contents(__DIR__ . '/output.html', $output);
 		Assert::same(file_get_contents(__DIR__ . '/output.html'), $output);
 	}
 

@@ -19,5 +19,6 @@ menu:
 		items:
 			Homepage:
 				action: Homepage:default
-			Category:
-				action: Category:default
+				items:
+					Category:
+						action: Category:default
