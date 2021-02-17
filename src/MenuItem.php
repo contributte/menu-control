@@ -6,11 +6,16 @@ namespace Contributte\MenuControl;
 
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Security\IAuthorizator;
+use Contributte\MenuControl\Traits\MenuItemData;
+use Contributte\MenuControl\Traits\MenuItemVisibility;
 use Nette\Http\IRequest;
 use Nette\Localization\Translator;
 
 final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 {
+
+	use MenuItemData;
+	use MenuItemVisibility;
 
 	/**
 	 * @var string
@@ -29,20 +34,6 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	 * @var string|null
 	 */
 	private $link;
-
-	/**
-	 * @var array<string, string>
-	 */
-	private $data = [];
-
-	/**
-	 * @var bool[]
-	 */
-	private $visibility = [
-		'menu' => true,
-		'breadcrumbs' => true,
-		'sitemap' => true,
-	];
 
 	/**
 	 * @var bool
@@ -162,80 +153,12 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		return $prefix. $this->getRealLink();
 	}
 
-	public function hasData(string $name): bool
-	{
-		return array_key_exists($name, $this->data);
-	}
-
-	/**
-	 * @param ?string $default
-	 * @return array<string, string>|string|null
-	 */
-	public function getData(?string $name = null, $default = null)
-	{
-		if ($name === null) {
-			return $this->data;
-		}
-
-		if (!$this->hasData($name)) {
-			return $default;
-		}
-
-		return $this->data[$name];
-	}
-
-	/**
-	 * @param array<string, string> $data
-	 */
-	public function setData(array $data): void
-	{
-		$this->data = $data;
-	}
-
-	/**
-	 * @param string $value
-	 */
-	public function addData(string $name, $value): void
-	{
-		$this->data[$name] = $value;
-	}
-
 	/**
 	 * @param string[] $include
 	 */
 	public function setInclude(array $include): void
 	{
 		$this->include = $include;
-	}
-
-	public function isVisibleOnMenu(): bool
-	{
-		return $this->visibility['menu'];
-	}
-
-	public function setMenuVisibility(bool $visibility): void
-	{
-		$this->visibility['menu'] = $visibility;
-	}
-
-	public function isVisibleOnBreadcrumbs(): bool
-	{
-		return $this->visibility['breadcrumbs'];
-	}
-
-	public function setBreadcrumbsVisibility(bool $visibility): void
-	{
-		$this->visibility['breadcrumbs'] = $visibility;
-	}
-
-	public function isVisibleOnSitemap(): bool
-	{
-		return $this->visibility['sitemap'];
-	}
-
-	public function setSitemapVisibility(bool $visibility): void
-	{
-		$this->visibility['sitemap'] = $visibility;
 	}
 
 }
