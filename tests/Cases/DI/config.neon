@@ -1,0 +1,13 @@
+extensions:
+	menu: Contributte\MenuControl\DI\MenuExtension
+
+application:
+	scanDirs: false
+	mapping:
+		*: Contributte\MenuControlTests\Presenters\*Presenter
+
+menu:
+	default:
+		items:
+			Homepage:
+				action: Homepage:default
