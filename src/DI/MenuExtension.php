@@ -18,26 +18,13 @@ use Nette\DI\ContainerBuilder;
 use Nette\DI\Definitions\ServiceDefinition;
 use Nette\Http;
 use Nette\Localization\ITranslator;
+use Nette\Schema\Expect;
+use Nette\Schema\Schema;
 use Nette\Utils\Strings;
+use stdClass;
 
 final class MenuExtension extends CompilerExtension
 {
-
-	/**
-	 * @var array<string, mixed>
-	 */
-	private $menuDefaults = [
-		'authorizator' => OptimisticAuthorizator::class,
-		'translator' => ReturnTranslator::class,
-		'loader' => ArrayMenuLoader::class,
-		'linkGenerator' => NetteLinkGenerator::class,
-		'items' => [],
-		'templates' => [
-			'menu' => __DIR__. '/../UI/templates/menu.latte',
-			'breadcrumbs' => __DIR__. '/../UI/templates/breadcrumbs.latte',
-			'sitemap' => __DIR__. '/../UI/templates/sitemap.latte',
-		],
-	];
 
 	/**
 	 * @var array<string, mixed>
@@ -57,9 +44,25 @@ final class MenuExtension extends CompilerExtension
 		],
 	];
 
+	public function getConfigSchema(): Schema
+	{
+		return Expect::arrayOf(Expect::structure([
+			'authorizator' => Expect::string(OptimisticAuthorizator::class),
+			'translator' => Expect::type('string|bool')->default(ReturnTranslator::class),
+			'loader' => Expect::string(ArrayMenuLoader::class),
+			'linkGenerator' => Expect::string(NetteLinkGenerator::class),
+			'templates' => Expect::structure([
+				'menu' => Expect::string(__DIR__ . '/../UI/templates/menu.latte'),
+				'breadcrumbs' => Expect::string(__DIR__ . '/../UI/templates/breadcrumbs.latte'),
+				'sitemap' => Expect::string(__DIR__ . '/../UI/templates/sitemap.latte'),
+			]),
+			'items' => Expect::array()->required(),
+		]));
+	}
+
 	public function loadConfiguration(): void
 	{
-		/** @var array<string, mixed> $config */
+		/** @var array<string, stdClass> $config */
 		$config = $this->getConfig();
 		$builder = $this->getContainerBuilder();
 
@@ -78,50 +81,45 @@ final class MenuExtension extends CompilerExtension
 		}
 	}
 
-	/**
-	 * @param array<string, mixed> $config
-	 */
 	private function loadMenuConfiguration(
 		ContainerBuilder $builder,
 		string $menuName,
-		array $config
+		stdClass $config
 	): ServiceDefinition {
-		$config = $this->validateConfig($this->menuDefaults, $config);
+		$translator = $config->translator;
+		$authorizator = $config->authorizator;
+		$loader = $config->loader;
+		$linkGenerator = $config->linkGenerator;
 
-		$translator = $config['translator'];
-		$authorizator = $config['authorizator'];
-		$loader = $config['loader'];
-		$linkGenerator = $config['linkGenerator'];
-
-		if ($config['translator'] === true) {
+		if ($config->translator === true) {
 			$translator = $builder->getDefinitionByType(ITranslator::class);
 
-		} elseif (!Strings::startsWith($config['translator'], '@')) {
+		} elseif (!Strings::startsWith($config->translator, '@')) {
 			$translator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.translator'))
-				->setType($config['translator'])
+				->setType($config->translator)
 				->setAutowired(false);
 		}
 
-		if (!Strings::startsWith($config['authorizator'], '@')) {
+		if (!Strings::startsWith($config->authorizator, '@')) {
 			$authorizator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.authorizator'))
-				->setType($config['authorizator'])
+				->setType($config->authorizator)
 				->setAutowired(false);
 		}
 
-		if (!Strings::startsWith($config['loader'], '@')) {
+		if (!Strings::startsWith($config->loader, '@')) {
 			$loader = $builder->addDefinition($this->prefix('menu.'. $menuName. '.loader'))
-				->setType($config['loader'])
+				->setType($config->loader)
 				->setAutowired(false);
 		}
 
-		if (!Strings::startsWith($config['linkGenerator'], '@')) {
+		if (!Strings::startsWith($config->linkGenerator, '@')) {
 			$linkGenerator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.linkGenerator'))
-				->setType($config['linkGenerator'])
+				->setType($config->linkGenerator)
 				->setAutowired(false);
 		}
 
 		if ($loader->getType() === ArrayMenuLoader::class) {
-			$loader->setArguments([$this->normalizeMenuItems($config['items'])]);
+			$loader->setArguments([$this->normalizeMenuItems($config->items)]);
 		}
 
 		$itemFactory = $builder->addDefinition($this->prefix('menu.'. $menuName. '.factory'))
@@ -137,17 +135,17 @@ final class MenuExtension extends CompilerExtension
 				$itemFactory,
 				$loader,
 				$menuName,
-				$config['templates']['menu'],
-				$config['templates']['breadcrumbs'],
-				$config['templates']['sitemap'],
+				$config->templates->menu,
+				$config->templates->breadcrumbs,
+				$config->templates->sitemap,
 			])
 			->addSetup('init')
 			->setAutowired(false);
 	}
 
 	/**
-	 * @param array<string, mixed> $items
-	 * @return array<string, mixed>
+	 * @param array<string, array> $items
+	 * @return array<string, array>
 	 */
 	private function normalizeMenuItems(array $items): array
 	{
