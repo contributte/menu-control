@@ -151,14 +151,14 @@ final class MenuExtension extends CompilerExtension
 	 */
 	private function normalizeMenuItems(array $items): array
 	{
-		array_walk($items, function(array $item, string $key) use ($items): void {
+		array_walk($items, function(array &$item, string $key): void {
 			$item = $this->validateConfig($this->itemDefaults, $item);
 
 			if ($item['title'] === null) {
 				$item['title'] = $key;
 			}
 
-			$items[$key]['items'] = $this->normalizeMenuItems($item['items']);
+			$item['items'] = $this->normalizeMenuItems($item['items']);
 		});
 
 		return $items;

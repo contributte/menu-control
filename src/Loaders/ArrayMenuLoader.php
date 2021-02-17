@@ -45,7 +45,7 @@ final class ArrayMenuLoader implements IMenuLoader
 	 */
 	private function processItem(IMenuItemsContainer $parent, string $name, array $config): void
 	{
-		$parent->addItem($name, $config['title'], function(IMenuItem $item) use ($config): void {
+		$parent->addItem($name, $config['title'], function (IMenuItem $item) use ($config): void {
 			$item->setData($config['data']);
 
 			$item->setMenuVisibility($config['visibility']['menu']);

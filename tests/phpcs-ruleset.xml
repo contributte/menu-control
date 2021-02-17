@@ -3,5 +3,6 @@
     <description>MenuControl custom coding standard</description>
     <rule ref="./vendor/ninjify/coding-standard/ruleset-gamee.xml">
         <exclude name="SlevomatCodingStandard.Commenting.RequireOneLineDocComment.MultiLineDocComment"/>
+        <exclude name="SlevomatCodingStandard.PHP.DisallowReference.DisallowedPassingByReference"/>
     </rule>
 </ruleset>
