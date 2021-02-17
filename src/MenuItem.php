@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControl;
 
+use Contributte\MenuControl\Config\MenuVisibility;
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Security\IAuthorizator;
 use Contributte\MenuControl\Traits\MenuItemData;
@@ -55,6 +56,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		parent::__construct($menu, $linkGenerator, $translator, $authorizator, $menuItemFactory);
 
 		$this->title = $title;
+		$this->visibility = new MenuVisibility;
 	}
 
 	public function isActive(): bool
