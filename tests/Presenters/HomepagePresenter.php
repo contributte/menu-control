@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControlTests\Presenters;
 
-use Contributte\MenuControl\UI\IMenuComponentFactory;
 use Contributte\MenuControl\UI\MenuComponent;
+use Contributte\MenuControl\UI\MenuComponentFactory;
 use Nette\Application\UI\Presenter;
 
 final class HomepagePresenter extends Presenter
 {
 
 	/**
-	 * @var IMenuComponentFactory
+	 * @var MenuComponentFactory
 	 */
 	private $menuFactory;
 
-	public function injectMenuComponentFactory(IMenuComponentFactory $menuFactory): void
+	public function injectMenuComponentFactory(MenuComponentFactory $menuFactory): void
 	{
 		$this->menuFactory = $menuFactory;
 	}

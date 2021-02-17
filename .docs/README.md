@@ -64,28 +64,28 @@ menu:
 
 namespace App;
 
-use Contributte\MenuControl\UI\IMenuComponentFactory;
+use Contributte\MenuControl\UI\MenuComponentFactory;
 use Contributte\MenuControl\UI\MenuComponent;
 use Nette\Application\UI\Presenter;
 
 final class BasePresenter extends Presenter
 {
-	
-	
+
+	/**
+	 * @var MenuComponentFactory
+	 */
 	private $menuFactory;
-	
-	
-	public function injectBasePresenter(IMenuComponentFactory $menuFactory)
+
+	public function injectBasePresenter(MenuComponentFactory $menuFactory)
 	{
 		$this->menuFactory = $menuFactory;
 	}
-	
-	
+
 	protected function createComponentMenu(): MenuComponent
 	{
 		return $this->menuFactory->create('front');
 	}
-	
+
 }
 ```
 

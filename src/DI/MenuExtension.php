@@ -11,8 +11,7 @@ use Contributte\MenuControl\Menu;
 use Contributte\MenuControl\MenuContainer;
 use Contributte\MenuControl\MenuItemFactory;
 use Contributte\MenuControl\Security\OptimisticAuthorizator;
-use Contributte\MenuControl\UI\IMenuComponentFactory;
-use Contributte\MenuControl\UI\MenuComponent;
+use Contributte\MenuControl\UI\MenuComponentFactory;
 use Contributte\MenuControl\UI\TemplateConfig;
 use Nette\DI\CompilerExtension;
 use Nette\DI\ContainerBuilder;
@@ -66,10 +65,8 @@ final class MenuExtension extends CompilerExtension
 		$container = $builder->addDefinition($this->prefix('container'))
 			->setType(MenuContainer::class);
 
-		$builder->addFactoryDefinition($this->prefix('component.menu'))
-			->setImplement(IMenuComponentFactory::class)
-			->getResultDefinition()
-				->setType(MenuComponent::class);
+		$builder->addDefinition($this->prefix('component.factory'))
+			->setType(MenuComponentFactory::class);
 
 		foreach ($config as $menuName => $menu) {
 			$container->addSetup('addMenu', [

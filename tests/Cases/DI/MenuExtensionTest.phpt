@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Contributte\MenuControlTests\Cases\DI;
 
 use Contributte\MenuControl\MenuContainer;
-use Contributte\MenuControl\UI\IMenuComponentFactory;
 use Contributte\MenuControl\UI\MenuComponent;
+use Contributte\MenuControl\UI\MenuComponentFactory;
 use Contributte\MenuControlTests\AbstractTestCase;
 use Contributte\MenuControlTests\Presenters\HomepagePresenter;
 use Nette\Application\Request;
@@ -28,8 +28,8 @@ final class MenuExtensionTest extends AbstractTestCase
 		$dic = $this->createContainer();
 
 		Assert::type(MenuContainer::class, $dic->getService('menu.container'));
-		Assert::type(IMenuComponentFactory::class, $dic->getService('menu.component.menu'));
-		Assert::type(MenuComponent::class, $dic->getService('menu.component.menu')->create('default'));
+		Assert::type(MenuComponentFactory::class, $dic->getService('menu.component.factory'));
+		Assert::type(MenuComponent::class, $dic->getService('menu.component.factory')->create('default'));
 	}
 
 	public function testRender(): void

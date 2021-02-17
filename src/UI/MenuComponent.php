@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Contributte\MenuControl\UI;
 
 use Contributte\MenuControl\IMenu;
-use Contributte\MenuControl\MenuContainer;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Presenter;
 
@@ -13,42 +12,32 @@ final class MenuComponent extends Control
 {
 
 	/**
-	 * @var MenuContainer
+	 * @var IMenu
 	 */
-	private $container;
+	private $menu;
 
-	/**
-	 * @var string
-	 */
-	private $menuName;
-
-	public function __construct(MenuContainer $container, string $name)
+	public function __construct(IMenu $menu)
 	{
-		$this->container = $container;
-		$this->menuName = $name;
+		$this->menu = $menu;
 
 		$this->monitor(Presenter::class, function (Presenter $presenter): void {
-			$menu = $this->container->getMenu($this->menuName);
-			$menu->setActivePresenter($presenter);
+			$this->menu->setActivePresenter($presenter);
 		});
 	}
 
 	public function render(): void
 	{
-		$menu = $this->container->getMenu($this->menuName);
-		$this->renderType($menu, $menu->getMenuTemplate());
+		$this->renderType($this->menu, $this->menu->getMenuTemplate());
 	}
 
 	public function renderBreadcrumbs(): void
 	{
-		$menu = $this->container->getMenu($this->menuName);
-		$this->renderType($menu, $menu->getBreadcrumbsTemplate());
+		$this->renderType($this->menu, $this->menu->getBreadcrumbsTemplate());
 	}
 
 	public function renderSitemap(): void
 	{
-		$menu = $this->container->getMenu($this->menuName);
-		$this->renderType($menu, $menu->getSitemapTemplate());
+		$this->renderType($this->menu, $this->menu->getSitemapTemplate());
 	}
 
 	public function renderType(IMenu $menu, string $menuTemplate): void
