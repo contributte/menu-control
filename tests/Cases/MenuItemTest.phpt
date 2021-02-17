@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControlTests\Cases;
 
+use Contributte\MenuControl\Config\MenuItemAction;
 use Contributte\MenuControl\MenuItem;
 use Contributte\MenuControlTests\AbstractTestCase;
 use Mockery\MockInterface;
@@ -87,7 +88,7 @@ final class MenuItemTest extends AbstractTestCase
 		});
 
 		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
-		$item->setAction('Home:');
+		$item->setAction(MenuItemAction::fromString('Home:'));
 
 		Assert::true($item->isActive());
 	}
@@ -116,7 +117,7 @@ final class MenuItemTest extends AbstractTestCase
 		});
 
 		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
-		$item->setAction('Home:');
+		$item->setAction(MenuItemAction::fromString('Home:'));
 		$item->setInclude([
 			'^Home\:[a-zA-Z\:]+$',
 		]);
@@ -159,12 +160,15 @@ final class MenuItemTest extends AbstractTestCase
 
 		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
-		Assert::null($item->getAction());
+		Assert::null($item->getActionTarget());
 		Assert::equal([], $item->getActionParameters());
 
-		$item->setAction('Home:', ['back' => 'login']);
+		$item->setAction(MenuItemAction::fromArray([
+			'target' => 'Home:',
+			'parameters' => ['back' => 'login'],
+		]));
 
-		Assert::same('Home:', $item->getAction());
+		Assert::same('Home:', $item->getActionTarget());
 		Assert::equal(['back' => 'login'], $item->getActionParameters());
 	}
 

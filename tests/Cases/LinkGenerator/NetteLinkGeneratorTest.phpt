@@ -22,7 +22,7 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 		});
 
 		$item = $this->createMockMenuItem(function (MockInterface $item): void {
-			$item->shouldReceive('getAction')->andReturn('Home:default');
+			$item->shouldReceive('getActionTarget')->andReturn('Home:default');
 			$item->shouldReceive('getActionParameters')->andReturn([]);
 		});
 
@@ -47,7 +47,7 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 		});
 
 		$item = $this->createMockMenuItem(function (MockInterface $item): void {
-			$item->shouldReceive('getAction')->andReturn('Home:default');
+			$item->shouldReceive('getActionTarget')->andReturn('Home:default');
 			$item->shouldReceive('getActionParameters')->andReturn([]);
 		});
 
@@ -64,7 +64,7 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 		});
 
 		$item = $this->createMockMenuItem(function (MockInterface $item): void {
-			$item->shouldReceive('getAction')->andReturn(null);
+			$item->shouldReceive('getActionTarget')->andReturn(null);
 			$item->shouldReceive('getLink')->andReturn('/');
 		});
 
@@ -79,7 +79,7 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 		$netteLinkGenerator = $this->createMockNetteLinkGenerator();
 
 		$item = $this->createMockMenuItem(function (MockInterface $item): void {
-			$item->shouldReceive('getAction')->andReturn(null);
+			$item->shouldReceive('getActionTarget')->andReturn(null);
 			$item->shouldReceive('getLink')->andReturn(null);
 		});
 

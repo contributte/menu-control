@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControl\Loaders;
 
+use Contributte\MenuControl\Config\MenuItemAction;
 use Contributte\MenuControl\IMenu;
 use Contributte\MenuControl\IMenuItem;
 use Contributte\MenuControl\IMenuItemsContainer;
@@ -52,9 +53,9 @@ final class DefaultMenuLoader implements IMenuLoader
 
 			if ($config->action !== null) {
 				if (is_array($config->action)) {
-					$item->setAction($config->action['target'], $config->action['parameters']);
+					$item->setAction(MenuItemAction::fromArray($config->action));
 				} else {
-					$item->setAction($config->action);
+					$item->setAction(MenuItemAction::fromString($config->action));
 				}
 			}
 

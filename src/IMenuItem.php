@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControl;
 
+use Contributte\MenuControl\Config\MenuItemAction;
+
 interface IMenuItem extends IMenuItemsContainer
 {
 
@@ -11,17 +13,14 @@ interface IMenuItem extends IMenuItemsContainer
 
 	public function isAllowed(): bool;
 
-	public function getAction(): ?string;
+	public function getActionTarget(): ?string;
 
 	/**
 	 * @return array<string, string>
 	 */
 	public function getActionParameters(): array;
 
-	/**
-	 * @param array<string, string> $parameters
-	 */
-	public function setAction(string $target, array $parameters = []): void;
+	public function setAction(MenuItemAction $action): void;
 
 	public function getLink(): ?string;
 

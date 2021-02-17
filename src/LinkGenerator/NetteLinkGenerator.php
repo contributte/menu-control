@@ -29,7 +29,7 @@ final class NetteLinkGenerator implements ILinkGenerator
 
 	public function link(IMenuItem $item): string
 	{
-		$action = $item->getAction();
+		$action = $item->getActionTarget();
 		if ($action !== null) {
 			return $this->linkGenerator->link($action, $item->getActionParameters());
 		}

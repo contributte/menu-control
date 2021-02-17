@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Contributte\MenuControl;
 
+use Contributte\MenuControl\Config\MenuItemAction;
 use Contributte\MenuControl\Config\MenuVisibility;
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Security\IAuthorizator;
@@ -23,12 +24,9 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	private $title;
 
 	/**
-	 * @var array{'target': ?string, "parameters": array}
+	 * @var MenuItemAction|null
 	 */
-	private $action = [
-		'target' => null,
-		'parameters' => [],
-	];
+	private $action;
 
 	/**
 	 * @var string|null
@@ -69,7 +67,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 			return $this->active = false;
 		}
 
-		if ($this->getAction() && $this->menu->getActivePresenter()) {
+		if ($this->getActionTarget() && $this->menu->getActivePresenter()) {
 			$presenter = $this->menu->getActivePresenter();
 			if ($presenter->link('//this') === $this->linkGenerator->link($this)) {
 				return $this->active = true;
@@ -99,9 +97,9 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		return $this->authorizator->isMenuItemAllowed($this);
 	}
 
-	public function getAction(): ?string
+	public function getActionTarget(): ?string
 	{
-		return $this->action['target'];
+		return $this->action !== null ? $this->action->target : null;
 	}
 
 	/**
@@ -109,16 +107,12 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	 */
 	public function getActionParameters(): array
 	{
-		return $this->action['parameters'];
+		return $this->action !== null ? $this->action->parameters : [];
 	}
 
-	/**
-	 * @param array<string, string> $parameters
-	 */
-	public function setAction(string $target, array $parameters = []): void
+	public function setAction(MenuItemAction $action): void
 	{
-		$this->action['target'] = $target;
-		$this->action['parameters'] = $parameters;
+		$this->action = $action;
 	}
 
 	public function getLink(): ?string
