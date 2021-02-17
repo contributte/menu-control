@@ -23,11 +23,10 @@ final class MenuItemFactoryTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$factory = new MenuItemFactory;
-		$item = $factory->create($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = $factory->create($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::type(IMenuItem::class, $item);
 	}

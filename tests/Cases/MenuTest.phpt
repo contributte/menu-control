@@ -25,7 +25,6 @@ final class MenuTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 		$templateConfig = $this->createMockTemplateConfig();
 
@@ -37,7 +36,6 @@ final class MenuTest extends AbstractTestCase
 			$linkGenerator,
 			$translator,
 			$authorizator,
-			$request,
 			$itemFactory,
 			$loader,
 			'menu',
@@ -51,7 +49,6 @@ final class MenuTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 		$loader = $this->createMockMenuLoader();
 		$templateConfig = $this->createMockTemplateConfig();
@@ -60,7 +57,6 @@ final class MenuTest extends AbstractTestCase
 			$linkGenerator,
 			$translator,
 			$authorizator,
-			$request,
 			$itemFactory,
 			$loader,
 			'menu',
@@ -75,7 +71,6 @@ final class MenuTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 		$loader = $this->createMockMenuLoader();
 		$templateConfig = $this->createMockTemplateConfig();
@@ -84,7 +79,6 @@ final class MenuTest extends AbstractTestCase
 			$linkGenerator,
 			$translator,
 			$authorizator,
-			$request,
 			$itemFactory,
 			$loader,
 			'menu',
@@ -101,7 +95,6 @@ final class MenuTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$loader = $this->createMockMenuLoader();
 		$templateConfig = $this->createMockTemplateConfig();
 
@@ -131,7 +124,6 @@ final class MenuTest extends AbstractTestCase
 			$linkGenerator,
 			$translator,
 			$authorizator,
-			$request,
 			$itemFactory,
 			$loader,
 			'menu',

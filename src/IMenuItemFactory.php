@@ -6,7 +6,6 @@ namespace Contributte\MenuControl;
 
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Security\IAuthorizator;
-use Nette\Http\IRequest;
 use Nette\Localization\Translator;
 
 interface IMenuItemFactory
@@ -17,7 +16,6 @@ interface IMenuItemFactory
 		ILinkGenerator $linkGenerator,
 		Translator $translator,
 		IAuthorizator $authorizator,
-		IRequest $httpRequest,
 		IMenuItemFactory $menuItemFactory,
 		string $title
 	): IMenuItem;

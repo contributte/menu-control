@@ -19,7 +19,6 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$item = $this->createMockMenuItem();
 
 		$itemFactory = $this->createMockMenuItemFactory(function (MockInterface $itemFactory) use ($item): void {
@@ -27,7 +26,7 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 		});
 
 		$container = $this->createPartialMockAbstractMenuItemsContainer(null, [
-			$menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory,
+			$menu, $linkGenerator, $translator, $authorizator, $itemFactory,
 		]);
 
 		Assert::equal([], $container->getItems());
@@ -45,7 +44,6 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$item = $this->createMockMenuItem();
@@ -54,18 +52,17 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 			MockInterface $container
 		) use ($item): void {
 			$container->shouldReceive('getItems')->andReturn(['item' => $item]);
-		}, [$menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory]);
+		}, [$menu, $linkGenerator, $translator, $authorizator, $itemFactory]);
 
 		Assert::same($item, $container->getItem('item'));
 	}
 
-	public function testGetItem(): void
+	public function testGetItem_path(): void
 	{
 		$menu = $this->createMockMenu();
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$itemC = $this->createMockMenuItem();
@@ -82,7 +79,7 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 			MockInterface $container
 		) use ($itemA): void {
 			$container->shouldReceive('getItems')->andReturn(['a' => $itemA]);
-		}, [$menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory]);
+		}, [$menu, $linkGenerator, $translator, $authorizator, $itemFactory]);
 
 		Assert::same($itemC, $container->getItem('a-b-c'));
 	}
@@ -93,7 +90,6 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$itemA = $this->createMockMenuItem(function (MockInterface $itemA): void {
@@ -117,7 +113,7 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 				'b' => $itemB,
 				'c' => $itemC,
 			]);
-		}, [$menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory]);
+		}, [$menu, $linkGenerator, $translator, $authorizator, $itemFactory]);
 
 		Assert::same($itemC, $container->findActiveItem());
 	}
@@ -128,7 +124,6 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$itemA = $this->createMockMenuItem(function (MockInterface $itemA): void {
@@ -150,7 +145,7 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 				'a' => $itemA,
 				'b' => $itemB,
 			]);
-		}, [$menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory]);
+		}, [$menu, $linkGenerator, $translator, $authorizator, $itemFactory]);
 
 		Assert::true($container->hasVisibleItemsOnMenu());
 		Assert::equal(['b' => $itemB], $container->getVisibleItemsOnMenu());

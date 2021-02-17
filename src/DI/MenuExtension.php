@@ -16,7 +16,6 @@ use Contributte\MenuControl\UI\TemplateConfig;
 use Nette\DI\CompilerExtension;
 use Nette\DI\ContainerBuilder;
 use Nette\DI\Definitions\ServiceDefinition;
-use Nette\Http;
 use Nette\Localization\Translator;
 use Nette\Schema\Expect;
 use Nette\Schema\Schema;
@@ -125,7 +124,6 @@ final class MenuExtension extends CompilerExtension
 				$linkGenerator,
 				$translator,
 				$authorizator,
-				'@'. Http\IRequest::class,
 				$itemFactory,
 				$loader,
 				$menuName,

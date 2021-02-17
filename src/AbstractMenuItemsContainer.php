@@ -6,7 +6,6 @@ namespace Contributte\MenuControl;
 
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Security\IAuthorizator;
-use Nette\Http\IRequest;
 use Nette\Localization\Translator;
 
 abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
@@ -33,11 +32,6 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	protected $authorizator;
 
 	/**
-	 * @var IRequest
-	 */
-	protected $httpRequest;
-
-	/**
 	 * @var IMenuItemFactory
 	 */
 	protected $menuItemFactory;
@@ -52,14 +46,12 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 		ILinkGenerator $linkGenerator,
 		Translator $translator,
 		IAuthorizator $authorizator,
-		IRequest $httpRequest,
 		IMenuItemFactory $menuItemFactory
 	) {
 		$this->menu = $menu;
 		$this->linkGenerator = $linkGenerator;
 		$this->translator = $translator;
 		$this->authorizator = $authorizator;
-		$this->httpRequest = $httpRequest;
 		$this->menuItemFactory = $menuItemFactory;
 	}
 
@@ -100,7 +92,6 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 			$this->linkGenerator,
 			$this->translator,
 			$this->authorizator,
-			$this->httpRequest,
 			$this->menuItemFactory,
 			$title
 		);

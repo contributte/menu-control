@@ -9,7 +9,6 @@ use Contributte\MenuControl\Loaders\IMenuLoader;
 use Contributte\MenuControl\Security\IAuthorizator;
 use Contributte\MenuControl\UI\TemplateConfig;
 use Nette\Application\UI\Presenter;
-use Nette\Http\IRequest;
 use Nette\Localization\Translator;
 
 final class Menu extends AbstractMenuItemsContainer implements IMenu
@@ -39,13 +38,12 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 		ILinkGenerator $linkGenerator,
 		Translator $translator,
 		IAuthorizator $authorizator,
-		IRequest $httpRequest,
 		IMenuItemFactory $menuItemFactory,
 		IMenuLoader $loader,
 		string $name,
 		TemplateConfig $templateConfig
 	) {
-		parent::__construct($this, $linkGenerator, $translator, $authorizator, $httpRequest, $menuItemFactory);
+		parent::__construct($this, $linkGenerator, $translator, $authorizator, $menuItemFactory);
 
 		$this->loader = $loader;
 		$this->name = $name;

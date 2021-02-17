@@ -6,7 +6,6 @@ namespace Contributte\MenuControl;
 
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Security\IAuthorizator;
-use Nette\Http\IRequest;
 use Nette\Localization\Translator;
 
 final class MenuItemFactory implements IMenuItemFactory
@@ -17,11 +16,10 @@ final class MenuItemFactory implements IMenuItemFactory
 		ILinkGenerator $linkGenerator,
 		Translator $translator,
 		IAuthorizator $authorizator,
-		IRequest $httpRequest,
 		IMenuItemFactory $menuItemFactory,
 		string $title
 	): IMenuItem {
-		return new MenuItem($menu, $linkGenerator, $translator, $authorizator, $httpRequest, $menuItemFactory, $title);
+		return new MenuItem($menu, $linkGenerator, $translator, $authorizator, $menuItemFactory, $title);
 	}
 
 }

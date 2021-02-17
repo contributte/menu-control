@@ -21,7 +21,6 @@ final class MenuItemTest extends AbstractTestCase
 	{
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$menu = $this->createMockMenu(function (MockInterface $menu): void {
@@ -37,7 +36,7 @@ final class MenuItemTest extends AbstractTestCase
 			$authorizator->shouldReceive('isMenuItemAllowed')->andReturn(true);
 		});
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::true($item->isAllowed());
 	}
@@ -46,7 +45,6 @@ final class MenuItemTest extends AbstractTestCase
 	{
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$menu = $this->createMockMenu(function (MockInterface $menu): void {
@@ -62,7 +60,7 @@ final class MenuItemTest extends AbstractTestCase
 			$authorizator->shouldReceive('isMenuItemAllowed')->andReturn(false);
 		});
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::false($item->isActive());
 	}
@@ -70,7 +68,6 @@ final class MenuItemTest extends AbstractTestCase
 	public function testIsActive_action_current(): void
 	{
 		$translator = $this->createMockTranslator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$linkGenerator = $this->createMockLinkGenerator(function (MockInterface $linkGenerator): void {
@@ -89,7 +86,7 @@ final class MenuItemTest extends AbstractTestCase
 			$authorizator->shouldReceive('isMenuItemAllowed')->andReturn(true);
 		});
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 		$item->setAction('Home:');
 
 		Assert::true($item->isActive());
@@ -98,7 +95,6 @@ final class MenuItemTest extends AbstractTestCase
 	public function testIsActive_include(): void
 	{
 		$translator = $this->createMockTranslator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$linkGenerator = $this->createMockLinkGenerator(function (MockInterface $linkGenerator): void {
@@ -119,7 +115,7 @@ final class MenuItemTest extends AbstractTestCase
 			$authorizator->shouldReceive('isMenuItemAllowed')->andReturn(true);
 		});
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 		$item->setAction('Home:');
 		$item->setInclude([
 			'^Home\:[a-zA-Z\:]+$',
@@ -133,7 +129,6 @@ final class MenuItemTest extends AbstractTestCase
 		$menu = $this->createMockMenu();
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
-		$request = $this->createMockHttpRequest();
 
 		$itemFactory = $this->createMockMenuItemFactory(function (MockInterface $itemFactory): void {
 			$itemFactory->shouldReceive('create')->andReturn(
@@ -148,7 +143,7 @@ final class MenuItemTest extends AbstractTestCase
 			$authorizator->shouldReceive('isMenuItemAllowed')->andReturn(true);
 		});
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 		$item->addItem('child', 'Child');
 
 		Assert::true($item->isActive());
@@ -160,10 +155,9 @@ final class MenuItemTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::null($item->getAction());
 		Assert::equal([], $item->getActionParameters());
@@ -180,10 +174,9 @@ final class MenuItemTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::null($item->getLink());
 
@@ -197,14 +190,13 @@ final class MenuItemTest extends AbstractTestCase
 		$menu = $this->createMockMenu();
 		$linkGenerator = $this->createMockLinkGenerator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$translator = $this->createMockTranslator(function (MockInterface $translator): void {
 			$translator->shouldReceive('translate')->andReturn('ITEM');
 		});
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::same('ITEM', $item->getRealTitle());
 	}
@@ -214,14 +206,13 @@ final class MenuItemTest extends AbstractTestCase
 		$menu = $this->createMockMenu();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$linkGenerator = $this->createMockLinkGenerator(function (MockInterface $linkGenerator): void {
 			$linkGenerator->shouldReceive('link')->andReturn('#');
 		});
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::same('#', $item->getRealLink());
 	}
@@ -234,20 +225,10 @@ final class MenuItemTest extends AbstractTestCase
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$linkGenerator = $this->createMockLinkGenerator(function (MockInterface $linkGenerator): void {
-			$linkGenerator->shouldReceive('link')->andReturn('/');
+			$linkGenerator->shouldReceive('absoluteLink')->andReturn('https://localhost/');
 		});
 
-		$request = $this->createMockHttpRequest(function (MockInterface $request): void {
-			$request->shouldReceive('getUrl')->andReturn(
-				$this->createMockHttpUrl(function (MockInterface $url): void {
-					$url->shouldReceive('getScheme')->andReturn('https');
-					$url->shouldReceive('getHost')->andReturn('localhost');
-					$url->shouldReceive('getPort')->andReturn(80);
-				})
-			);
-		});
-
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::same('https://localhost/', $item->getRealAbsoluteLink());
 	}
@@ -260,20 +241,10 @@ final class MenuItemTest extends AbstractTestCase
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$linkGenerator = $this->createMockLinkGenerator(function (MockInterface $linkGenerator): void {
-			$linkGenerator->shouldReceive('link')->andReturn('/');
+			$linkGenerator->shouldReceive('absoluteLink')->andReturn('https://localhost:8080/');
 		});
 
-		$request = $this->createMockHttpRequest(function (MockInterface $request): void {
-			$request->shouldReceive('getUrl')->andReturn(
-				$this->createMockHttpUrl(function (MockInterface $url): void {
-					$url->shouldReceive('getScheme')->andReturn('https');
-					$url->shouldReceive('getHost')->andReturn('localhost');
-					$url->shouldReceive('getPort')->andReturn(8080);
-				})
-			);
-		});
-
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::same('https://localhost:8080/', $item->getRealAbsoluteLink());
 	}
@@ -284,10 +255,9 @@ final class MenuItemTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 		$item->setData(['test' => 'data']);
 
 		Assert::equal('data', $item->getData('test'));
@@ -299,10 +269,9 @@ final class MenuItemTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::equal('default', $item->getData('test', 'default'));
 	}
@@ -313,10 +282,9 @@ final class MenuItemTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 		$item->addData('test', 'data');
 
 		Assert::true($item->hasData('test'));
@@ -329,10 +297,9 @@ final class MenuItemTest extends AbstractTestCase
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
 		$authorizator = $this->createMockAuthorizator();
-		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 
-		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $request, $itemFactory, 'item');
+		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::true($item->isVisibleOnMenu());
 		$item->setMenuVisibility(false);

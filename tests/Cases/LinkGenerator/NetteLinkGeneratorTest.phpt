@@ -16,22 +16,49 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 
 	public function testLink_action(): void
 	{
-		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function(MockInterface $netteLinkGenerator): void {
+		$request = $this->createMockHttpRequest();
+		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function (MockInterface $netteLinkGenerator): void {
 			$netteLinkGenerator->shouldReceive('link')->andReturn('/');
 		});
 
 		$item = $this->createMockMenuItem(function (MockInterface $item): void {
-			$item->shouldReceive('getAction')->andReturn(':Home:default');
+			$item->shouldReceive('getAction')->andReturn('Home:default');
 			$item->shouldReceive('getActionParameters')->andReturn([]);
 		});
 
-		$linkGenerator = new NetteLinkGenerator($netteLinkGenerator);
+		$linkGenerator = new NetteLinkGenerator($request, $netteLinkGenerator);
 
 		Assert::same('/', $linkGenerator->link($item));
 	}
 
+	public function testAbsoluteLink_action(): void
+	{
+		$request = $this->createMockHttpRequest(function (MockInterface $request): void {
+			$request->shouldReceive('getUrl')->andReturn(
+				$this->createMockHttpUrl(function (MockInterface $url): void {
+					$url->shouldReceive('getScheme')->andReturn('https');
+					$url->shouldReceive('getHost')->andReturn('localhost');
+					$url->shouldReceive('getPort')->andReturn(80);
+				})
+			);
+		});
+		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function (MockInterface $netteLinkGenerator): void {
+			$netteLinkGenerator->shouldReceive('link')->andReturn('/');
+		});
+
+		$item = $this->createMockMenuItem(function (MockInterface $item): void {
+			$item->shouldReceive('getAction')->andReturn('Home:default');
+			$item->shouldReceive('getActionParameters')->andReturn([]);
+		});
+
+		$linkGenerator = new NetteLinkGenerator($request, $netteLinkGenerator);
+
+		Assert::same('https://localhost/', $linkGenerator->absoluteLink($item));
+	}
+
 	public function testLink_link(): void
 	{
+		$request = $this->createMockHttpRequest();
 		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function (MockInterface $netteLinkGenerator): void {
 			$netteLinkGenerator->shouldReceive('link')->andReturn('/');
 		});
@@ -41,23 +68,22 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 			$item->shouldReceive('getLink')->andReturn('/');
 		});
 
-		$linkGenerator = new NetteLinkGenerator($netteLinkGenerator);
+		$linkGenerator = new NetteLinkGenerator($request, $netteLinkGenerator);
 
 		Assert::same('/', $linkGenerator->link($item));
 	}
 
-	public function testLink(): void
+	public function testLink_empty(): void
 	{
-		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function (MockInterface $netteLinkGenerator): void {
-			$netteLinkGenerator->shouldReceive('link')->andReturn('/');
-		});
+		$request = $this->createMockHttpRequest();
+		$netteLinkGenerator = $this->createMockNetteLinkGenerator();
 
 		$item = $this->createMockMenuItem(function (MockInterface $item): void {
 			$item->shouldReceive('getAction')->andReturn(null);
 			$item->shouldReceive('getLink')->andReturn(null);
 		});
 
-		$linkGenerator = new NetteLinkGenerator($netteLinkGenerator);
+		$linkGenerator = new NetteLinkGenerator($request, $netteLinkGenerator);
 
 		Assert::same('#', $linkGenerator->link($item));
 	}

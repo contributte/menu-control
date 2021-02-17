@@ -11,4 +11,6 @@ interface ILinkGenerator
 
 	public function link(IMenuItem $item): string;
 
+	public function absoluteLink(IMenuItem $item): string;
+
 }

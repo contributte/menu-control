@@ -8,7 +8,6 @@ use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Security\IAuthorizator;
 use Contributte\MenuControl\Traits\MenuItemData;
 use Contributte\MenuControl\Traits\MenuItemVisibility;
-use Nette\Http\IRequest;
 use Nette\Localization\Translator;
 
 final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
@@ -50,11 +49,10 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		ILinkGenerator $linkGenerator,
 		Translator $translator,
 		IAuthorizator $authorizator,
-		IRequest $httpRequest,
 		IMenuItemFactory $menuItemFactory,
 		string $title
 	) {
-		parent::__construct($menu, $linkGenerator, $translator, $authorizator, $httpRequest, $menuItemFactory);
+		parent::__construct($menu, $linkGenerator, $translator, $authorizator, $menuItemFactory);
 
 		$this->title = $title;
 	}
@@ -143,14 +141,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 
 	public function getRealAbsoluteLink(): string
 	{
-		$url = $this->httpRequest->getUrl();
-		$prefix = $url->getScheme(). '://'. $url->getHost();
-
-		if ($url->getPort() !== 80) {
-			$prefix .= ':'. $url->getPort();
-		}
-
-		return $prefix. $this->getRealLink();
+		return $this->linkGenerator->absoluteLink($this);
 	}
 
 	/**
