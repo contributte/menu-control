@@ -27,6 +27,7 @@ final class MenuTest extends AbstractTestCase
 		$authorizator = $this->createMockAuthorizator();
 		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
+		$templateConfig = $this->createMockTemplateConfig();
 
 		$loader = $this->createMockMenuLoader(function (MockInterface $loader): void {
 			$loader->shouldReceive('load');
@@ -40,9 +41,7 @@ final class MenuTest extends AbstractTestCase
 			$itemFactory,
 			$loader,
 			'menu',
-			'',
-			'',
-			''
+			$templateConfig
 		);
 		$menu->init();
 	}
@@ -55,6 +54,7 @@ final class MenuTest extends AbstractTestCase
 		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 		$loader = $this->createMockMenuLoader();
+		$templateConfig = $this->createMockTemplateConfig();
 
 		$menu = new Menu(
 			$linkGenerator,
@@ -64,9 +64,7 @@ final class MenuTest extends AbstractTestCase
 			$itemFactory,
 			$loader,
 			'menu',
-			'',
-			'',
-			''
+			$templateConfig
 		);
 
 		Assert::same('menu', $menu->getName());
@@ -80,6 +78,7 @@ final class MenuTest extends AbstractTestCase
 		$request = $this->createMockHttpRequest();
 		$itemFactory = $this->createMockMenuItemFactory();
 		$loader = $this->createMockMenuLoader();
+		$templateConfig = $this->createMockTemplateConfig();
 
 		$menu = new Menu(
 			$linkGenerator,
@@ -89,9 +88,7 @@ final class MenuTest extends AbstractTestCase
 			$itemFactory,
 			$loader,
 			'menu',
-			'menu-template.latte',
-			'breadcrumbs-template.latte',
-			'sitemap-template.latte'
+			$templateConfig
 		);
 
 		Assert::same('menu-template.latte', $menu->getMenuTemplate());
@@ -106,6 +103,7 @@ final class MenuTest extends AbstractTestCase
 		$authorizator = $this->createMockAuthorizator();
 		$request = $this->createMockHttpRequest();
 		$loader = $this->createMockMenuLoader();
+		$templateConfig = $this->createMockTemplateConfig();
 
 		$itemC = $this->createMockMenuItem(function (MockInterface $itemC): void {
 			$itemC->shouldReceive('isAllowed')->andReturn(true);
@@ -137,9 +135,7 @@ final class MenuTest extends AbstractTestCase
 			$itemFactory,
 			$loader,
 			'menu',
-			'',
-			'',
-			''
+			$templateConfig
 		);
 		$menu->addItem('a','ItemA');
 

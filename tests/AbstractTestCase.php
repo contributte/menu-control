@@ -11,6 +11,7 @@ use Contributte\MenuControl\IMenuItemFactory;
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Loaders\IMenuLoader;
 use Contributte\MenuControl\Security\IAuthorizator;
+use Contributte\MenuControl\UI\TemplateConfig;
 use Nette\Application\Application;
 use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Presenter;
@@ -57,6 +58,16 @@ abstract class AbstractTestCase extends Tester\TestCase
 	protected function createMockLinkGenerator(?callable $fn = null): ILinkGenerator
 	{
 		return $this->createMock(ILinkGenerator::class, $fn);
+	}
+
+	protected function createMockTemplateConfig(): TemplateConfig
+	{
+		$config = new TemplateConfig;
+		$config->menu = 'menu-template.latte';
+		$config->breadcrumbs = 'breadcrumbs-template.latte';
+		$config->sitemap = 'sitemap-template.latte';
+
+		return $config;
 	}
 
 	protected function createMockNetteLinkGenerator(?callable $fn = null): LinkGenerator

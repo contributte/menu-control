@@ -13,6 +13,7 @@ use Contributte\MenuControl\MenuItemFactory;
 use Contributte\MenuControl\Security\OptimisticAuthorizator;
 use Contributte\MenuControl\UI\IMenuComponentFactory;
 use Contributte\MenuControl\UI\MenuComponent;
+use Contributte\MenuControl\UI\TemplateConfig;
 use Nette\DI\CompilerExtension;
 use Nette\DI\ContainerBuilder;
 use Nette\DI\Definitions\ServiceDefinition;
@@ -51,11 +52,7 @@ final class MenuExtension extends CompilerExtension
 			'translator' => Expect::type('string|bool')->default(ReturnTranslator::class),
 			'loader' => Expect::string(ArrayMenuLoader::class),
 			'linkGenerator' => Expect::string(NetteLinkGenerator::class),
-			'templates' => Expect::structure([
-				'menu' => Expect::string(__DIR__ . '/../UI/templates/menu.latte'),
-				'breadcrumbs' => Expect::string(__DIR__ . '/../UI/templates/breadcrumbs.latte'),
-				'sitemap' => Expect::string(__DIR__ . '/../UI/templates/sitemap.latte'),
-			]),
+			'templates' => Expect::from(new TemplateConfig),
 			'items' => Expect::array()->required(),
 		]));
 	}
@@ -135,9 +132,7 @@ final class MenuExtension extends CompilerExtension
 				$itemFactory,
 				$loader,
 				$menuName,
-				$config->templates->menu,
-				$config->templates->breadcrumbs,
-				$config->templates->sitemap,
+				$config->templates,
 			])
 			->addSetup('init')
 			->setAutowired(false);

@@ -7,6 +7,7 @@ namespace Contributte\MenuControl;
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Loaders\IMenuLoader;
 use Contributte\MenuControl\Security\IAuthorizator;
+use Contributte\MenuControl\UI\TemplateConfig;
 use Nette\Application\UI\Presenter;
 use Nette\Http\IRequest;
 use Nette\Localization\ITranslator;
@@ -25,13 +26,9 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 	private $name;
 
 	/**
-	 * @var array{'menu': ?string, 'breadcrumbs': ?string, 'sitemap': ?string}
+	 * @var TemplateConfig
 	 */
-	private $templates = [
-		'menu' => null,
-		'breadcrumbs' => null,
-		'sitemap' => null,
-	];
+	private $templateConfig;
 
 	/**
 	 * @var Presenter
@@ -46,17 +43,13 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 		IMenuItemFactory $menuItemFactory,
 		IMenuLoader $loader,
 		string $name,
-		string $menuTemplate,
-		string $breadcrumbsTemplate,
-		string $sitemapTemplate
+		TemplateConfig $templateConfig
 	) {
 		parent::__construct($this, $linkGenerator, $translator, $authorizator, $httpRequest, $menuItemFactory);
 
 		$this->loader = $loader;
 		$this->name = $name;
-		$this->templates['menu'] = $menuTemplate;
-		$this->templates['breadcrumbs'] = $breadcrumbsTemplate;
-		$this->templates['sitemap'] = $sitemapTemplate;
+		$this->templateConfig = $templateConfig;
 	}
 
 	public function init(): void
@@ -71,17 +64,17 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 
 	public function getMenuTemplate(): string
 	{
-		return $this->templates['menu'];
+		return $this->templateConfig->menu;
 	}
 
 	public function getBreadcrumbsTemplate(): string
 	{
-		return $this->templates['breadcrumbs'];
+		return $this->templateConfig->breadcrumbs;
 	}
 
 	public function getSitemapTemplate(): string
 	{
-		return $this->templates['sitemap'];
+		return $this->templateConfig->sitemap;
 	}
 
 	/**
