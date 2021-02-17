@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\Localization;
+namespace Contributte\MenuControlTests\Cases\Localization;
 
 use Contributte\MenuControl\Localization\ReturnTranslator;
 use Contributte\MenuControlTests\AbstractTestCase;

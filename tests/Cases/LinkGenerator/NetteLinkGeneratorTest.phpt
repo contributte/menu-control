@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\LinkGenerator;
+namespace Contributte\MenuControlTests\Cases\LinkGenerator;
 
 use Contributte\MenuControl\LinkGenerator\NetteLinkGenerator;
 use Contributte\MenuControlTests\AbstractTestCase;

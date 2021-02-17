@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\Security;
+namespace Contributte\MenuControlTests\Cases\Security;
 
 use Contributte\MenuControl\Security\OptimisticAuthorizator;
 use Contributte\MenuControlTests\AbstractTestCase;

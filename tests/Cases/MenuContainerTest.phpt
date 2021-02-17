@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests;
+namespace Contributte\MenuControlTests\Cases;
 
 use Contributte\MenuControl\MenuContainer;
+use Contributte\MenuControlTests\AbstractTestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
 

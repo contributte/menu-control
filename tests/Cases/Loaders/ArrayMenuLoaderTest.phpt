@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Contributte\MenuControlTests\Loaders;
+namespace Contributte\MenuControlTests\Cases\Loaders;
 
 use Contributte\MenuControl\Loaders\ArrayMenuLoader;
 use Contributte\MenuControlTests\AbstractTestCase;
