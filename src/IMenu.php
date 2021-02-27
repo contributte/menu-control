@@ -24,6 +24,6 @@ interface IMenu extends IMenuItemsContainer
 
 	public function getActivePresenter(): ?Presenter;
 
-	public function setActivePresenter(?Presenter $link): void;
+	public function setActivePresenter(Presenter $link): void;
 
 }

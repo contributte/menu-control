@@ -101,7 +101,7 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 		return $this->activePresenter;
 	}
 
-	public function setActivePresenter(?Presenter $presenter): void
+	public function setActivePresenter(Presenter $presenter): void
 	{
 		$this->activePresenter = $presenter;
 	}
