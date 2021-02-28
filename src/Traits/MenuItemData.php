@@ -12,26 +12,12 @@ trait MenuItemData
 	 */
 	private $data = [];
 
-	public function hasData(string $name): bool
-	{
-		return array_key_exists($name, $this->data);
-	}
-
 	/**
-	 * @param ?string $default
-	 * @return array<string, string>|string|null
+	 * @return array<string, string>
 	 */
-	public function getData(?string $name = null, $default = null)
+	public function getData()
 	{
-		if ($name === null) {
-			return $this->data;
-		}
-
-		if (!$this->hasData($name)) {
-			return $default;
-		}
-
-		return $this->data[$name];
+		return $this->data;
 	}
 
 	/**
@@ -42,10 +28,21 @@ trait MenuItemData
 		$this->data = $data;
 	}
 
-	/**
-	 * @param string $value
-	 */
-	public function addData(string $name, $value): void
+	public function hasDataItem(string $name): bool
+	{
+		return array_key_exists($name, $this->data);
+	}
+
+	public function getDataItem(string $name, ?string $default = null): ?string
+	{
+		if (!array_key_exists($name, $this->data)) {
+			return $default;
+		}
+
+		return $this->data[$name];
+	}
+
+	public function addDataItem(string $name, string $value): void
 	{
 		$this->data[$name] = $value;
 	}

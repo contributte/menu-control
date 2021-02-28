@@ -264,10 +264,11 @@ final class MenuItemTest extends AbstractTestCase
 		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 		$item->setData(['test' => 'data']);
 
-		Assert::equal('data', $item->getData('test'));
+		Assert::equal(['test' => 'data'], $item->getData());
+		Assert::equal('data', $item->getDataItem('test'));
 	}
 
-	public function testGetData_default(): void
+	public function testGetDataItemDefault(): void
 	{
 		$menu = $this->createMockMenu();
 		$linkGenerator = $this->createMockLinkGenerator();
@@ -277,10 +278,10 @@ final class MenuItemTest extends AbstractTestCase
 
 		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
-		Assert::equal('default', $item->getData('test', 'default'));
+		Assert::equal('default', $item->getDataItem('test', 'default'));
 	}
 
-	public function testAddData(): void
+	public function testAddDataItem(): void
 	{
 		$menu = $this->createMockMenu();
 		$linkGenerator = $this->createMockLinkGenerator();
@@ -289,10 +290,10 @@ final class MenuItemTest extends AbstractTestCase
 		$itemFactory = $this->createMockMenuItemFactory();
 
 		$item = new MenuItem($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
-		$item->addData('test', 'data');
+		$item->addDataItem('test', 'data');
 
-		Assert::true($item->hasData('test'));
-		Assert::equal('data', $item->getData('test'));
+		Assert::true($item->hasDataItem('test'));
+		Assert::equal('data', $item->getDataItem('test'));
 	}
 
 	public function testVisibility(): void

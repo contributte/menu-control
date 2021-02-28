@@ -46,7 +46,7 @@ final class MenuExtension extends CompilerExtension
 			'action' => Expect::type('string|array'),
 			'link' => Expect::string(),
 			'include' => Expect::type('string|array'),
-			'data' => Expect::array(),
+			'data' => Expect::arrayOf('string', 'string'),
 			'items' => Expect::array(),
 			'visibility' => Expect::from(new MenuVisibility),
 		]);
