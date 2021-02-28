@@ -15,7 +15,7 @@ trait MenuItemData
 	/**
 	 * @return array<string, string>
 	 */
-	public function getData()
+	public function getData(): array
 	{
 		return $this->data;
 	}

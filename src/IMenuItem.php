@@ -35,7 +35,7 @@ interface IMenuItem extends IMenuItemsContainer
 	/**
 	 * @return array<string, string>
 	 */
-	public function getData();
+	public function getData(): array;
 
 	/**
 	 * @param array<string, string> $data
