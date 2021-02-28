@@ -25,7 +25,7 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 	private $name;
 
 	/**
-	 * @var \Contributte\MenuControl\Config\TemplatePaths
+	 * @var TemplatePaths
 	 */
 	private $templateConfig;
 

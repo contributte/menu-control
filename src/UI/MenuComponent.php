@@ -27,24 +27,24 @@ final class MenuComponent extends Control
 
 	public function render(): void
 	{
-		$this->renderType($this->menu, $this->menu->getMenuTemplate());
+		$this->renderType($this->menu->getMenuTemplate());
 	}
 
 	public function renderBreadcrumbs(): void
 	{
-		$this->renderType($this->menu, $this->menu->getBreadcrumbsTemplate());
+		$this->renderType($this->menu->getBreadcrumbsTemplate());
 	}
 
 	public function renderSitemap(): void
 	{
-		$this->renderType($this->menu, $this->menu->getSitemapTemplate());
+		$this->renderType($this->menu->getSitemapTemplate());
 	}
 
-	public function renderType(IMenu $menu, string $menuTemplate): void
+	private function renderType(string $menuTemplate): void
 	{
 		$template = $this->getTemplate();
 		$template->setFile($menuTemplate);
-		$template->menu = $menu;
+		$template->menu = $this->menu;
 
 		$template->render();
 	}
