@@ -1,10 +1,16 @@
+{varType Contributte\MenuControl\IMenu $menu}
+{varType Contributte\MenuControl\IMenuItemsContainer $itemsParent}
+{varType Contributte\MenuControl\IMenuItem $item}
 {define menu-branch, $itemsParent}
-	<ul n:if="$itemsParent->hasVisibleItemsOnMenu()">
-		<li n:foreach="$itemsParent->getVisibleItemsOnMenu() as $item">
-			<a href="{$item->getRealLink()}" n:class="$item->isActive() ? active">{$item->getRealTitle()}</a>
-			{include menu-branch, $item}
-		</li>
-	</ul>
+	{if $itemsParent->hasVisibleItemsOnMenu()}
+		<ul>
+			{foreach $itemsParent->getVisibleItemsOnMenu() as $item}
+				<li>
+					<a href="{$item->getRealLink()}" n:class="$item->isActive() ? active">{$item->getRealTitle()}</a>
+					{include menu-branch, $item}
+				</li>
+			{/foreach}
+		</ul>
+	{/if}
 {/define}
-
 {include menu-branch, $menu}
