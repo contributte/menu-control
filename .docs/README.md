@@ -12,15 +12,15 @@
 
 **Install package with composer:**
 
-```
-$ composer require contributte/menu-control
+```bash
+composer require contributte/menu-control
 ```
 
 **Register as nette extension:**
 
 ```yaml
 extensions:
-  menu: Contributte\MenuControl\DI\MenuExtension
+    menu: Contributte\MenuControl\DI\MenuExtension
 
 menu:
 ```
@@ -89,7 +89,7 @@ final class BasePresenter extends Presenter
 }
 ```
 
-```html
+```latte
 {control menu}              <!-- display menu -->
 {control menu:breadcrumbs}  <!-- display breadcrumbs -->
 {control menu:sitemap}      <!-- display sitemap -->
@@ -214,7 +214,7 @@ menu:
             target: _blank
 ```
 
-```html
+```latte
 <a href="{$item->getRealLink()" n:attr="(expand) $link->getData('attrs')">
 	<i class="{$item->getData('icon')"></i> {$link->getRealTitle()}
 </a>
