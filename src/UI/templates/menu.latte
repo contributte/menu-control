@@ -5,7 +5,7 @@
 	{if $itemsParent->hasVisibleItemsOnMenu()}
 		<ul>
 			{foreach $itemsParent->getVisibleItemsOnMenu() as $item}
-				<li>
+				<li n:if="$item->isAllowed()">
 					<a href="{$item->getRealLink()}" n:class="$item->isActive() ? active">{$item->getRealTitle()}</a>
 					{include menu-branch, $item}
 				</li>
