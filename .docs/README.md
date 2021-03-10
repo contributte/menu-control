@@ -18,9 +18,9 @@ composer require contributte/menu-control
 
 **Register as nette extension:**
 
-```yaml
+```neon
 extensions:
-    menu: Contributte\MenuControl\DI\MenuExtension
+	menu: Contributte\MenuControl\DI\MenuExtension
 
 menu:
 ```
@@ -30,33 +30,26 @@ menu:
 You can write menu links as associated multi dimensional arrays. Because of this you are able to create any
 structure of menus and submenus you may need.
 
-```yaml
+```neon
 menu:
+	front:
+		items:
+			Home:
+				action: Front:Home:
+			Books:
+				link: '#'
+				items:
+					All:
+						action: Front:Books:all
+					Featured:
+						action: Front:Books:featured
+	admin:
+		items:
+			Users:
+				action: Admin:Users:
 
-  front:
-    items:
-
-      Home:
-        action: Front:Home:
-
-      Books:
-        link: '#'
-        items:
-        
-          All:
-            action: Front:Books:all
-            
-          Featured:
-            action: Front:Books:featured
-            
-  admin:
-    items:
-    
-      Users:
-        action: Admin:Users:
-        
-      Books:
-        action: Admin:Books:
+			Books:
+				action: Admin:Books:
 ```
 
 ```php
@@ -121,14 +114,13 @@ templates which will fit your's website look.
 
 Changing templates can be done in your menu configuration:
 
-```yaml
+```neon
 menu:
-
-  front:
-    templates:
-      menu: %appDir%/path/to/custom/menu.latte
-      breadcrumbs: %appDir%/path/to/custom/breadcrumbs.latte
-      sitemap: %appDir%/path/to/custom/sitemap.latte
+	front:
+		templates:
+			menu: %appDir%/path/to/custom/menu.latte
+			breadcrumbs: %appDir%/path/to/custom/breadcrumbs.latte
+			sitemap: %appDir%/path/to/custom/sitemap.latte
 ```
 
 **As you can see, each menu can have different templates.**
@@ -138,18 +130,16 @@ menu:
 It may be useful to hide some links in specific situations. For that we have the `visibility` option on items where 
 you can tell on which template the link should be visible.
 
-```yaml
+```neon
 menu:
-
-  front:
-    items:
-    
-      Home:
-        action: Front:Home:
-        visibility:
-          menu: true
-          breadcrumbs: false
-          sitemap: true
+	front:
+		items:
+			Home:
+				action: Front:Home:
+				visibility:
+					menu: true
+					breadcrumbs: false
+					sitemap: true
 ```
 
 ### Mark active item via regex
@@ -157,19 +147,18 @@ menu:
 Menu item can be labeled as active by a regular expression (or array of regular expressions) that is compared to the entire Presenter's name and action.
 You can set your regular expression via `include` setting.
 
-```yaml
+```neon
 menu:
-  front:
-    items:
-    
-      Home:
-        action: Front:Home:
-        include: '^Front\:Home\:[a-zA-Z\:]+$' # mark as active for all actions of "Front:Home:" presenter
-      Books:
-      	action: Front:Books:
-      	include: # mark as active for actions "Front:Books:default" and "Front:Books:edit"
-      		- '^Front\:Books\:default$'
-      		- '^Front\:Books\:edit$'
+	front:
+		items:
+			Home:
+				action: Front:Home:
+				include: '^Front\:Home\:[a-zA-Z\:]+$' # mark as active for all actions of "Front:Home:" presenter
+			Books:
+				action: Front:Books:
+				include: # mark as active for actions "Front:Books:default" and "Front:Books:edit"
+					- '^Front\:Books\:default$'
+					- '^Front\:Books\:edit$'
 ```
 
 ## Translations
@@ -182,36 +171,32 @@ You have three options for translator:
 * Set translator manually: Provide your own implementation of `Nette\Localization\ITranslator`.
 * Set translator to `true`: Menu extension will try to find your translator in DI container automatically.
 
-```yaml
+```neon
 services:
-
-  - App\MyOwnFrontTranslator
+	- App\MyOwnFrontTranslator
 
 menu:
-
-  front:
-    translator: @App\MyOwnFrontTranslator
-    
-  admin:
-    translator: true
+	front:
+		translator: @App\MyOwnFrontTranslator
+	admin:
+		translator: true
 ```
 
 ## Custom data
 
 Every link can contain additional data which can be later used eg. in your custom latte templates.
 
-```yaml
+```neon
 menu:
-
-  admin:
-    items:
-    
-      Adminer:
-        link: http://localhost:20000
-        data:
-          icon: fa fa-database
-          attrs:
-            target: _blank
+	admin:
+		items:
+		
+			Adminer:
+				link: http://localhost:20000
+				data:
+					icon: fa fa-database
+					attrs:
+						target: _blank
 ```
 
 ```latte
@@ -245,15 +230,13 @@ final class FrontAuthorizator implements IAuthorizator
 }
 ```
 
-```yaml
+```neon
 services:
-
-  - App\FrontAuthorizator
+	- App\FrontAuthorizator
 
 menu:
-
-  front:
-    authorizator: @App\FrontAuthorizator
+	front:
+		authorizator: @App\FrontAuthorizator
 ```
 
 ## Link generator
@@ -282,31 +265,26 @@ final class FrontLinkGenerator implements ILinkGenerator
 }
 ```
 
-```yaml
+```neon
 services:
+	- App\FrontLinkGenerator
 
-  - App\FrontLinkGenerator
-  
 menu:
-
-  front:
-    linkGenerator: @App\FrontLinkGenerator
+	front:
+		linkGenerator: @App\FrontLinkGenerator
 ```
 
 **You can also override link generator later for some subtree of links:**
 
-```yaml
+```neon
 menu:
-
-  front:
-    items:
-    
-      Home:
-        action: Front:Home:
-        
-      Books:
-        link: '#'
-        linkGenerator: @App\BooksLinkGenerator
+	front:
+		items:
+			Home:
+				action: Front:Home:	
+			Books:
+				link: '#'
+				linkGenerator: @App\BooksLinkGenerator
 ```
 
 ## Menu loader
