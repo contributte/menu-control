@@ -1,17 +1,34 @@
-# Nette menu
+![](https://heatbadger.now.sh/github/readme/contributte/menu-control/)
 
-Nette component for creating menus, breadcrumbs and sitemaps.
+<p align=center>
+  <a href="https://github.com/contributte/menu-control/actions"><img src="https://badgen.net/github/checks/contributte/menu-control/master"></a>
+  <a href="https://coveralls.io/r/contributte/menu-control"><img src="https://badgen.net/coveralls/c/github/contributte/menu-control"></a>
+  <a href="https://packagist.org/packages/contributte/menu-control"><img src="https://badgen.net/packagist/dm/contributte/menu-control"></a>
+  <a href="https://packagist.org/packages/contributte/menu-control"><img src="https://badgen.net/packagist/v/contributte/menu-control"></a>
+</p>
+<p align=center>
+  <a href="https://packagist.org/packages/contributte/menu-control"><img src="https://badgen.net/packagist/php/contributte/menu-control"></a>
+  <a href="https://github.com/contributte/menu-control"><img src="https://badgen.net/github/license/contributte/menu-control"></a>
+  <a href="https://bit.ly/ctteg"><img src="https://badgen.net/badge/support/gitter/cyan"></a>
+  <a href="https://bit.ly/cttfo"><img src="https://badgen.net/badge/support/forum/yellow"></a>
+  <a href="https://contributte.org/partners.html"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
+</p>
 
-![Tests](https://github.com/contributte/menu-control/workflows/Tests/badge.svg?branch=master)
-![QA](https://github.com/contributte/menu-control/workflows/QA/badge.svg?branch=master)
+<p align=center>
+Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact 👨🏻‍💻 <a href="https://f3l1x.io">f3l1x.io</a> | Twitter 🐦 <a href="https://twitter.com/contributte">@contributte</a>
+</p>
+
+## Usage
+
+To install the latest version of `contributte/menu-control` use [Composer](https://getcomposer.org).
+
+```bash
+composer require contributte/menu-control
+```
 
 ## Documentation
 
-- [Setup](.docs/README.md#setup)
-- [Usage](.docs/README.md#usage)
-- [Templates](.docs/README.md#templates)
-- [Translations](.docs/README.md#translations)
-- [Authorization](.docs/README.md#authorization)
+For details on how to use this package, check out our [documentation](.docs).
 
 ## Versions
 
@@ -21,41 +38,21 @@ Nette component for creating menus, breadcrumbs and sitemaps.
 | stable | `^2.2`     | `v2.2`   | `3.0`  | `>=7.1` |
 | stable | `^2.1`     | `v2.1`   | `2.4`  | `>=7.1` |
 
-## Maintainers
+## Development
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/foxycode">
-            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/1284781?s=460&v=4">
-        </a>
-        </br>
-        <a href="https://github.com/foxycode">Tomáš Jacík</a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/f3l1x">
-            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=150">
-        </a>
-        </br>
-        <a href="https://github.com/f3l1x">Milan Felix Šulc</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+See [how to contribute](https://contributte.org/contributing.html) to this package.
 
-### Former maintainers
+This package is currently maintaining by these authors.
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/davidkudera">
-            <img width="150" height="150" src="https://avatars1.githubusercontent.com/u/1174072?s=460&v=4">
-        </a>
-        </br>
-        <a href="https://github.com/davidkudera">David Kudera</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<a href="https://github.com/foxycode">
+  <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/1284781?v=3&s=80">
+</a>
+
+<a href="https://github.com/f3l1x">
+  <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
+</a>
+
+-----
+
+Consider to [support](https://contributte.org/partners.html) **contributte** development team.
+Also thank you for using this package.
