@@ -1,15 +1,11 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl;
 
 final class MenuContainer
 {
 
-	/**
-	 * @var IMenu[]
-	 */
+	/** @var IMenu[] */
 	private $menus = [];
 
 	public function getMenu(string $name): IMenu

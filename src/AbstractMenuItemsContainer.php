@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl;
 
@@ -11,34 +9,22 @@ use Nette\Localization\Translator;
 abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 {
 
-	/**
-	 * @var IMenu
-	 */
+	/** @var IMenu */
 	protected $menu;
 
-	/**
-	 * @var ILinkGenerator
-	 */
+	/** @var ILinkGenerator */
 	protected $linkGenerator;
 
-	/**
-	 * @var Translator
-	 */
+	/** @var Translator */
 	protected $translator;
 
-	/**
-	 * @var IAuthorizator
-	 */
+	/** @var IAuthorizator */
 	protected $authorizator;
 
-	/**
-	 * @var IMenuItemFactory
-	 */
+	/** @var IMenuItemFactory */
 	protected $menuItemFactory;
 
-	/**
-	 * @var IMenuItem[]
-	 */
+	/** @var IMenuItem[] */
 	private $items = [];
 
 	public function __construct(
@@ -47,7 +33,8 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 		Translator $translator,
 		IAuthorizator $authorizator,
 		IMenuItemFactory $menuItemFactory
-	) {
+	)
+	{
 		$this->menu = $menu;
 		$this->linkGenerator = $linkGenerator;
 		$this->translator = $translator;
@@ -156,7 +143,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	 */
 	private function getVisibleItemsOn(string $type): array
 	{
-		return array_filter($this->getItems(), function(IMenuItem $item) use ($type): bool {
+		return array_filter($this->getItems(), function (IMenuItem $item) use ($type): bool {
 			switch ($type) {
 				case 'menu':
 					return $item->isVisibleOnMenu();

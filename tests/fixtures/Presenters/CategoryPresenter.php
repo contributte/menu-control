@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types = 1);
 
-declare(strict_types=1);
-
-namespace Contributte\MenuControlTests\Presenters;
+namespace Tests\Fixtures\Presenters;
 
 use Contributte\MenuControl\UI\MenuComponent;
 use Contributte\MenuControl\UI\MenuComponentFactory;
@@ -11,9 +9,7 @@ use Nette\Application\UI\Presenter;
 final class CategoryPresenter extends Presenter
 {
 
-	/**
-	 * @var MenuComponentFactory
-	 */
+	/** @var MenuComponentFactory */
 	private $menuFactory;
 
 	public function injectMenuComponentFactory(MenuComponentFactory $menuFactory): void

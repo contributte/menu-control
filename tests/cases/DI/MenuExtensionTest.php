@@ -1,14 +1,10 @@
-<?php
+<?php declare(strict_types = 1);
 
-declare(strict_types=1);
-
-namespace Contributte\MenuControlTests\Cases\DI;
+namespace Tests\Cases\DI;
 
 use Contributte\MenuControl\MenuContainer;
 use Contributte\MenuControl\UI\MenuComponent;
 use Contributte\MenuControl\UI\MenuComponentFactory;
-use Contributte\MenuControlTests\AbstractTestCase;
-use Contributte\MenuControlTests\Presenters\HomepagePresenter;
 use Nette\Application\Request as ApplicationRequest;
 use Nette\Application\Responses\TextResponse;
 use Nette\Bootstrap\Configurator;
@@ -16,8 +12,10 @@ use Nette\DI\Container;
 use Nette\Http\Request as HttpRequest;
 use Nette\Http\UrlScript;
 use Tester\Assert;
+use Tests\Fixtures\Presenters\HomepagePresenter;
+use Tests\Toolkit\AbstractTestCase;
 
-require_once __DIR__. '/../../bootstrap.php';
+require_once __DIR__ . '/../../bootstrap.php';
 
 /**
  * @testCase
@@ -42,7 +40,7 @@ final class MenuExtensionTest extends AbstractTestCase
 
 		$request = new ApplicationRequest('Homepage', 'default');
 
-		$presenter = new HomepagePresenter;
+		$presenter = new HomepagePresenter();
 		$dic->callInjects($presenter);
 
 		/** @var TextResponse $response */
@@ -58,7 +56,7 @@ final class MenuExtensionTest extends AbstractTestCase
 
 	private function createContainer(): Container
 	{
-		$config = new Configurator;
+		$config = new Configurator();
 		$config->setTempDirectory(TEMP_DIR);
 		$config->addConfig(__DIR__ . '/config.neon');
 
@@ -67,4 +65,4 @@ final class MenuExtensionTest extends AbstractTestCase
 
 }
 
-(new MenuExtensionTest)->run();
+(new MenuExtensionTest())->run();

@@ -33,5 +33,5 @@ jobs:
             ${{ runner.os }}-composer-
 
       - run: composer update --no-progress --prefer-dist
-      - run: composer phpcs
-      - run: composer phpstan
+      - run: make cs
+      - run: make phpstan

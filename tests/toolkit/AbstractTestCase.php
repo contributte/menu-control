@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types = 1);
 
-declare(strict_types=1);
-
-namespace Contributte\MenuControlTests;
+namespace Tests\Toolkit;
 
 use Contributte\MenuControl\AbstractMenuItemsContainer;
 use Contributte\MenuControl\Config\TemplatePaths;
@@ -12,6 +10,7 @@ use Contributte\MenuControl\IMenuItemFactory;
 use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Loaders\IMenuLoader;
 use Contributte\MenuControl\Security\IAuthorizator;
+use Mockery;
 use Nette\Application\Application;
 use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Presenter;
@@ -25,7 +24,7 @@ abstract class AbstractTestCase extends Tester\TestCase
 
 	public function tearDown(): void
 	{
-		\Mockery::close();
+		Mockery::close();
 	}
 
 	protected function createMockMenu(?callable $fn = null): IMenu
@@ -46,7 +45,8 @@ abstract class AbstractTestCase extends Tester\TestCase
 	protected function createPartialMockAbstractMenuItemsContainer(
 		?callable $fn = null,
 		?array $args = null
-	): AbstractMenuItemsContainer {
+	): AbstractMenuItemsContainer
+	{
 		return $this->createMock(AbstractMenuItemsContainer::class, $fn, $args, true);
 	}
 
@@ -62,7 +62,7 @@ abstract class AbstractTestCase extends Tester\TestCase
 
 	protected function createMockTemplateConfig(): TemplatePaths
 	{
-		$config = new TemplatePaths;
+		$config = new TemplatePaths();
 		$config->menu = 'menu-template.latte';
 		$config->breadcrumbs = 'breadcrumbs-template.latte';
 		$config->sitemap = 'sitemap-template.latte';
@@ -107,7 +107,7 @@ abstract class AbstractTestCase extends Tester\TestCase
 
 	private function createMock(string $type, ?callable $fn = null, ?array $args = null, bool $partial = false)
 	{
-		$mock = $args === null ? \Mockery::mock($type) : \Mockery::mock($type, $args);
+		$mock = $args === null ? Mockery::mock($type) : Mockery::mock($type, $args);
 
 		if ($partial) {
 			$mock->makePartial();

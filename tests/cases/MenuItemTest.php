@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types = 1);
 
-declare(strict_types=1);
-
-namespace Contributte\MenuControlTests\Cases;
+namespace Tests\Cases;
 
 use Contributte\MenuControl\Config\MenuItemAction;
 use Contributte\MenuControl\MenuItem;
-use Contributte\MenuControlTests\AbstractTestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
+use Tests\Toolkit\AbstractTestCase;
 
-require_once __DIR__. '/../bootstrap.php';
+require_once __DIR__ . '/../bootstrap.php';
 
 /**
  * @testCase

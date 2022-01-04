@@ -1,7 +1,7 @@
 application:
 	scanDirs: false
 	mapping:
-		*: [Contributte\MenuControlTests, *Module, Presenters\*Presenter]
+		*: [Tests\Fixtures, *Module, Presenters\*Presenter]
 
 di:
 	export:
@@ -9,7 +9,7 @@ di:
 		tags: no
 
 services:
-	- Contributte\MenuControlTests\Router\TestRouterFactory::createRouter
+	- Tests\Fixtures\Router\TestRouterFactory::createRouter
 
 extensions:
 	menu: Contributte\MenuControl\DI\MenuExtension

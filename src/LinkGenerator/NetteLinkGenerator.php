@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl\LinkGenerator;
 
@@ -11,14 +9,10 @@ use Nette\Http\IRequest;
 final class NetteLinkGenerator implements ILinkGenerator
 {
 
-	/**
-	 * @var IRequest
-	 */
+	/** @var IRequest */
 	private $httpRequest;
 
-	/**
-	 * @var LinkGenerator
-	 */
+	/** @var LinkGenerator */
 	private $linkGenerator;
 
 	public function __construct(IRequest $httpRequest, LinkGenerator $linkGenerator)

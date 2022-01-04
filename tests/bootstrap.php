@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -12,5 +10,5 @@ if (!is_dir(__DIR__ . '/../tmp')) {
 	mkdir(__DIR__ . '/../tmp/');
 }
 
-define('TEMP_DIR', __DIR__ . '/../tmp/'. getmypid());
+define('TEMP_DIR', __DIR__ . '/../tmp/' . getmypid());
 Tester\Helpers::purge(TEMP_DIR);

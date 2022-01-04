@@ -1,16 +1,14 @@
-<?php
+<?php declare(strict_types = 1);
 
-declare(strict_types=1);
-
-namespace Contributte\MenuControlTests\Cases;
+namespace Tests\Cases;
 
 use Contributte\MenuControl\Menu;
-use Contributte\MenuControlTests\AbstractTestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
 use Tester\Environment;
+use Tests\Toolkit\AbstractTestCase;
 
-require_once __DIR__. '/../bootstrap.php';
+require_once __DIR__ . '/../bootstrap.php';
 
 /**
  * @testCase
@@ -97,7 +95,7 @@ final class MenuTest extends AbstractTestCase
 		});
 
 		$menu = new Menu($linkGenerator, $translator, $authorizator, $itemFactory, $loader, 'menu', $templateConfig);
-		$menu->addItem('a','ItemA');
+		$menu->addItem('a', 'ItemA');
 
 		Assert::equal([
 			$itemA,
@@ -108,4 +106,4 @@ final class MenuTest extends AbstractTestCase
 
 }
 
-(new MenuTest)->run();
+(new MenuTest())->run();
