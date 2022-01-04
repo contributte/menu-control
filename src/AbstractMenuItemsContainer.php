@@ -78,7 +78,7 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 			$title
 		);
 
-		if ($fn) {
+		if ($fn !== null) {
 			$fn($item);
 		}
 	}

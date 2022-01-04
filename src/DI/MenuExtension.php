@@ -132,8 +132,8 @@ final class MenuExtension extends CompilerExtension
 	}
 
 	/**
-	 * @param array<string, array> $items
-	 * @return array<string, array>
+	 * @param array<mixed> $items
+	 * @return array<mixed>
 	 */
 	private function normalizeMenuItems(Processor $processor, array $items): array
 	{
