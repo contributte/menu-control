@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl\UI;
 
@@ -9,9 +7,7 @@ use Contributte\MenuControl\MenuContainer;
 final class MenuComponentFactory
 {
 
-	/**
-	 * @var MenuContainer
-	 */
+	/** @var MenuContainer */
 	private $menuContainer;
 
 	public function __construct(MenuContainer $menuContainer)

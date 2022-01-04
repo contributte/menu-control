@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl;
 
@@ -18,7 +16,8 @@ final class MenuItemFactory implements IMenuItemFactory
 		IAuthorizator $authorizator,
 		IMenuItemFactory $menuItemFactory,
 		string $title
-	): IMenuItem {
+	): IMenuItem
+	{
 		return new MenuItem($menu, $linkGenerator, $translator, $authorizator, $menuItemFactory, $title);
 	}
 

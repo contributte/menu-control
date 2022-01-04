@@ -1,20 +1,14 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl\Config;
 
 final class MenuItemAction
 {
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	public $target;
 
-	/**
-	 * @var array<string, string>
-	 */
+	/** @var array<string, string> */
 	public $parameters = [];
 
 	/**
@@ -22,7 +16,7 @@ final class MenuItemAction
 	 */
 	public static function fromArray(array $array): self
 	{
-		$action = new self;
+		$action = new self();
 		$action->target = $array['target'];
 		$action->parameters = $array['parameters'] ?? [];
 
@@ -31,7 +25,7 @@ final class MenuItemAction
 
 	public static function fromString(string $target): self
 	{
-		$action = new self;
+		$action = new self();
 		$action->target = $target;
 
 		return $action;

@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types = 1);
 
-declare(strict_types=1);
-
-namespace Contributte\MenuControlTests\Cases\Localization;
+namespace Tests\Cases\Localization;
 
 use Contributte\MenuControl\Localization\ReturnTranslator;
-use Contributte\MenuControlTests\AbstractTestCase;
 use Tester\Assert;
+use Tests\Toolkit\AbstractTestCase;
 
-require_once __DIR__. '/../../bootstrap.php';
+require_once __DIR__ . '/../../bootstrap.php';
 
 /**
  * @testCase
@@ -18,11 +16,11 @@ final class ReturnTranslatorTest extends AbstractTestCase
 
 	public function testTranslate(): void
 	{
-		$translator = new ReturnTranslator;
+		$translator = new ReturnTranslator();
 
 		Assert::same('message', $translator->translate('message'));
 	}
 
 }
 
-(new ReturnTranslatorTest)->run();
+(new ReturnTranslatorTest())->run();

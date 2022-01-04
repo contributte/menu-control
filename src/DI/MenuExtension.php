@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl\DI;
 
@@ -34,7 +32,7 @@ final class MenuExtension extends CompilerExtension
 			'translator' => Expect::type('string|bool')->default(ReturnTranslator::class),
 			'loader' => Expect::string(DefaultMenuLoader::class),
 			'linkGenerator' => Expect::string(NetteLinkGenerator::class),
-			'templates' => Expect::from(new TemplatePaths),
+			'templates' => Expect::from(new TemplatePaths()),
 			'items' => Expect::array()->required(),
 		]));
 	}
@@ -48,7 +46,7 @@ final class MenuExtension extends CompilerExtension
 			'include' => Expect::type('string|array'),
 			'data' => Expect::arrayOf('string', 'string'),
 			'items' => Expect::array(),
-			'visibility' => Expect::from(new MenuVisibility),
+			'visibility' => Expect::from(new MenuVisibility()),
 		]);
 	}
 
@@ -57,7 +55,7 @@ final class MenuExtension extends CompilerExtension
 		/** @var array<string, stdClass> $config */
 		$config = $this->getConfig();
 		$builder = $this->getContainerBuilder();
-		$processor = new Processor;
+		$processor = new Processor();
 
 		$container = $builder->addDefinition($this->prefix('container'))
 			->setType(MenuContainer::class);
@@ -77,7 +75,8 @@ final class MenuExtension extends CompilerExtension
 		Processor $processor,
 		string $menuName,
 		stdClass $config
-	): ServiceDefinition {
+	): ServiceDefinition
+	{
 		$translator = $config->translator;
 		$authorizator = $config->authorizator;
 		$loader = $config->loader;
@@ -87,25 +86,25 @@ final class MenuExtension extends CompilerExtension
 			$translator = $builder->getDefinitionByType(Translator::class);
 
 		} elseif (!Strings::startsWith($config->translator, '@')) {
-			$translator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.translator'))
+			$translator = $builder->addDefinition($this->prefix('menu.' . $menuName . '.translator'))
 				->setType($config->translator)
 				->setAutowired(false);
 		}
 
 		if (!Strings::startsWith($config->authorizator, '@')) {
-			$authorizator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.authorizator'))
+			$authorizator = $builder->addDefinition($this->prefix('menu.' . $menuName . '.authorizator'))
 				->setType($config->authorizator)
 				->setAutowired(false);
 		}
 
 		if (!Strings::startsWith($config->loader, '@')) {
-			$loader = $builder->addDefinition($this->prefix('menu.'. $menuName. '.loader'))
+			$loader = $builder->addDefinition($this->prefix('menu.' . $menuName . '.loader'))
 				->setType($config->loader)
 				->setAutowired(false);
 		}
 
 		if (!Strings::startsWith($config->linkGenerator, '@')) {
-			$linkGenerator = $builder->addDefinition($this->prefix('menu.'. $menuName. '.linkGenerator'))
+			$linkGenerator = $builder->addDefinition($this->prefix('menu.' . $menuName . '.linkGenerator'))
 				->setType($config->linkGenerator)
 				->setAutowired(false);
 		}
@@ -114,7 +113,7 @@ final class MenuExtension extends CompilerExtension
 			$loader->setArguments([$this->normalizeMenuItems($processor, $config->items)]);
 		}
 
-		$itemFactory = $builder->addDefinition($this->prefix('menu.'. $menuName. '.factory'))
+		$itemFactory = $builder->addDefinition($this->prefix('menu.' . $menuName . '.factory'))
 			->setType(MenuItemFactory::class);
 
 		return $builder->addDefinition($this->prefix('menu.' . $menuName))
@@ -138,7 +137,7 @@ final class MenuExtension extends CompilerExtension
 	 */
 	private function normalizeMenuItems(Processor $processor, array $items): array
 	{
-		array_walk($items, function(array &$item, string $key) use ($processor): void {
+		array_walk($items, function (array &$item, string $key) use ($processor): void {
 			$item = $processor->process($this->getItemSchema(), $item);
 
 			if ($item->title === null) {

@@ -1,15 +1,14 @@
-<?php
+<?php declare(strict_types = 1);
 
-declare(strict_types=1);
-
-namespace Contributte\MenuControlTests\Cases\Loaders;
+namespace Tests\Cases\Loaders;
 
 use Contributte\MenuControl\Loaders\DefaultMenuLoader;
-use Contributte\MenuControlTests\AbstractTestCase;
+use Mockery;
 use Mockery\MockInterface;
 use Tester\Environment;
+use Tests\Toolkit\AbstractTestCase;
 
-require_once __DIR__. '/../../bootstrap.php';
+require_once __DIR__ . '/../../bootstrap.php';
 
 final class DefaultMenuLoaderTest extends AbstractTestCase
 {
@@ -26,7 +25,7 @@ final class DefaultMenuLoaderTest extends AbstractTestCase
 		];
 
 		$menu = $this->createMockMenu(function (MockInterface $menu): void {
-			$menu->shouldReceive('addItem')->withArgs(['home', 'Home', \Mockery::type('callable')]);
+			$menu->shouldReceive('addItem')->withArgs(['home', 'Home', Mockery::type('callable')]);
 		});
 
 		$loader = new DefaultMenuLoader($config);
@@ -35,4 +34,4 @@ final class DefaultMenuLoaderTest extends AbstractTestCase
 
 }
 
-(new DefaultMenuLoaderTest)->run();
+(new DefaultMenuLoaderTest())->run();

@@ -1,15 +1,11 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl\Traits;
 
 trait MenuItemData
 {
 
-	/**
-	 * @var array<string, string>
-	 */
+	/** @var array<string, string> */
 	private $data = [];
 
 	/**

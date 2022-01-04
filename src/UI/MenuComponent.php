@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl\UI;
 
@@ -11,9 +9,7 @@ use Nette\Application\UI\Presenter;
 final class MenuComponent extends Control
 {
 
-	/**
-	 * @var IMenu
-	 */
+	/** @var IMenu */
 	private $menu;
 
 	public function __construct(IMenu $menu)

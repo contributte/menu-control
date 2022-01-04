@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl;
 
@@ -14,24 +12,16 @@ use Nette\Localization\Translator;
 final class Menu extends AbstractMenuItemsContainer implements IMenu
 {
 
-	/**
-	 * @var IMenuLoader
-	 */
+	/** @var IMenuLoader */
 	private $loader;
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	private $name;
 
-	/**
-	 * @var TemplatePaths
-	 */
+	/** @var TemplatePaths */
 	private $templateConfig;
 
-	/**
-	 * @var Presenter
-	 */
+	/** @var Presenter */
 	private $activePresenter;
 
 	public function __construct(
@@ -42,7 +32,8 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 		IMenuLoader $loader,
 		string $name,
 		TemplatePaths $templateConfig
-	) {
+	)
+	{
 		parent::__construct($this, $linkGenerator, $translator, $authorizator, $menuItemFactory);
 
 		$this->loader = $loader;

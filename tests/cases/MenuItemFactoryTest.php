@@ -1,15 +1,13 @@
-<?php
+<?php declare(strict_types = 1);
 
-declare(strict_types=1);
-
-namespace Contributte\MenuControlTests\Cases;
+namespace Tests\Cases;
 
 use Contributte\MenuControl\IMenuItem;
 use Contributte\MenuControl\MenuItemFactory;
-use Contributte\MenuControlTests\AbstractTestCase;
 use Tester\Assert;
+use Tests\Toolkit\AbstractTestCase;
 
-require_once __DIR__. '/../bootstrap.php';
+require_once __DIR__ . '/../bootstrap.php';
 
 /**
  * @testCase
@@ -25,7 +23,7 @@ final class MenuItemFactoryTest extends AbstractTestCase
 		$authorizator = $this->createMockAuthorizator();
 		$itemFactory = $this->createMockMenuItemFactory();
 
-		$factory = new MenuItemFactory;
+		$factory = new MenuItemFactory();
 		$item = $factory->create($menu, $linkGenerator, $translator, $authorizator, $itemFactory, 'item');
 
 		Assert::type(IMenuItem::class, $item);
@@ -33,4 +31,4 @@ final class MenuItemFactoryTest extends AbstractTestCase
 
 }
 
-(new MenuItemFactoryTest)->run();
+(new MenuItemFactoryTest())->run();

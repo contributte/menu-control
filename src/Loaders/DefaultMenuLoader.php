@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl\Loaders;
 
@@ -14,9 +12,7 @@ use stdClass;
 final class DefaultMenuLoader implements IMenuLoader
 {
 
-	/**
-	 * @var array<string, stdClass>
-	 */
+	/** @var array<string, stdClass> */
 	private $items;
 
 	/**

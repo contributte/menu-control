@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types = 1);
 
-declare(strict_types=1);
+namespace Tests\Cases;
 
-namespace Contributte\MenuControlTests\Cases;
-
-use Contributte\MenuControlTests\AbstractTestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
+use Tests\Toolkit\AbstractTestCase;
 
-require_once __DIR__. '/../bootstrap.php';
+require_once __DIR__ . '/../bootstrap.php';
 
 final class AbstractMenuItemsContainerTest extends AbstractTestCase
 {
@@ -26,7 +24,11 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 		});
 
 		$container = $this->createPartialMockAbstractMenuItemsContainer(null, [
-			$menu, $linkGenerator, $translator, $authorizator, $itemFactory,
+			$menu,
+		$linkGenerator,
+		$translator,
+		$authorizator,
+		$itemFactory,
 		]);
 
 		Assert::equal([], $container->getItems());
@@ -107,7 +109,11 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 
 		$container = $this->createPartialMockAbstractMenuItemsContainer(function (
 			MockInterface $container
-		) use ($itemA, $itemB, $itemC): void {
+		) use (
+			$itemA,
+			$itemB,
+			$itemC
+): void {
 			$container->shouldReceive('getItems')->andReturn([
 				'a' => $itemA,
 				'b' => $itemB,
@@ -140,7 +146,10 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 
 		$container = $this->createPartialMockAbstractMenuItemsContainer(function (
 			MockInterface $container
-		) use ($itemA, $itemB): void {
+		) use (
+			$itemA,
+			$itemB
+): void {
 			$container->shouldReceive('getItems')->andReturn([
 				'a' => $itemA,
 				'b' => $itemB,
@@ -159,4 +168,4 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 
 }
 
-(new AbstractMenuItemsContainerTest)->run();
+(new AbstractMenuItemsContainerTest())->run();

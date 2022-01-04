@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl;
 
@@ -18,29 +16,19 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	use MenuItemData;
 	use MenuItemVisibility;
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	private $title;
 
-	/**
-	 * @var MenuItemAction|null
-	 */
+	/** @var MenuItemAction|null */
 	private $action;
 
-	/**
-	 * @var string|null
-	 */
+	/** @var string|null */
 	private $link;
 
-	/**
-	 * @var bool
-	 */
+	/** @var bool */
 	private $active;
 
-	/**
-	 * @var string[]
-	 */
+	/** @var string[] */
 	private $include = [];
 
 	public function __construct(
@@ -50,11 +38,12 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		IAuthorizator $authorizator,
 		IMenuItemFactory $menuItemFactory,
 		string $title
-	) {
+	)
+	{
 		parent::__construct($menu, $linkGenerator, $translator, $authorizator, $menuItemFactory);
 
 		$this->title = $title;
-		$this->visibility = new MenuVisibility;
+		$this->visibility = new MenuVisibility();
 	}
 
 	public function isActive(): bool

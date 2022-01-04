@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\MenuControl\Traits;
 
@@ -9,9 +7,7 @@ use Contributte\MenuControl\Config\MenuVisibility;
 trait MenuItemVisibility
 {
 
-	/**
-	 * @var MenuVisibility
-	 */
+	/** @var MenuVisibility */
 	private $visibility;
 
 	public function isVisibleOnMenu(): bool

@@ -1,15 +1,13 @@
-<?php
+<?php declare(strict_types = 1);
 
-declare(strict_types=1);
-
-namespace Contributte\MenuControlTests\Cases\LinkGenerator;
+namespace Tests\Cases\LinkGenerator;
 
 use Contributte\MenuControl\LinkGenerator\NetteLinkGenerator;
-use Contributte\MenuControlTests\AbstractTestCase;
 use Mockery\MockInterface;
 use Tester\Assert;
+use Tests\Toolkit\AbstractTestCase;
 
-require_once __DIR__. '/../../bootstrap.php';
+require_once __DIR__ . '/../../bootstrap.php';
 
 final class NetteLinkGeneratorTest extends AbstractTestCase
 {
@@ -90,4 +88,4 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 
 }
 
-(new NetteLinkGeneratorTest)->run();
+(new NetteLinkGeneratorTest())->run();
