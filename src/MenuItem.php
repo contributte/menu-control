@@ -8,6 +8,7 @@ use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Security\IAuthorizator;
 use Contributte\MenuControl\Traits\MenuItemData;
 use Contributte\MenuControl\Traits\MenuItemVisibility;
+use Nette\Application\UI\Presenter;
 use Nette\Localization\Translator;
 
 final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
@@ -56,16 +57,17 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 			return $this->active = false;
 		}
 
-		if ($this->getActionTarget() && $this->menu->getActivePresenter()) {
+		if ($this->getActionTarget() !== null && $this->menu->getActivePresenter() !== null) {
+			/** @var Presenter $presenter */
 			$presenter = $this->menu->getActivePresenter();
 			if ($presenter->link('//this') === $this->linkGenerator->link($this)) {
 				return $this->active = true;
 			}
 
-			if ($this->include) {
+			if ($this->include !== []) {
 				$actionName = sprintf('%s:%s', $presenter->getName(), $presenter->getAction());
 				foreach ($this->include as $include) {
-					if (preg_match(sprintf('~%s~', $include), $actionName)) {
+					if (preg_match(sprintf('~%s~', $include), $actionName) === 1) {
 						return $this->active = true;
 					}
 				}

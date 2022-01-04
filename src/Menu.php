@@ -77,7 +77,7 @@ final class Menu extends AbstractMenuItemsContainer implements IMenu
 		while ($parent) {
 			$item = $parent->findActiveItem();
 
-			if (!$item) {
+			if ($item === null) {
 				break;
 			}
 
