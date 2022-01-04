@@ -1,8 +1,14 @@
 name: Tests
 
 on:
-  - push
-  - pull_request
+  pull_request:
+    paths-ignore:
+      - ".docs/**"
+  push:
+    branches:
+      - "*"
+  schedule:
+    - cron: "0 8 * * 1" # At 08:00 on Monday
 
 jobs:
   tests:
