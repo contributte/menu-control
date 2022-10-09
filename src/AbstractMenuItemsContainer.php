@@ -147,10 +147,13 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 			switch ($type) {
 				case 'menu':
 					return $item->isVisibleOnMenu();
+
 				case 'breadcrumbs':
 					return $item->isVisibleOnBreadcrumbs();
+
 				case 'sitemap':
 					return $item->isVisibleOnSitemap();
+
 				default:
 					return false;
 			}
