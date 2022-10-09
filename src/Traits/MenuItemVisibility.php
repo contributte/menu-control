@@ -7,8 +7,7 @@ use Contributte\MenuControl\Config\MenuVisibility;
 trait MenuItemVisibility
 {
 
-	/** @var MenuVisibility */
-	private $visibility;
+	private MenuVisibility $visibility;
 
 	public function isVisibleOnMenu(): bool
 	{

@@ -6,7 +6,7 @@ trait MenuItemData
 {
 
 	/** @var array<string, string> */
-	private $data = [];
+	private array $data = [];
 
 	/**
 	 * @return array<string, string>

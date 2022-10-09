@@ -9,8 +9,7 @@ use Nette\Application\UI\Presenter;
 final class HomepagePresenter extends Presenter
 {
 
-	/** @var MenuComponentFactory */
-	private $menuFactory;
+	private MenuComponentFactory $menuFactory;
 
 	public function injectMenuComponentFactory(MenuComponentFactory $menuFactory): void
 	{

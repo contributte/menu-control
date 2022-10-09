@@ -17,20 +17,16 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	use MenuItemData;
 	use MenuItemVisibility;
 
-	/** @var string */
-	private $title;
+	private string $title;
 
-	/** @var MenuItemAction|null */
-	private $action;
+	private ?MenuItemAction $action = null;
 
-	/** @var string|null */
-	private $link;
+	private ?string $link = null;
 
-	/** @var bool */
-	private $active;
+	private ?bool $active = null;
 
 	/** @var string[] */
-	private $include = [];
+	private array $include = [];
 
 	public function __construct(
 		IMenu $menu,

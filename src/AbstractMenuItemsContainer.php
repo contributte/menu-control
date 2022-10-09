@@ -9,23 +9,18 @@ use Nette\Localization\Translator;
 abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 {
 
-	/** @var IMenu */
-	protected $menu;
+	protected IMenu $menu;
 
-	/** @var ILinkGenerator */
-	protected $linkGenerator;
+	protected ILinkGenerator $linkGenerator;
 
-	/** @var Translator */
-	protected $translator;
+	protected Translator $translator;
 
-	/** @var IAuthorizator */
-	protected $authorizator;
+	protected IAuthorizator $authorizator;
 
-	/** @var IMenuItemFactory */
-	protected $menuItemFactory;
+	protected IMenuItemFactory $menuItemFactory;
 
 	/** @var IMenuItem[] */
-	private $items = [];
+	private array $items = [];
 
 	public function __construct(
 		IMenu $menu,

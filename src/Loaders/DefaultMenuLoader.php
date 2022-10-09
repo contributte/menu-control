@@ -13,7 +13,7 @@ final class DefaultMenuLoader implements IMenuLoader
 {
 
 	/** @var array<string, stdClass> */
-	private $items;
+	private array $items;
 
 	/**
 	 * @param array<string, stdClass> $items

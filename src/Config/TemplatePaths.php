@@ -7,19 +7,10 @@ namespace Contributte\MenuControl\Config;
 final class TemplatePaths
 {
 
-	/**
-	 * @var string
-	 */
-	public $menu = __DIR__ . '/../UI/templates/menu.latte';
+	public string $menu = __DIR__ . '/../UI/templates/menu.latte';
 
-	/**
-	 * @var string
-	 */
-	public $breadcrumbs = __DIR__ . '/../UI/templates/breadcrumbs.latte';
+	public string $breadcrumbs = __DIR__ . '/../UI/templates/breadcrumbs.latte';
 
-	/**
-	 * @var string
-	 */
-	public $sitemap = __DIR__ . '/../UI/templates/sitemap.latte';
+	public string $sitemap = __DIR__ . '/../UI/templates/sitemap.latte';
 
 }

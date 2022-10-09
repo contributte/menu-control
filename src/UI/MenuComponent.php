@@ -9,8 +9,7 @@ use Nette\Application\UI\Presenter;
 final class MenuComponent extends Control
 {
 
-	/** @var IMenu */
-	private $menu;
+	private IMenu $menu;
 
 	public function __construct(IMenu $menu)
 	{

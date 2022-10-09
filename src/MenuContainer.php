@@ -6,7 +6,7 @@ final class MenuContainer
 {
 
 	/** @var IMenu[] */
-	private $menus = [];
+	private array $menus = [];
 
 	public function getMenu(string $name): IMenu
 	{

@@ -9,11 +9,9 @@ use Nette\Http\IRequest;
 final class NetteLinkGenerator implements ILinkGenerator
 {
 
-	/** @var IRequest */
-	private $httpRequest;
+	private IRequest $httpRequest;
 
-	/** @var LinkGenerator */
-	private $linkGenerator;
+	private LinkGenerator $linkGenerator;
 
 	public function __construct(IRequest $httpRequest, LinkGenerator $linkGenerator)
 	{

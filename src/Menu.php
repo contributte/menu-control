@@ -12,17 +12,13 @@ use Nette\Localization\Translator;
 final class Menu extends AbstractMenuItemsContainer implements IMenu
 {
 
-	/** @var IMenuLoader */
-	private $loader;
+	private IMenuLoader $loader;
 
-	/** @var string */
-	private $name;
+	private string $name;
 
-	/** @var TemplatePaths */
-	private $templateConfig;
+	private TemplatePaths $templateConfig;
 
-	/** @var Presenter */
-	private $activePresenter;
+	private Presenter $activePresenter;
 
 	public function __construct(
 		ILinkGenerator $linkGenerator,

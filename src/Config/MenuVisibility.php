@@ -5,13 +5,10 @@ namespace Contributte\MenuControl\Config;
 final class MenuVisibility
 {
 
-	/** @var bool */
-	public $menu = true;
+	public bool $menu = true;
 
-	/** @var bool */
-	public $breadcrumbs = true;
+	public bool $breadcrumbs = true;
 
-	/** @var bool */
-	public $sitemap = true;
+	public bool $sitemap = true;
 
 }

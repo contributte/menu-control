@@ -7,8 +7,7 @@ use Contributte\MenuControl\MenuContainer;
 final class MenuComponentFactory
 {
 
-	/** @var MenuContainer */
-	private $menuContainer;
+	private MenuContainer $menuContainer;
 
 	public function __construct(MenuContainer $menuContainer)
 	{

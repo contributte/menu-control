@@ -5,11 +5,10 @@ namespace Contributte\MenuControl\Config;
 final class MenuItemAction
 {
 
-	/** @var string */
-	public $target;
+	public string $target;
 
 	/** @var array<string, string> */
-	public $parameters = [];
+	public array $parameters = [];
 
 	/**
 	 * @param array<string, mixed> $array
