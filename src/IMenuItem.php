@@ -3,6 +3,7 @@
 namespace Contributte\MenuControl;
 
 use Contributte\MenuControl\Config\MenuItemAction;
+use Stringable;
 
 interface IMenuItem extends IMenuItemsContainer
 {
@@ -24,7 +25,7 @@ interface IMenuItem extends IMenuItemsContainer
 
 	public function setLink(string $link): void;
 
-	public function getRealTitle(): string;
+	public function getRealTitle(): string|Stringable;
 
 	public function getRealLink(): string;
 

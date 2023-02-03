@@ -3,15 +3,12 @@
 namespace Contributte\MenuControl\Localization;
 
 use Nette\Localization\Translator;
+use Stringable;
 
 final class ReturnTranslator implements Translator
 {
 
-	/**
-	 * @param mixed $message
-	 * @param mixed ...$parameters
-	 */
-	public function translate($message, ...$parameters): string
+	public function translate(string|Stringable $message, mixed ...$parameters): string|Stringable
 	{
 		return $message;
 	}

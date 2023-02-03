@@ -10,6 +10,7 @@ use Contributte\MenuControl\Traits\MenuItemData;
 use Contributte\MenuControl\Traits\MenuItemVisibility;
 use Nette\Application\UI\Presenter;
 use Nette\Localization\Translator;
+use Stringable;
 
 final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 {
@@ -114,7 +115,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 		$this->link = $link;
 	}
 
-	public function getRealTitle(): string
+	public function getRealTitle(): string|Stringable
 	{
 		return $this->translator->translate($this->title);
 	}
