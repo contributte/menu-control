@@ -19,7 +19,6 @@ use Nette\Localization\Translator;
 use Nette\Schema\Expect;
 use Nette\Schema\Processor;
 use Nette\Schema\Schema;
-use Nette\Utils\Strings;
 use stdClass;
 
 final class MenuExtension extends CompilerExtension
@@ -85,25 +84,25 @@ final class MenuExtension extends CompilerExtension
 		if ($config->translator === true) {
 			$translator = $builder->getDefinitionByType(Translator::class);
 
-		} elseif (!Strings::startsWith($config->translator, '@')) {
+		} elseif (!str_starts_with($config->translator, '@')) {
 			$translator = $builder->addDefinition($this->prefix('menu.' . $menuName . '.translator'))
 				->setType($config->translator)
 				->setAutowired(false);
 		}
 
-		if (!Strings::startsWith($config->authorizator, '@')) {
+		if (!str_starts_with($config->authorizator, '@')) {
 			$authorizator = $builder->addDefinition($this->prefix('menu.' . $menuName . '.authorizator'))
 				->setType($config->authorizator)
 				->setAutowired(false);
 		}
 
-		if (!Strings::startsWith($config->loader, '@')) {
+		if (!str_starts_with($config->loader, '@')) {
 			$loader = $builder->addDefinition($this->prefix('menu.' . $menuName . '.loader'))
 				->setType($config->loader)
 				->setAutowired(false);
 		}
 
-		if (!Strings::startsWith($config->linkGenerator, '@')) {
+		if (!str_starts_with($config->linkGenerator, '@')) {
 			$linkGenerator = $builder->addDefinition($this->prefix('menu.' . $menuName . '.linkGenerator'))
 				->setType($config->linkGenerator)
 				->setAutowired(false);
