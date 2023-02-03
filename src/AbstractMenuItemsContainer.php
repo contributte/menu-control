@@ -139,19 +139,12 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	private function getVisibleItemsOn(string $type): array
 	{
 		return array_filter($this->getItems(), function (IMenuItem $item) use ($type): bool {
-			switch ($type) {
-				case 'menu':
-					return $item->isVisibleOnMenu();
-
-				case 'breadcrumbs':
-					return $item->isVisibleOnBreadcrumbs();
-
-				case 'sitemap':
-					return $item->isVisibleOnSitemap();
-
-				default:
-					return false;
-			}
+			return match ($type) {
+				'menu' => $item->isVisibleOnMenu(),
+				'breadcrumbs' => $item->isVisibleOnBreadcrumbs(),
+				'sitemap' => $item->isVisibleOnSitemap(),
+				default => false,
+			};
 		});
 	}
 
