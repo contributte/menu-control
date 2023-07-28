@@ -22,3 +22,8 @@ menu:
 				items:
 					Category:
 						action: Category:default
+				data:
+					icon: fa fa-home
+					bool: true
+					structured:
+						key: value

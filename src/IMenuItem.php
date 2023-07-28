@@ -32,20 +32,20 @@ interface IMenuItem extends IMenuItemsContainer
 	public function getRealAbsoluteLink(): string;
 
 	/**
-	 * @return array<string, string>
+	 * @return array<string, mixed>
 	 */
 	public function getData(): array;
 
 	/**
-	 * @param array<string, string> $data
+	 * @param array<string, mixed> $data
 	 */
 	public function setData(array $data): void;
 
 	public function hasDataItem(string $name): bool;
 
-	public function getDataItem(string $name, ?string $default = null): ?string;
+	public function getDataItem(string $name, mixed $default = null): mixed;
 
-	public function addDataItem(string $name, string $value): void;
+	public function addDataItem(string $name, mixed $value): void;
 
 	/**
 	 * @param string[] $include

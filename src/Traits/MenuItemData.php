@@ -29,7 +29,7 @@ trait MenuItemData
 		return array_key_exists($name, $this->data);
 	}
 
-	public function getDataItem(string $name, ?string $default = null): ?string
+	public function getDataItem(string $name, mixed $default = null): mixed
 	{
 		if (!array_key_exists($name, $this->data)) {
 			return $default;
@@ -38,7 +38,7 @@ trait MenuItemData
 		return $this->data[$name];
 	}
 
-	public function addDataItem(string $name, string $value): void
+	public function addDataItem(string $name, mixed $value): void
 	{
 		$this->data[$name] = $value;
 	}
