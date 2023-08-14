@@ -292,4 +292,4 @@ menu:
 If you want to build your menu maybe from database instead of neon config, you can do that by creating `IMenuLoader`
 class.
 
-See the default [DefaultMenuLoader](../src/Loaders/DefaultMenuLoader.php) how it works.
+See the default [DefaultMenuLoader](https://github.com/contributte/menu-control/blob/master/src/Loaders/DefaultMenuLoader.php) how it works.
