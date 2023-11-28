@@ -5,6 +5,7 @@ namespace Tests\Cases\DI;
 use Contributte\MenuControl\MenuContainer;
 use Contributte\MenuControl\UI\MenuComponent;
 use Contributte\MenuControl\UI\MenuComponentFactory;
+use Contributte\Tester\Environment;
 use Nette\Application\Request as ApplicationRequest;
 use Nette\Application\Responses\TextResponse;
 use Nette\Bootstrap\Configurator;
@@ -72,7 +73,7 @@ final class MenuExtensionTest extends AbstractTestCase
 	private function createContainer(): Container
 	{
 		$config = new Configurator();
-		$config->setTempDirectory(TEMP_DIR);
+		$config->setTempDirectory(Environment::getTestDir());
 		$config->addConfig(__DIR__ . '/config.neon');
 
 		return $config->createContainer();

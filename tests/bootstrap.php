@@ -1,14 +1,11 @@
 <?php declare(strict_types = 1);
 
-require_once __DIR__ . '/../vendor/autoload.php';
+use Contributte\Tester\Environment;
 
-Tester\Environment::setup();
-Tester\Environment::bypassFinals();
-date_default_timezone_set('Europe/Prague');
-
-if (!is_dir(__DIR__ . '/../tmp')) {
-	mkdir(__DIR__ . '/../tmp/');
+if (@!include __DIR__ . '/../vendor/autoload.php') {
+	echo 'Install Nette Tester using `composer update --dev`';
+	exit(1);
 }
 
-define('TEMP_DIR', __DIR__ . '/../tmp/' . getmypid());
-Tester\Helpers::purge(TEMP_DIR);
+Environment::setup(__DIR__);
+Environment::setupFinals();
