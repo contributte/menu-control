@@ -7,11 +7,11 @@ final class MenuItemAction
 
 	public string $target;
 
-	/** @var array<string, string> */
+	/** @var array<string, mixed> */
 	public array $parameters = [];
 
 	/**
-	 * @param array<string, mixed> $array
+	 * @param array{target: string, parameters?: array<string, mixed>} $array
 	 */
 	public static function fromArray(array $array): self
 	{

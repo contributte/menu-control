@@ -6,7 +6,7 @@ use Contributte\MenuControl\Config\MenuItemAction;
 use Contributte\MenuControl\IMenu;
 use Contributte\MenuControl\IMenuItem;
 use Contributte\MenuControl\IMenuItemsContainer;
-use Nette\Utils;
+use Nette\Utils\Validators;
 use stdClass;
 
 final class DefaultMenuLoader implements IMenuLoader
@@ -49,7 +49,7 @@ final class DefaultMenuLoader implements IMenuLoader
 
 			if ($config->action !== null) {
 				if (is_array($config->action)) {
-					$item->setAction(MenuItemAction::fromArray($config->action));
+					$item->setAction(MenuItemAction::fromArray($config->action)); // @phpstan-ignore-line
 				} else {
 					$item->setAction(MenuItemAction::fromString($config->action));
 				}
@@ -61,7 +61,7 @@ final class DefaultMenuLoader implements IMenuLoader
 
 			if ($config->include !== null) {
 				$include = array_map(function ($include) {
-					Utils\Validators::assert($include, 'string');
+					Validators::assert($include, 'string');
 
 					return $include;
 				}, is_array($config->include) ? $config->include : [$config->include]);

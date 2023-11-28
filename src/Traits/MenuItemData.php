@@ -5,11 +5,11 @@ namespace Contributte\MenuControl\Traits;
 trait MenuItemData
 {
 
-	/** @var array<string, string> */
+	/** @var array<string, mixed> */
 	private array $data = [];
 
 	/**
-	 * @return array<string, string>
+	 * @return array<string, mixed>
 	 */
 	public function getData(): array
 	{
@@ -17,7 +17,7 @@ trait MenuItemData
 	}
 
 	/**
-	 * @param array<string, string> $data
+	 * @param array<string, mixed> $data
 	 */
 	public function setData(array $data): void
 	{

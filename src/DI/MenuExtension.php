@@ -136,15 +136,20 @@ final class MenuExtension extends CompilerExtension
 	 */
 	private function normalizeMenuItems(Processor $processor, array $items): array
 	{
-		array_walk($items, function (array &$item, string $key) use ($processor): void {
-			$item = $processor->process($this->getItemSchema(), $item);
+		array_walk(
+			$items,
+			// @phpcs:ignore SlevomatCodingStandard.PHP.DisallowReference.DisallowedPassingByReference
+			function (&$item, string $key) use ($processor): void {
+				$item = $processor->process($this->getItemSchema(), $item);
+				assert($item instanceof stdClass);
 
-			if ($item->title === null) {
-				$item->title = $key;
+				if ($item->title === null) {
+					$item->title = $key;
+				}
+
+				$item->items = $this->normalizeMenuItems($processor, $item->items);
 			}
-
-			$item->items = $this->normalizeMenuItems($processor, $item->items);
-		});
+		);
 
 		return $items;
 	}

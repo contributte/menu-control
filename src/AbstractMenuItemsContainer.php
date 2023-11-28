@@ -138,13 +138,11 @@ abstract class AbstractMenuItemsContainer implements IMenuItemsContainer
 	 */
 	private function getVisibleItemsOn(string $type): array
 	{
-		return array_filter($this->getItems(), function (IMenuItem $item) use ($type): bool {
-			return match ($type) {
+		return array_filter($this->getItems(), fn (IMenuItem $item): bool => match ($type) {
 				'menu' => $item->isVisibleOnMenu(),
 				'breadcrumbs' => $item->isVisibleOnBreadcrumbs(),
 				'sitemap' => $item->isVisibleOnSitemap(),
 				default => false,
-			};
 		});
 	}
 

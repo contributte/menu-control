@@ -91,7 +91,7 @@ final class MenuItem extends AbstractMenuItemsContainer implements IMenuItem
 	}
 
 	/**
-	 * @return array<string, string>
+	 * @return array<string, mixed>
 	 */
 	public function getActionParameters(): array
 	{

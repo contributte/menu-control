@@ -15,7 +15,7 @@ interface IMenuItem extends IMenuItemsContainer
 	public function getActionTarget(): ?string;
 
 	/**
-	 * @return array<string, string>
+	 * @return array<string, mixed>
 	 */
 	public function getActionParameters(): array;
 
