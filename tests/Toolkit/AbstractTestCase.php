@@ -11,15 +11,16 @@ use Contributte\MenuControl\LinkGenerator\ILinkGenerator;
 use Contributte\MenuControl\Loaders\IMenuLoader;
 use Contributte\MenuControl\Security\IAuthorizator;
 use Mockery;
+use Mockery\MockInterface;
 use Nette\Application\Application;
 use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Presenter;
 use Nette\Http\Request;
 use Nette\Http\UrlScript;
 use Nette\Localization\Translator;
-use Tester;
+use Tester\TestCase;
 
-abstract class AbstractTestCase extends Tester\TestCase
+abstract class AbstractTestCase extends TestCase
 {
 
 	public function tearDown(): void
@@ -105,7 +106,10 @@ abstract class AbstractTestCase extends Tester\TestCase
 		return $this->createMock(UrlScript::class, $fn);
 	}
 
-	private function createMock(string $type, ?callable $fn = null, ?array $args = null, bool $partial = false)
+	/**
+	 * @param mixed[]|null $args
+	 */
+	private function createMock(string $type, ?callable $fn = null, ?array $args = null, bool $partial = false): MockInterface
 	{
 		$mock = $args === null ? Mockery::mock($type) : Mockery::mock($type, $args);
 

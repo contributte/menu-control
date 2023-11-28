@@ -13,7 +13,7 @@ require_once __DIR__ . '/../../bootstrap.php';
 final class DefaultMenuLoaderTest extends AbstractTestCase
 {
 
-	public function testLoad_simple(): void
+	public function testLoadSimple(): void
 	{
 		Environment::$checkAssertions = false;
 

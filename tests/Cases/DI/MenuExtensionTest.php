@@ -2,6 +2,7 @@
 
 namespace Tests\Cases\DI;
 
+use Contributte\MenuControl\IMenu;
 use Contributte\MenuControl\MenuContainer;
 use Contributte\MenuControl\UI\MenuComponent;
 use Contributte\MenuControl\UI\MenuComponentFactory;
@@ -24,7 +25,7 @@ require_once __DIR__ . '/../../bootstrap.php';
 final class MenuExtensionTest extends AbstractTestCase
 {
 
-	public function testDI(): void
+	public function testDi(): void
 	{
 		$dic = $this->createContainer();
 
@@ -38,7 +39,7 @@ final class MenuExtensionTest extends AbstractTestCase
 		$dic = $this->createContainer();
 
 		$container = $dic->getService('menu.container');
-		/** @var \Contributte\MenuControl\IMenu $menu */
+		/** @var IMenu $menu */
 		$menu = $container->getMenu('default');
 
 		$item = $menu->getItem('Homepage');

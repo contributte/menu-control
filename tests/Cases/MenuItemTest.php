@@ -40,7 +40,7 @@ final class MenuItemTest extends AbstractTestCase
 		Assert::true($item->isAllowed());
 	}
 
-	public function testIsActive_not_allowed(): void
+	public function testIsActiveNotAllowed(): void
 	{
 		$linkGenerator = $this->createMockLinkGenerator();
 		$translator = $this->createMockTranslator();
@@ -64,7 +64,7 @@ final class MenuItemTest extends AbstractTestCase
 		Assert::false($item->isActive());
 	}
 
-	public function testIsActive_action_current(): void
+	public function testIsActiveActionCurrent(): void
 	{
 		$translator = $this->createMockTranslator();
 		$itemFactory = $this->createMockMenuItemFactory();
@@ -91,7 +91,7 @@ final class MenuItemTest extends AbstractTestCase
 		Assert::true($item->isActive());
 	}
 
-	public function testIsActive_include(): void
+	public function testIsActiveInclude(): void
 	{
 		$translator = $this->createMockTranslator();
 		$itemFactory = $this->createMockMenuItemFactory();
@@ -123,7 +123,7 @@ final class MenuItemTest extends AbstractTestCase
 		Assert::true($item->isActive());
 	}
 
-	public function testIsActive_active_child(): void
+	public function testIsActiveActiveChild(): void
 	{
 		$menu = $this->createMockMenu();
 		$linkGenerator = $this->createMockLinkGenerator();
@@ -219,7 +219,7 @@ final class MenuItemTest extends AbstractTestCase
 		Assert::same('#', $item->getRealLink());
 	}
 
-	public function testGetRealAbsoluteLink_80_port(): void
+	public function testGetRealAbsoluteLink80Port(): void
 	{
 		$menu = $this->createMockMenu();
 		$translator = $this->createMockTranslator();

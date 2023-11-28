@@ -40,7 +40,7 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 		], $container->getItems());
 	}
 
-	public function testGetItem_direct(): void
+	public function testGetItemDirect(): void
 	{
 		$menu = $this->createMockMenu();
 		$linkGenerator = $this->createMockLinkGenerator();
@@ -59,7 +59,7 @@ final class AbstractMenuItemsContainerTest extends AbstractTestCase
 		Assert::same($item, $container->getItem('item'));
 	}
 
-	public function testGetItem_path(): void
+	public function testGetItemPath(): void
 	{
 		$menu = $this->createMockMenu();
 		$linkGenerator = $this->createMockLinkGenerator();

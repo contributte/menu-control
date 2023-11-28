@@ -12,7 +12,7 @@ require_once __DIR__ . '/../../bootstrap.php';
 final class NetteLinkGeneratorTest extends AbstractTestCase
 {
 
-	public function testLink_action(): void
+	public function testLinkAction(): void
 	{
 		$request = $this->createMockHttpRequest();
 		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function (MockInterface $netteLinkGenerator): void {
@@ -29,7 +29,7 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 		Assert::same('/', $linkGenerator->link($item));
 	}
 
-	public function testAbsoluteLink_action(): void
+	public function testAbsoluteLinkAction(): void
 	{
 		$request = $this->createMockHttpRequest(function (MockInterface $request): void {
 			$request->shouldReceive('getUrl')->andReturn(
@@ -54,7 +54,7 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 		Assert::same('https://localhost/', $linkGenerator->absoluteLink($item));
 	}
 
-	public function testLink_link(): void
+	public function testLinkLink(): void
 	{
 		$request = $this->createMockHttpRequest();
 		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function (MockInterface $netteLinkGenerator): void {
@@ -71,7 +71,7 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 		Assert::same('/', $linkGenerator->link($item));
 	}
 
-	public function testLink_empty(): void
+	public function testLinkEmpty(): void
 	{
 		$request = $this->createMockHttpRequest();
 		$netteLinkGenerator = $this->createMockNetteLinkGenerator();
