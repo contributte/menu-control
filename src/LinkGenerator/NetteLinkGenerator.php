@@ -23,7 +23,10 @@ final class NetteLinkGenerator implements ILinkGenerator
 	{
 		$action = $item->getActionTarget();
 		if ($action !== null) {
-			return $this->linkGenerator->link($action, $item->getActionParameters());
+			$generatedLink = $this->linkGenerator->link($action, $item->getActionParameters());
+			if ($generatedLink !== null) {
+				return $generatedLink;
+			}
 		}
 
 		$link = $item->getLink();

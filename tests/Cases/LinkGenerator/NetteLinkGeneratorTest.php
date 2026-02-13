@@ -71,6 +71,24 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 		Assert::same('/', $linkGenerator->link($item));
 	}
 
+	public function testLinkActionWithNullGeneratedLinkFallsBackToItemLink(): void
+	{
+		$request = $this->createMockHttpRequest();
+		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function (MockInterface $netteLinkGenerator): void {
+			$netteLinkGenerator->shouldReceive('link')->andReturn(null);
+		});
+
+		$item = $this->createMockMenuItem(function (MockInterface $item): void {
+			$item->shouldReceive('getActionTarget')->andReturn('Home:default');
+			$item->shouldReceive('getActionParameters')->andReturn([]);
+			$item->shouldReceive('getLink')->andReturn('/fallback');
+		});
+
+		$linkGenerator = new NetteLinkGenerator($request, $netteLinkGenerator);
+
+		Assert::same('/fallback', $linkGenerator->link($item));
+	}
+
 	public function testLinkEmpty(): void
 	{
 		$request = $this->createMockHttpRequest();
