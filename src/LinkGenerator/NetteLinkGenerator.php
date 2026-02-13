@@ -4,6 +4,7 @@ namespace Contributte\MenuControl\LinkGenerator;
 
 use Contributte\MenuControl\IMenuItem;
 use Nette\Application\LinkGenerator;
+use Nette\Application\UI\InvalidLinkException;
 use Nette\Http\IRequest;
 
 final class NetteLinkGenerator implements ILinkGenerator
@@ -23,7 +24,10 @@ final class NetteLinkGenerator implements ILinkGenerator
 	{
 		$action = $item->getActionTarget();
 		if ($action !== null) {
-			return $this->linkGenerator->link($action, $item->getActionParameters());
+			$generatedLink = $this->tryLink($action, $item->getActionParameters());
+			if ($generatedLink !== null) {
+				return $generatedLink;
+			}
 		}
 
 		$link = $item->getLink();
@@ -44,6 +48,18 @@ final class NetteLinkGenerator implements ILinkGenerator
 		}
 
 		return $prefix . $this->link($item);
+	}
+
+	/**
+	 * @param array<string, mixed> $parameters
+	 */
+	private function tryLink(string $action, array $parameters): ?string
+	{
+		try {
+			return $this->linkGenerator->link($action, $parameters);
+		} catch (InvalidLinkException) {
+			return null;
+		}
 	}
 
 }
