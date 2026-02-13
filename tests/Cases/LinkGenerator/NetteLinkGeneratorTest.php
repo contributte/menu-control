@@ -4,6 +4,7 @@ namespace Tests\Cases\LinkGenerator;
 
 use Contributte\MenuControl\LinkGenerator\NetteLinkGenerator;
 use Mockery\MockInterface;
+use Nette\Application\UI\InvalidLinkException;
 use Tester\Assert;
 use Tests\Toolkit\AbstractTestCase;
 
@@ -71,11 +72,11 @@ final class NetteLinkGeneratorTest extends AbstractTestCase
 		Assert::same('/', $linkGenerator->link($item));
 	}
 
-	public function testLinkActionWithNullGeneratedLinkFallsBackToItemLink(): void
+	public function testLinkActionWithInvalidGeneratedLinkFallsBackToItemLink(): void
 	{
 		$request = $this->createMockHttpRequest();
 		$netteLinkGenerator = $this->createMockNetteLinkGenerator(function (MockInterface $netteLinkGenerator): void {
-			$netteLinkGenerator->shouldReceive('link')->andReturn(null);
+			$netteLinkGenerator->shouldReceive('link')->andThrow(new InvalidLinkException());
 		});
 
 		$item = $this->createMockMenuItem(function (MockInterface $item): void {
