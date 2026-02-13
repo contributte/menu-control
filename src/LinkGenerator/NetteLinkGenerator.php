@@ -24,9 +24,9 @@ final class NetteLinkGenerator implements ILinkGenerator
 	{
 		$action = $item->getActionTarget();
 		if ($action !== null) {
-			try {
-				return $this->linkGenerator->link($action, $item->getActionParameters());
-			} catch (InvalidLinkException) {
+			$generatedLink = $this->tryLink($action, $item->getActionParameters());
+			if ($generatedLink !== null) {
+				return $generatedLink;
 			}
 		}
 
@@ -48,6 +48,18 @@ final class NetteLinkGenerator implements ILinkGenerator
 		}
 
 		return $prefix . $this->link($item);
+	}
+
+	/**
+	 * @param array<string, mixed> $parameters
+	 */
+	private function tryLink(string $action, array $parameters): ?string
+	{
+		try {
+			return $this->linkGenerator->link($action, $parameters);
+		} catch (InvalidLinkException) {
+			return null;
+		}
 	}
 
 }
