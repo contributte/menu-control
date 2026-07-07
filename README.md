@@ -29,7 +29,7 @@ Menu control for Nette applications with configurable menus, breadcrumbs, sitema
 | stable | `^2.2`  | `v2.2`   | `3.0`  | `>=7.1` |
 | stable | `^2.1`  | `v2.1`   | `2.4`  | `>=7.1` |
 
-## Content
+## Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -138,7 +138,7 @@ That structure in neon config will generate two menus:
 
 This package includes 3 default templates (menu, breadcrumbs, sitemap). However only the default sitemap template
 should be used in real project. The other two templates should only help you in the beginning with building your own
-templates which will fit your's website look.
+templates which will fit your website's look.
 
 * [menu.latte](src/UI/templates/menu.latte)
 * [breadcrumbs.latte](src/UI/templates/breadcrumbs.latte)
@@ -241,7 +241,7 @@ menu:
 
 Sometimes you may want to hide some links based on custom rules, that includes for example authorization from nette.
 
-This menu package uses custom `IAuthorizator` interface which you can use to write your own authorizators.
+This menu package uses custom `IAuthorizator` interface which you can use to write your own authorizator implementations.
 
 ```php
 <?php
